@@ -6,14 +6,23 @@
 </head>
 <body>
     <header>
-        <h1>Profil Art</h1>
+        <div class="wrapper-content">
+            <div class="wrapper-title">
+                <h1><a href="{% url 'blog.views.home' %}">Profil' Art</a></h1>
+            </div>
+        </div>
     </header>
     <article>
-        <div id="content">
-            {% block content %}{% endblock content %}
+        <div class="wrapper-content">
+            {% include "menu/mainMenu.html" %}
+            
+            {% block content %}
+            {% endblock content %}
         </div>
     </article>
     <footer>
-        <p>Powered by Django</p>
+        <div class="wrapper-content">
+            <p>Powered by Django</p>
+        </div>
     </footer>
 </body>

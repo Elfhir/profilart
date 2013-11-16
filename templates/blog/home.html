@@ -1,5 +1,10 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
-    <p>My Content, lorum ipsum</p>
+    {% if user.is_authenticated %}
+        <p><strong>{{ user.username }}</strong>,<br/>
+        Welcome to Profil' Art website</p>
+    {% else %}
+        <p>Welcome to Profil' Art website</p>
+    {% endif %}
 {% endblock content %}
