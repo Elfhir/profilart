@@ -1,0 +1,27 @@
+<style type="text/css">
+    .menu-backoffice .menu-vertical ul li{
+	list-style: none;
+	float: left;
+	margin-right: 20px;
+    }
+    .menu-backoffice{
+	padding-top: 5px;
+	margin-bottom: 10px;
+	padding-bottom: 14px;
+    }
+    .menu-backoffice{
+	background-color: #e1e1e1;
+    }
+</style>
+
+<article class="menu-backoffice">
+    <div class="wrapper-content">
+        <div class="wrapper-title menu-vertical">
+	    <ul>
+		<li><a href="/{{ user.username }}">See my Website</a></li>
+		<li><a href="{% url 'authentification.views.logOut' %}">Log Out</a></li>
+	    </ul>
+	    <div class="clear"></div>
+	</div>
+    </div>
+</article>

@@ -2,19 +2,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Profil Art</title>
-    <link rel="stylesheet" href="/static/css/screen.css"
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/screen.css">
 </head>
 <body>
-    <header>
-        <div class="wrapper-content">
-            <div class="wrapper-title">
-                <h1><a href="{% url 'blog.views.home' %}">Profil' Art</a></h1>
-            </div>
-        </div>
-    </header>
+    {% include "layout/header.html" %}
     <article>
         <div class="wrapper-content">
-            {% include "menu/mainMenu.html" %}
+            <div style="margin-top: 20px">
+                {% include "menu/mainMenu.html" %}
+            </div>
             
             {% block content %}
             {% endblock content %}

@@ -1,0 +1,9 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+        {{ State }}
+	<form action="/{{ user.username }}/build/edit/text/{{ id }}/" method="post">
+            {{ form.as_p }}
+            <input type="submit" value="Submit" />
+	</form>
+{% endblock content %}

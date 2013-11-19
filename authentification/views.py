@@ -2,7 +2,8 @@ from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.models import Group, User
 from authentification.form import LogInForm, RegisterForm
-
+import os
+                    
 def authentification(request):
     logInForm = LogInForm();
     registerForm = RegisterForm();
@@ -54,6 +55,8 @@ def registerUser(request):
             group = Group.objects.get(id=requestGroup)
             group.user_set.add(user)
             user.save()
+            #Create file for this user
+            createUserFile(requestUsername)
             #If the user exists
             user = authenticate(username=requestUsername, password=requestPassword)
             if user is not None:
@@ -63,3 +66,8 @@ def registerUser(request):
                     return HttpResponseRedirect("/")
     #At least one condition is false
     return render_to_response('form/authentification.html', {'registerState' : 'Error', 'logInForm' : logInForm, 'registerForm' : registerForm})
+
+def createUserFile(username):
+    PROJECT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),'../')
+    PATH_JOIN = os.path.join(PROJECT_PATH, 'user/' + username)
+    if not os.path.exists(PATH_JOIN): os.makedirs(PATH_JOIN)

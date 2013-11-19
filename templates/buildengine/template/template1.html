@@ -1,0 +1,27 @@
+<!doctype html>
+<head>
+    <meta charset="UTF-8">
+    <title>Profil Art</title>
+    <link rel="stylesheet" href="/static/template/template1/screen.css"
+</head>
+<body>
+    <header>
+        <div class="wrapper-content">
+            <div class="wrapper-title">
+                <h1 style="color:red">Joe Calderon's Art</h1>
+            </div>
+        </div>
+    </header>
+    <article>
+        <div class="wrapper-content">    
+                {% if blockText.1 == True  %}
+                <div style='border: 1px dotted gray'>
+                    {{ blockText.0.text }}
+                </div>
+                <a href="/{{ user.username }}/build/edit/text/{{ blockText.0.id }}">Edit my element</a>
+                {% else %}
+                    {{ blockText.0 }}
+                {% endif %}
+        </div>
+    </article>
+</body>

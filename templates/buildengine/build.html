@@ -1,5 +1,11 @@
-{% extends "layout/base.html" %}
+<!doctype html>
+<head>
+    <link rel="stylesheet" href="/static/css/reset.css"
+</head>
+{% include "layout/header.html" %}
+{% include "menu/backOfficeMenu.html" %}
 
 {% block content %}
-    {{ username }}'s back office !
+    {% include "buildengine/template/template1.html" %}
 {% endblock content %}
+
