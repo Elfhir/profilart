@@ -9,12 +9,10 @@
     {% include "layout/header.html" %}
     <article>
         <div class="wrapper-content">
-            <div style="margin-top: 20px">
-                {% include "menu/mainMenu.html" %}
+            <div class="main-content">
+                {% block content %}
+                {% endblock content %}
             </div>
-            
-            {% block content %}
-            {% endblock content %}
         </div>
     </article>
     <footer>

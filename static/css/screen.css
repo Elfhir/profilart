@@ -7,18 +7,12 @@ body{
     font-size: 1em;
 }
 footer{
-    background-color: #969696;
+    background-color: #a5a5a4;
     height: 40px;
-}
-article{
-    margin-bottom: 20px;
 }
 h1{   
     font-size: 1.4em;
     color: #fff;
-}
-.wrapper-title{
-    padding-top: 9px;
 }
 footer .wrapper-content{
     padding-top: 11px;
@@ -28,4 +22,7 @@ footer .wrapper-content{
 .wrapper-content{
     width: 1024px;
     margin: 0 auto;
+}
+.wrapper-content .main-content{
+    margin: 20px auto;
 }

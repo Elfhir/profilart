@@ -1,17 +1,47 @@
 <style type="text/css">
     .header-website{
-        background-color: #969696;
+        color: white;
+        background-color: #a5a5a4;
         height: 40px;
+        padding: 4px 0;
     }
-    .header-website{
-        margin-bottom: 0px;
+    .header-website .wrapper-logo{
+        float: left;
+    }
+    .header-website a{
+        color: white;
+        text-decoration: none;
+    }
+    .header-website a:hover{
+        color: white;
+        text-decoration: underline;
+    }
+    .header-website .slogan{
+        font-size: 0.8em;
+        margin-left: 5px;
+    }
+    .header-website .main-menu{
+        width: 530px;
+        float: right;
+        text-align : right;
+        margin-top: 11px;
+    }
+    .header-website .main-menu ul li{
+        float: right;
+        margin-left: 22px;  
     }
 </style>
 
 <header class="header-website">
     <div class="wrapper-content">
         <div class="wrapper-title">
-            <h1><a href="{% url 'blog.views.home' %}">Profil' Art</a></h1>
+            <div class="wrapper-logo">
+                <h1><a href="{% url 'blog.views.home' %}">Profil' Art</a></h1>
+                <div class="slogan">Push your Art</div>
+            </div>
+            <div class="main-menu">
+                {% include "menu/mainMenu.html" %}
+            </div>
         </div>
     </div>
 </header>

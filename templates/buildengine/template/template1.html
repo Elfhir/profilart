@@ -5,15 +5,16 @@
     <link rel="stylesheet" href="/static/template/template1/screen.css"
 </head>
 <body>
-    <header>
-        <div class="wrapper-content">
-            <div class="wrapper-title">
-                <h1 style="color:red">Joe Calderon's Art</h1>
+    <div class="template1">
+        <article role="header">
+            <div class="wrapper-content">
+                <div class="wrapper-title">
+                    <h1 style="color:red">Joe Calderon's Art</h1>
+                </div>
             </div>
-        </div>
-    </header>
-    <article>
-        <div class="wrapper-content">    
+        </article>
+        <article>
+            <div class="wrapper-content">
                 {% if blockText.1 == True  %}
                 <div style='border: 1px dotted gray'>
                     {{ blockText.0.text }}
@@ -22,6 +23,7 @@
                 {% else %}
                     {{ blockText.0 }}
                 {% endif %}
-        </div>
-    </article>
+            </div>
+        </article>
+    </div>
 </body>

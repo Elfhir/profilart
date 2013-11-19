@@ -59,18 +59,15 @@ body{
     font-family: "myriad pro", arial, sans-serif;
     font-size: 1em;
 }
+.template1 .wrapper-content .wrapper-title{
+	margin: 20px 0;
+}
 header, footer{
     height: 40px;
-}
-header, article{
-    margin-bottom: 20px;
 }
 h1{   
     font-size: 1.4em;
     color: #fff;
-}
-.wrapper-title{
-    padding-top: 9px;
 }
 footer .wrapper-content{
     padding-top: 11px;

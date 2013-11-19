@@ -1,11 +1,14 @@
 {% if user.is_authenticated %}
-    <ul style="margin-bottom:20px">
+    <ul>
 	<li><a href="{% url 'authentification.views.logOut' %}">Log Out</a></li>
-	<li><a href="{{ user.username }}">Go to my website</a></li>
-	<li><a href="{{ user.username }}/build">Edit my website</a></li>
+	<li><a href="/{{ user.username }}">Go to my website</a></li>
+	<li><a href="/{{ user.username }}/build">Edit my website</a></li>
+	<li><a href="#">Access to Archives</a></li>
     </ul>
 {% else %}
-    <ul style="margin-bottom:20px">
+    <ul>
 	<li><a href="{% url 'authentification.views.authentification' %}">Log In / Sign Up</a></li>
+	<li><a href="#">Create my website</a></li>
+	<li><a href="#">Access to Archives</a></li>
     </ul>
 {% endif %}

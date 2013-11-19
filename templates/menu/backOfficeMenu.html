@@ -1,8 +1,9 @@
 <style type="text/css">
     .menu-backoffice .menu-vertical ul li{
 	list-style: none;
-	float: left;
-	margin-right: 20px;
+	float: right;
+	margin-left: 20px;
+	text-align: right;
     }
     .menu-backoffice{
 	padding-top: 5px;
@@ -10,7 +11,22 @@
 	padding-bottom: 14px;
     }
     .menu-backoffice{
-	background-color: #e1e1e1;
+	background-color: #f0f0f0;
+	height: 35px;
+	border-bottom: 1px solid #cdcdcd;
+    }
+    .menu-backoffice .menu-vertical{
+	padding-top: 14px;
+	width: 50%;
+	float: right;
+    }
+    .menu-backoffice .menu-vertical a{
+	color : #8e8e8e;
+	text-decoration: none;
+	font-size : 1em;
+    }
+    .menu-backoffice .menu-vertical a:hover{
+	text-decoration: underline;
     }
 </style>
 
@@ -18,8 +34,8 @@
     <div class="wrapper-content">
         <div class="wrapper-title menu-vertical">
 	    <ul>
-		<li><a href="/{{ user.username }}">See my Website</a></li>
 		<li><a href="{% url 'authentification.views.logOut' %}">Log Out</a></li>
+		<li><a href="/{{ user.username }}">See my Website</a></li>
 	    </ul>
 	    <div class="clear"></div>
 	</div>
