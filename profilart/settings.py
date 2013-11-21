@@ -130,6 +130,7 @@ INSTALLED_APPS = (
     'blog',
     'buildengine',
     'searchengine',
+    'work',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

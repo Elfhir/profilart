@@ -7,4 +7,5 @@ urlpatterns = patterns('',
     url(r'', include('blog.urls')),
     url(r'^authentification', include('authentification.urls')),
     url(r'^(?P<username>\w+)', include('buildengine.urls')),
+    url(r'^(?P<username>\w+)/work', include('work.urls')),
 )
