@@ -13,8 +13,8 @@ class Work(models.Model):
         return "%s" % (self.name)
     
 class WorkType(models.Model):
-    name = models.CharField(max_length=100)
+    idType = models.PositiveSmallIntegerField()
     idWork = models.ForeignKey(Work)
     
     def __unicode__(self):
-        return "%s" % (self.name)
+        return "%s" % (self.idType)

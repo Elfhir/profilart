@@ -1,4 +1,5 @@
 from buildengine.models import *
+from work.models import Work, WorkType
 from django.shortcuts import render_to_response, HttpResponseRedirect, render
 from django.template import RequestContext
 from django.http import Http404
@@ -14,9 +15,11 @@ def home(request, username):
         requestedUser = User.objects.get(username=username)
         text = TextType.objects.get(user_id=requestedUser.id)
         images = ImageType.objects.filter(user_id=requestedUser.id).order_by("weight")
+        workType = WorkType.objects.all()
+        works = Work.objects.all()
         editMode = False
         return render(request, 'buildengine/template/template1.html', {'username' : username, 'blockText' : text, 'blockImage' : images,
-                                                                       'editMode' : editMode})
+                                                                       'blockWork' : works, 'workType' : workType, 'editMode' : editMode})
     return HttpResponseRedirect("/")
 
 def backOffice(request, username):
@@ -28,9 +31,11 @@ def backOffice(request, username):
         if sessionUserString == usernameString :
             text = TextType.objects.get(user_id=request.user.id)
             images = ImageType.objects.filter(user_id=request.user.id).order_by("weight")
+            workType = WorkType.objects.all()
+            works = Work.objects.all()
             editMode = True
             return render(request, 'buildengine/build.html', {'username' : username, 'blockText' : text, 'blockImage' : images,
-                                                              'editMode' : editMode})
+                                                              'blockWork' : works, 'workType' : workType, 'editMode' : editMode})
     return HttpResponseRedirect("/")
 
 def editText(request, username, idText):

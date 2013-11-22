@@ -29,12 +29,68 @@
                         {% endfor %}
                     </div>
                     <a href="/{{ user.username }}/build/add/image">Add an image</a>
+                    <hr/>
+                    <p>Paint Work</p>
+                    {% for work in blockWork %}
+                        {% for type in workType %}
+                            {% if work.id == type.idWork_id and type.idType == 1 %}
+                                {{ work }}
+                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    <p>Video Work</p>
+                    {% for work in blockWork %}
+                        {% for type in workType %}
+                            {% if work.id == type.idWork_id and type.idType == 2 %}
+                                {{ work }}
+                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    <p>Installation Work</p>
+                    {% for work in blockWork %}
+                        {% for type in workType %}
+                            {% if work.id == type.idWork_id and type.idType == 3 %}
+                                {{ work }}
+                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
                 {% else %}
                     {{ blockText }}
                     <br/>
                     <hr/>
                     {% for image in blockImage %}
                         <img style="width: 190px;" src="{{ image }}"/>
+                    {% endfor %}
+                    <hr/>
+                    <p>Paint Work</p>
+                    {% for work in blockWork %}
+                        {% for type in workType %}
+                            {% if work.id == type.idWork_id and type.idType == 1 %}
+                                {{ work }}
+                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    <p>Video Work</p>
+                    {% for work in blockWork %}
+                        {% for type in workType %}
+                            {% if work.id == type.idWork_id and type.idType == 2 %}
+                                {{ work }}
+                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    <p>Installation Work</p>
+                    {% for work in blockWork %}
+                        {% for type in workType %}
+                            {% if work.id == type.idWork_id and type.idType == 3 %}
+                                {{ work }}
+                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                            {% endif %}
+                        {% endfor %}
                     {% endfor %}
                 {% endif %}
             </div>
