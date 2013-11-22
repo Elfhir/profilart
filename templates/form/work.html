@@ -1,9 +1,0 @@
-{% extends "layout/base.html" %}
-
-{% block content %}
-        {{ formState }}
-	<form action="/{{ user.username }}/build/add/work/" enctype="multipart/form-data" method="post">
-            {{ form.as_p }}
-            <input type="submit" value="Add my work" />
-	</form>
-{% endblock content %}
