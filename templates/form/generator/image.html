@@ -3,12 +3,12 @@
 {% block content %}
         {{ State }}
 	{% if idImage %}
-	    <form action="/{{ user.username }}/build/edit/image/{{ id }}/" enctype="multipart/form-data" method="post">
+	    <form action="/{{ user.username }}/build/editimage/{{ id }}/" enctype="multipart/form-data" method="post">
 		{{ form.as_p }}
 		<input type="submit" value="Submit" />
 	    </form>
 	{% else %}
-	    <form action="/{{ user.username }}/build/add/image/" enctype="multipart/form-data" method="post">
+	    <form action="/{{ user.username }}/build/addimage/" enctype="multipart/form-data" method="post">
 		{{ form.as_p }}
 		<input type="submit" value="Submit" />
 	    </form>

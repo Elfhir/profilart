@@ -17,7 +17,7 @@
     }
     .menu-backoffice .menu-vertical{
 	padding-top: 14px;
-	width: 50%;
+	width: 100%;
 	float: right;
     }
     .menu-backoffice .menu-vertical a{
@@ -34,9 +34,9 @@
     <div class="wrapper-content">
         <div class="wrapper-title menu-vertical">
 	    <ul>
-		<li><a href="{% url 'authentification.views.logOut' %}">Log Out</a></li>
-		<li><a href="/{{ user.username }}">See my Website</a></li>
-		<li><a href="/{{ user.username }}/build/add/work">Add a work</a></li>
+		<li><a href="/{{ user.username }}/build/managework">Manage my works</a></li>
+		<li><a href="/{{ user.username }}/build/editwebsite">Edit my profil page</a></li>
+		<li><a href="/{{ user.username }}/build/editaccount">Edit my account</a></li>
 	    </ul>
 	    <div class="clear"></div>
 	</div>

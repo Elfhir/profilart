@@ -14,6 +14,12 @@ h1{
     font-size: 1.4em;
     color: #fff;
 }
+h2{
+    font-size: 1.2em;
+    color: black;
+    color: grey;
+    margin-bottom: 13px;
+}
 footer .wrapper-content{
     padding-top: 11px;
     font-size: 0.9em;
@@ -25,4 +31,41 @@ footer .wrapper-content{
 }
 .wrapper-content .main-content{
     margin: 20px auto;
+}
+.wrapper-manage-work{
+    margin-bottom: 20px;
+}
+.wrapper-manage-work .work{
+    width: 25%;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #b8b8b8;
+}
+.wrapper-manage-work .work img{
+    width: 100%;
+    margin-bottom: 5px;
+}
+input{
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #aeaeae;
+    background-color: #ffffff;
+}
+input[type=text], input[type=password]{
+    width: 200px;
+}
+input[type=submit]{
+    padding: 5px 15px;
+    cursor: pointer
+}
+label{
+    margin-bottom: 4px;
+    display: block;
+    font-size: 0.9em;
+    font-style: italic;
+}
+.logInContent{
+    width: 50%;
+    float: left;
+    height: 500px;
 }

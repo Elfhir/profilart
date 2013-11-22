@@ -1,0 +1,16 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+    {% for work in blockWork %}
+        <article class="wrapper-manage-work">
+            <div class="work">
+                <a href="/{{ user.username }}/work/{{ work.id }}"><img src="{{ work.imagepath }}"/></a>
+                <p>{{ work }}</p>
+                <a href="/{{ user.username }}/build/deletework/{{ work.id }}">Delete this work</a>
+            </div>
+        </article>
+    {% endfor %}
+    <div>
+        <a href="/{{ user.username }}/build/addwork">Add a work</a>
+    </div>
+{% endblock content %}

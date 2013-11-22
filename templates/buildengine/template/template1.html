@@ -1,3 +1,43 @@
+<style type="text/css">
+    .modifier-h1{
+	color: white;
+        font-size: 2em;
+        text-align: center;
+    }
+    .modifier-h2{
+        color: white;
+        margin-bottom: 7px;
+    }
+    .modifier-biography{
+        color: white;
+        font-style: italic;
+        font-size: 0.9em;
+        margin-bottom: 50px;
+    }
+    .modifier-biography p{
+        margin-bottom: 10px;
+    }
+    .modifier-quick-view-works .list-paint-works{
+        margin-bottom: 30px;
+    }
+    .modifier-edit-marker{
+        padding: 10px;
+        border: 1px dotted gray;
+    }
+    .modifier-edit-wrapper a.modifier-edit-link{
+        text-decoration: underline;
+        font-style: normal;
+        font-size: 16px;
+        color: gray;
+    }
+    .modifier-edit-wrapper {
+        margin-bottom: 20px;
+    }
+    .modifier-edit-wrapper a.modifier-edit-link:hover{
+        color: white;
+    }
+</style>
+
 <!doctype html>
 <head>
     <meta charset="UTF-8">
@@ -9,89 +49,125 @@
         <article role="header">
             <div class="wrapper-content">
                 <div class="wrapper-title">
-                    <h1 style="color:red">Joe Calderon's Art</h1>
+                    <h1 class="modifier-h1">ANNE  LOUBRY</h1>
                 </div>
             </div>
         </article>
         <article>
             <div class="wrapper-content">
                 {% if editMode  %}
-                    <div style='padding: 10px; border: 1px dotted gray'>
-                        {{ blockText }}
-                    </div>
-                    <a href="/{{ user.username }}/build/edit/text/{{ blockText.id }}">Edit my element</a>
-                    <br/>
-                    <hr/>
-                    <div style="padding: 10px; border: 1px dotted gray">
-                        {% for image in blockImage %}
-                            <img style="padding: 5px; border: 1px dotted black; width: 190px;" src="{{ image }}"/>
-                            <a href="/{{ user.username }}/build/delete/image/{{ image.id }}">Delete this image</a>
-                        {% endfor %}
-                    </div>
-                    <a href="/{{ user.username }}/build/add/image">Add an image</a>
-                    <hr/>
-                    <p>Paint Work</p>
-                    {% for work in blockWork %}
-                        {% for type in workType %}
-                            {% if work.id == type.idWork_id and type.idType == 1 %}
-                                {{ work }}
-                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %}
-                    <p>Video Work</p>
-                    {% for work in blockWork %}
-                        {% for type in workType %}
-                            {% if work.id == type.idWork_id and type.idType == 2 %}
-                                {{ work }}
-                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %}
-                    <p>Installation Work</p>
-                    {% for work in blockWork %}
-                        {% for type in workType %}
-                            {% if work.id == type.idWork_id and type.idType == 3 %}
-                                {{ work }}
-                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %}
+                    <article role="biography" class="modifier-biography modifier-edit-wrapper">
+                        <article role="marker" class="modifier-edit-marker">
+                            {{ blockText|linebreaks }}
+                        </article>
+                        <a class="modifier-edit-link" href="/{{ user.username }}/build/edittext/{{ blockText.id }}">Edit my text</a>
+                    </article>
+                    
+                    <article role="image-presentation" class="modifier-image-presentation modifier-edit-wrapper">
+                        <article role="marker" class="modifier-edit-marker">
+                            {% for image in blockImage %}
+                                <article role="marker" class="modifier-edit-marker">
+                                <a href="/{{ user.username }}/work/{{ work.id }}">
+                                    <img style="width: 190px;" src="{{ image }}"/>
+                                </a>
+                                </article>
+                            {% endfor %}
+                        </article>
+                        <a class="modifier-edit-link" href="/{{ user.username }}/build/addimage">Add an image</a>
+                    </article>
+                    
+                    <article role="quick-view-works" class="modifier-quick-view-works modifier-edit-wrapper">
+                        <article role="marker" class="modifier-edit-marker">
+                            <h2 class="modifier-h2">Paint Works</h2>
+                            <figure title="Paint Works" class="list-paint-works">
+                                {% for work in blockWork %}
+                                    {% for type in workType %}
+                                        {% if work.id == type.idWork_id and type.idType == 1 %}
+                                            <a href="/{{ user.username }}/work/{{ work.id }}">
+                                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                            </figure>
+                            
+                            <figure title="Video Works" class="list-video-works">
+                                <h2 class="modifier-h2">Video Works</h2>
+                                {% for work in blockWork %}
+                                    {% for type in workType %}
+                                        {% if work.id == type.idWork_id and type.idType == 2 %}
+                                            <a href="/{{ user.username }}/work/{{ work.id }}">
+                                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                            </figure>
+                            
+                            <figure title="Installation Works" class="list-installation-works">
+                                <h2 class="modifier-h2">Installation Works</h2>
+                                {% for work in blockWork %}
+                                    {% for type in workType %}
+                                        {% if work.id == type.idWork_id and type.idType == 3 %}
+                                            <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                            </figure>
+                        </article>
+                        <a class="modifier-edit-link" href="/{{ user.username }}/build/managework">Manage my works</a>
+                    </article>
                 {% else %}
-                    {{ blockText }}
-                    <br/>
-                    <hr/>
-                    {% for image in blockImage %}
-                        <img style="width: 190px;" src="{{ image }}"/>
-                    {% endfor %}
-                    <hr/>
-                    <p>Paint Work</p>
-                    {% for work in blockWork %}
-                        {% for type in workType %}
-                            {% if work.id == type.idWork_id and type.idType == 1 %}
-                                {{ work }}
-                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
-                            {% endif %}
+                    <article role="biography" class="modifier-biography">
+                        {{ blockText|linebreaks }}
+                    </article>
+                    
+                    <article role="image-presentation" class="modifier-image-presentation">
+                        {% for image in blockImage %}
+                            <a href="/{{ user.username }}/work/{{ work.id }}">
+                                <img style="width: 190px;" src="{{ image }}"/>
+                            </a>
                         {% endfor %}
-                    {% endfor %}
-                    <p>Video Work</p>
-                    {% for work in blockWork %}
-                        {% for type in workType %}
-                            {% if work.id == type.idWork_id and type.idType == 2 %}
-                                {{ work }}
-                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %}
-                    <p>Installation Work</p>
-                    {% for work in blockWork %}
-                        {% for type in workType %}
-                            {% if work.id == type.idWork_id and type.idType == 3 %}
-                                {{ work }}
-                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %}
+                    </article>
+                    
+                    <article role="quick-view-works" class="modifier-quick-view-works">
+                        <h2 class="modifier-h2">Paint Works</h2>
+                        <article class="list-paint-works">
+                            {% for work in blockWork %}
+                                {% for type in workType %}
+                                    {% if work.id == type.idWork_id and type.idType == 1 %}
+                                        <a href="/{{ user.username }}/work/{{ work.id }}">
+                                            <img title="Go to see {{ work.name }}" style="width: 190px;" src="{{ work.imagepath }}"/>
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </article>
+                        
+                        <figure title="Video Works" class="list-video-works">
+                            <h2 class="modifier-h2">Video Works</h2>
+                            {% for work in blockWork %}
+                                {% for type in workType %}
+                                    {% if work.id == type.idWork_id and type.idType == 2 %}
+                                        <a href="/{{ user.username }}/work/{{ work.id }}">
+                                            <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </figure>
+                        
+                        <figure title="Installation Works" class="list-installation-works">
+                            <h2 class="modifier-h2">Installation Works</h2>
+                            {% for work in blockWork %}
+                                {% for type in workType %}
+                                    {% if work.id == type.idWork_id and type.idType == 3 %}
+                                        <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </figure>
+                    </article>
                 {% endif %}
             </div>
         </article>

@@ -1,0 +1,9 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+        {{ work.name }}
+        <br/>
+        <img style="width: 400px" src="{{ work.imagepath}}"/>
+        <br/>
+        {{ work.text }}
+{% endblock content %}

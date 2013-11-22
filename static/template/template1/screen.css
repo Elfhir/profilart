@@ -55,7 +55,7 @@ table {
  * Profil Art CSS
  *******************/
 body{
-    background-color: yellow;
+    background-color: black;
     font-family: "myriad pro", arial, sans-serif;
     font-size: 1em;
 }
@@ -64,10 +64,6 @@ body{
 }
 header, footer{
     height: 40px;
-}
-h1{   
-    font-size: 1.4em;
-    color: #fff;
 }
 footer .wrapper-content{
     padding-top: 11px;

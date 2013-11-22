@@ -39,39 +39,53 @@ def backOffice(request, username):
     return HttpResponseRedirect("/")
 
 def editText(request, username, idText):
-    #Default values of the form
-    defaultContent = TextType.objects.get(id=idText)
-    textForm = TextForm(initial={'content': defaultContent})
-    text = TextType.objects.get(user_id=request.user.id)
-    #If the form has been sent
-    if request.method == 'POST':
-        form = TextForm(request.POST)
-        if form.is_valid():
-            requestContent = request.POST['content']
-            text.text = requestContent
-            text.save()
-            text.full_clean()
-            return HttpResponseRedirect("/"+username+"/build")
-    return render(request, 'form/generator/text.html', {'form' : textForm, 'id' : idText})
+    if userBackOfficePermission(request, username):
+        defaultContent = TextType.objects.get(id=idText)
+        textForm = TextForm(initial={'content': defaultContent})
+        text = TextType.objects.get(user_id=request.user.id)
+        #If the form has been sent
+        if request.method == 'POST':
+            form = TextForm(request.POST)
+            if form.is_valid():
+                requestContent = request.POST['content']
+                text.text = requestContent
+                text.save()
+                text.full_clean()
+                return HttpResponseRedirect("/"+username+"/build")
+        return render(request, 'form/generator/text.html', {'form' : textForm, 'id' : idText})
+    return HttpResponseRedirect("/") 
 
 def addImage(request, username):
-    imageForm = ImageForm()
-    if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            requestImage = request.FILES['file']            
-            #Create new image in the database
-            user = User.objects.get(username=username)
-            path = "/static/user_media/image/average/"+requestImage.name
-            contentType = ContentType.objects.get(model="imagetype")
-            imageQuery = ImageType(user_id=user.id, path=path, content_type_id=contentType.id)
-            imageQuery.save()
-            imageQuery.full_clean()
-            default_storage.save("static/user_media/image/average/"+requestImage.name, ContentFile(requestImage.read()))          
-            return HttpResponseRedirect("/"+username+"/build")
-    return render(request, 'form/generator/image.html', {'form' : imageForm})
+    if userBackOfficePermission(request, username):
+        imageForm = ImageForm()
+        if request.method == 'POST':
+            form = ImageForm(request.POST, request.FILES)
+            if form.is_valid():
+                requestImage = request.FILES['file']            
+                #Create new image in the database
+                user = User.objects.get(username=username)
+                path = "/static/user_media/image/average/"+requestImage.name
+                contentType = ContentType.objects.get(model="imagetype")
+                imageQuery = ImageType(user_id=user.id, path=path, content_type_id=contentType.id)
+                imageQuery.save()
+                imageQuery.full_clean()
+                default_storage.save("static/user_media/image/average/"+requestImage.name, ContentFile(requestImage.read()))          
+                return HttpResponseRedirect("/"+username+"/build")
+        return render(request, 'form/generator/image.html', {'form' : imageForm})
+    return HttpResponseRedirect("/") 
 
 def deleteImage(request, username, idImage):
-    image = ImageType.objects.get(id=idImage)
-    image.delete()
-    return HttpResponseRedirect("/"+username+"/build")
+    if userBackOfficePermission(request, username):
+        image = ImageType.objects.get(id=idImage)
+        image.delete()
+        return HttpResponseRedirect("/"+username+"/build")
+    return HttpResponseRedirect("/") 
+
+def userBackOfficePermission(request, username):
+    sessionUserString = request.user.username.encode('utf8')
+    usernameString = username.encode('utf8')
+    if User.objects.filter(username=username).count():
+        #If the user and the url are the same
+        if sessionUserString == usernameString :
+            return True
+    return False   
