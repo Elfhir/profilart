@@ -32,9 +32,9 @@ class ImageType(models.Model):
     
 class PrefWebsite(models.Model):
     user = models.ForeignKey(User)
-    TemplateID = models.PositiveIntegerField(default=1)
+    id_template = models.PositiveIntegerField(default=1)
     color = models.CharField(max_length=10)
-    fontStyle = models.CharField(max_length=50)
+    font_family = models.CharField(max_length=50)
     
     def __unicode__(self):
         return "%s" % (self.TemplateID)

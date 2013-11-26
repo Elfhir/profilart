@@ -45,7 +45,7 @@ def backOffice(request, username):
 def editWebsite(request, username):
     prefWebsite = PrefWebsite.objects.get(user_id=request.user.id)
     colorDefault = prefWebsite.color
-    fontStyleDefault = prefWebsite.fontStyle
+    fontStyleDefault = prefWebsite.font_family
     editWebsiteForm = EditWebsiteForm(initial={'color' : colorDefault, 'font' : fontStyleDefault});
     if request.method == 'POST':
         form = EditWebsiteForm(request.POST)
@@ -54,7 +54,7 @@ def editWebsite(request, username):
             requestFont = request.POST['font']
             prefWebsite = PrefWebsite.objects.get(user_id=request.user.id)
             prefWebsite.color = requestColor
-            prefWebsite.fontStyle = requestFont
+            prefWebsite.font_family = requestFont
             prefWebsite.save()
             prefWebsite.full_clean()
             return HttpResponseRedirect("/"+username+"/build")

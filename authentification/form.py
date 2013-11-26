@@ -17,3 +17,8 @@ class RegisterForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
     confirmPassword = forms.CharField(widget=forms.PasswordInput())
     group = forms.ChoiceField(choices=GROUPS, widget=forms.RadioSelect())
+    
+class EditAccountForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput())
+    confirmPassword = forms.CharField(widget=forms.PasswordInput())
+    email = forms.EmailField()

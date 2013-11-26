@@ -1,9 +1,17 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
-        {{ work.name }}
-        <br/>
-        <img style="width: 400px" src="{{ work.imagepath}}"/>
-        <br/>
-        {{ work.text }}
+    <article class="work-view">
+        <div class="work-view-picture">
+            <img src="{{ work.imagepath}}"/>
+        </div>
+        Name : <br/>
+        <p class="work-view-name">
+            {{ work.name }}
+        </p>
+        Description : <br/>
+        <p class="work-view-description">
+            {{ work.text }}
+        </p>
+    </article>
 {% endblock content %}

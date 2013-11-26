@@ -1,0 +1,108 @@
+/********************
+ * Profil Art CSS
+ *******************/
+body{
+    background-color: #fcfcfc;
+    font-family: "myriad pro", arial, sans-serif;
+    font-size: 1em;
+}
+footer{
+    background-color: #a5a5a4;
+    height: 40px;
+}
+h1{   
+    font-size: 1.4em;
+    color: #fff;
+}
+h2{
+    font-size: 1.2em;
+    color: black;
+    color: grey;
+    margin-bottom: 13px;
+}
+footer .wrapper-content{
+    padding-top: 11px;
+    font-size: 0.9em;
+    color: #fff;
+}
+.wrapper-content{
+    width: 1024px;
+    margin: 0 auto;
+}
+.wrapper-content .main-content{
+    margin: 20px auto;
+}
+.wrapper-manage-work{
+    margin-bottom: 20px;
+}
+.wrapper-manage-work .work{
+    width: 25%;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #b8b8b8;
+}
+.wrapper-manage-work .work img{
+    width: 100%;
+    margin-bottom: 5px;
+}
+input{
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #aeaeae;
+    background-color: #ffffff;
+}
+input[type=text], input[type=password]{
+    width: 200px;
+}
+input[type=submit]{
+    padding: 5px 15px;
+    cursor: pointer
+}
+textarea{
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+}
+input[type="file"]{
+    width: 50%;
+}
+label{
+    margin-bottom: 4px;
+    display: block;
+    font-size: 0.9em;
+    font-style: italic;
+}
+select{
+    padding: 5px;
+    width: 200px;
+    font-family: inherit;
+    font-size: 1em;
+}
+optgroup{
+}
+.logInContent{
+    width: 50%;
+    float: left;
+    height: 500px;
+}
+.fontpicker-example{
+    margin: 10px 0;
+}
+.work-view{
+    background-color: white;
+    border: 1px solid #a5a5a4;
+    padding: 15px;
+    width: 77%;
+    margin: 0 auto;
+}
+.work-view-picture img{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.work-view-name{
+    margin-bottom: 15px;
+    font-family: frutiger, serif;
+}
+.work-view-description{
+    font-family: frutiger, serif;
+}
