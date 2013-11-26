@@ -8,4 +8,5 @@ urlpatterns = patterns('',
     url(r'^authentification', include('authentification.urls')),
     url(r'^(?P<username>\w+)', include('buildengine.urls')),
     url(r'^(?P<username>\w+)/work', include('work.urls')),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
 )

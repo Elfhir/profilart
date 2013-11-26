@@ -1,0 +1,20 @@
+msgid "Welcome"
+msgstr "Welcome !"
+
+msgid "LogOut"
+msgstr "Log Out"
+
+msgid "MyWebsite"
+msgstr "My website"
+
+msgid "EditWebsite"
+msgstr "Edit my website"
+
+msgid "AccessArchives"
+msgstr "Archives"
+
+msgid "LogInSignUp"
+msgstr "Log In / Sign Up"
+
+msgid "CreateWebsite"
+msgstr "Create my website"
