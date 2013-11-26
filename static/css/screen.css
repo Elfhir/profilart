@@ -58,14 +58,33 @@ input[type=submit]{
     padding: 5px 15px;
     cursor: pointer
 }
+textarea{
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+}
+input[type="file"]{
+    width: 50%;
+}
 label{
     margin-bottom: 4px;
     display: block;
     font-size: 0.9em;
     font-style: italic;
 }
+select{
+    padding: 5px;
+    width: 200px;
+    font-family: inherit;
+    font-size: 1em;
+}
+optgroup{
+}
 .logInContent{
     width: 50%;
     float: left;
     height: 500px;
+}
+.fontpicker-example{
+    margin: 10px 0;
 }

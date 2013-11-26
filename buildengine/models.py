@@ -1,6 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User, ContentType
 
+class ColorField(models.CharField):
+    def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = 10
+        super(ColorField, self).__init__(*args, **kwargs)
+
+    def formfield(self, **kwargs):
+        kwargs['widget'] = ColorPickerWidget
+        return super(ColorField, self).formfield(**kwargs)
+
 class TextType(models.Model):
     text = models.CharField(max_length=3000)
     user = models.ForeignKey(User)
@@ -20,3 +29,12 @@ class ImageType(models.Model):
     
     def __unicode__(self):
         return "%s" % (self.path)
+    
+class PrefWebsite(models.Model):
+    user = models.ForeignKey(User)
+    TemplateID = models.PositiveIntegerField(default=1)
+    color = models.CharField(max_length=10)
+    fontStyle = models.CharField(max_length=50)
+    
+    def __unicode__(self):
+        return "%s" % (self.TemplateID)

@@ -5,7 +5,7 @@ from django.template import RequestContext
 from django.http import Http404
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
-from buildengine.form import TextForm, ImageForm
+from buildengine.form import *
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 
@@ -14,12 +14,14 @@ def home(request, username):
     if User.objects.filter(username=username).count():
         requestedUser = User.objects.get(username=username)
         text = TextType.objects.get(user_id=requestedUser.id)
+        prefWebsite = PrefWebsite.objects.get(user_id=requestedUser.id)
         images = ImageType.objects.filter(user_id=requestedUser.id).order_by("weight")
         workType = WorkType.objects.all()
         works = Work.objects.all()
         editMode = False
         return render(request, 'buildengine/template/template1.html', {'username' : username, 'blockText' : text, 'blockImage' : images,
-                                                                       'blockWork' : works, 'workType' : workType, 'editMode' : editMode})
+                                                                       'blockWork' : works, 'workType' : workType, 'prefWebsite' : prefWebsite,
+                                                                       'editMode' : editMode})
     return HttpResponseRedirect("/")
 
 def backOffice(request, username):
@@ -30,13 +32,33 @@ def backOffice(request, username):
         #If the user and the url are the same
         if sessionUserString == usernameString :
             text = TextType.objects.get(user_id=request.user.id)
+            prefWebsite = PrefWebsite.objects.get(user_id=request.user.id)
             images = ImageType.objects.filter(user_id=request.user.id).order_by("weight")
             workType = WorkType.objects.all()
             works = Work.objects.all()
             editMode = True
             return render(request, 'buildengine/build.html', {'username' : username, 'blockText' : text, 'blockImage' : images,
-                                                              'blockWork' : works, 'workType' : workType, 'editMode' : editMode})
+                                                              'blockWork' : works, 'workType' : workType, 'prefWebsite' : prefWebsite,
+                                                              'editMode' : editMode})
     return HttpResponseRedirect("/")
+
+def editWebsite(request, username):
+    prefWebsite = PrefWebsite.objects.get(user_id=request.user.id)
+    colorDefault = prefWebsite.color
+    fontStyleDefault = prefWebsite.fontStyle
+    editWebsiteForm = EditWebsiteForm(initial={'color' : colorDefault, 'font' : fontStyleDefault});
+    if request.method == 'POST':
+        form = EditWebsiteForm(request.POST)
+        if form.is_valid():
+            requestColor = request.POST['color']
+            requestFont = request.POST['font']
+            prefWebsite = PrefWebsite.objects.get(user_id=request.user.id)
+            prefWebsite.color = requestColor
+            prefWebsite.fontStyle = requestFont
+            prefWebsite.save()
+            prefWebsite.full_clean()
+            return HttpResponseRedirect("/"+username+"/build")
+    return render(request, 'form/editWebsite.html', {'form': editWebsiteForm})
 
 def editText(request, username, idText):
     if userBackOfficePermission(request, username):

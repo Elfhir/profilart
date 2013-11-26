@@ -24,11 +24,31 @@
         padding: 10px;
         border: 1px dotted gray;
     }
+    .modifier-edit-marker:hover{
+        border-color: green;
+        transition-property: all;
+        transition-duration: 0.5s;
+    }
     .modifier-edit-wrapper a.modifier-edit-link{
         text-decoration: underline;
         font-style: normal;
         font-size: 16px;
         color: gray;
+    }
+    .modifier-edit-wrapper ul{
+        background-color: #f0f0f0;
+        padding: 6px;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+        width: 11%;
+        opacity: 0.6;
+        transition-property: all;
+        transition-duration: 0.1s;
+    }
+    .modifier-edit-wrapper ul:hover{
+        opacity: 1;
+        transition-property: all;
+        transition-duration: 0.5s;
     }
     .modifier-edit-wrapper {
         margin-bottom: 20px;
@@ -44,26 +64,39 @@
     <title>Profil Art</title>
     <link rel="stylesheet" href="/static/template/template1/screen.css"
 </head>
-<body>
+<body style="background-color:{{ prefWebsite.color }};">
     <div class="template1">
-        <article role="header">
+        <article role="header" style="font-family: {{ prefWebsite.fontStyle }}">
             <div class="wrapper-content">
                 <div class="wrapper-title">
                     <h1 class="modifier-h1">ANNE  LOUBRY</h1>
                 </div>
             </div>
         </article>
-        <article>
+        <article style="font-family: {{ prefWebsite.fontStyle }}">
             <div class="wrapper-content">
                 {% if editMode  %}
                     <article role="biography" class="modifier-biography modifier-edit-wrapper">
+                        <ul>
+                            <li>
+                                <a class="modifier-edit-link" href="/{{ user.username }}/build/edittext/{{ blockText.id }}" title="Edit my text">
+                                    <img src="/static/img/icons/pencil.png"/>
+                                </a>
+                            </li>
+                        </ul>
                         <article role="marker" class="modifier-edit-marker">
                             {{ blockText|linebreaks }}
                         </article>
-                        <a class="modifier-edit-link" href="/{{ user.username }}/build/edittext/{{ blockText.id }}">Edit my text</a>
                     </article>
                     
                     <article role="image-presentation" class="modifier-image-presentation modifier-edit-wrapper">
+                        <ul>
+                            <li>
+                                <a class="modifier-edit-link" href="/{{ user.username }}/build/addimage" title="Add a picture">
+                                     <img src="/static/img/icons/add.png"/>
+                                </a>
+                            </li>
+                        </ul>
                         <article role="marker" class="modifier-edit-marker">
                             {% for image in blockImage %}
                                 <article role="marker" class="modifier-edit-marker">
@@ -73,10 +106,16 @@
                                 </article>
                             {% endfor %}
                         </article>
-                        <a class="modifier-edit-link" href="/{{ user.username }}/build/addimage">Add an image</a>
                     </article>
                     
                     <article role="quick-view-works" class="modifier-quick-view-works modifier-edit-wrapper">
+                        <ul>
+                            <li>
+                                <a class="modifier-edit-link" href="/{{ user.username }}/build/managework" title="Manage my works">
+                                    <img src="/static/img/icons/pencil.png"/>
+                                </a>
+                            </li>
+                        </ul>
                         <article role="marker" class="modifier-edit-marker">
                             <h2 class="modifier-h2">Paint Works</h2>
                             <figure title="Paint Works" class="list-paint-works">
@@ -115,7 +154,6 @@
                                 {% endfor %}
                             </figure>
                         </article>
-                        <a class="modifier-edit-link" href="/{{ user.username }}/build/managework">Manage my works</a>
                     </article>
                 {% else %}
                     <article role="biography" class="modifier-biography">
