@@ -1,0 +1,11 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+        {{ formState }}
+	<form action="/{{ user.username }}/build/editwebsite/" method="post">
+            {{ form.as_p }}
+            <input type="submit" value="Submit" />
+	</form>
+	<div id="colorpicker"></div>
+	<p class="fontpicker-example">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tempus cursus pharetra. Suspendisse vel laoreet lectus. Suspendisse feugiat eros nec erat consequat viverra. Phasellus vel odio arcu. Quisque rhoncus arcu tristique neque mattis viverra. Mauris lobortis sem at ligula feugiat, elementum aliquet enim commodo. Aenean sit amet nulla gravida, viverra nisi ut, molestie elit. Mauris at rutrum nisl, suscipit viverra nibh. Nulla facilisi. Pellentesque vel mi nisi. Aenean diam massa, molestie quis pellentesque ac, ultricies quis elit. Pellentesque in risus sed dui porttitor hendrerit. Quisque et risus porttitor, luctus lacus vel, bibendum tellus. Donec ac consequat erat, quis accumsan quam. Suspendisse facilisis, metus et eleifend commodo, est magna luctus quam, euismod tincidunt urna mi vel ligula.</p>
+{% endblock content %}

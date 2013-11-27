@@ -2,8 +2,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Profil Art</title>
+    <script type="text/javascript" src="/static/script/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="/static/script/farbtastic/farbtastic.js"></script>
+    <script type="text/javascript" src="/static/script/jquery.ui.fontSelector/jquery.ui.fontSelector.js"></script>
+    <script type="text/javascript" src="/static/script/fontPicker/fontPicker.js"></script>
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/screen.css">
+    <link rel="stylesheet" href="/static/script/farbtastic/farbtastic.css">
+    <link rel="stylesheet" href="/static/script/jquery.ui.fontSelector/jquery.ui.fontSelector.css">
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#colorpicker').farbtastic('#id_color').insertAfter($("#id_color"));
+            
+            $('select#fonts').fontSelector({
+                options: {
+                  inSpeed: 250,
+                  outSpeed: "slow",
+                },
+                fontChange: function(e, ui) {
+                  alert("The font is set to "+ui.font+" (was "+ui.oldFont+" before)");
+                },
+                styleChange: function(e, ui) {
+                  alert("The value of "+ui.style+" was set to "+ui.value);
+                }
+            });
+        });
+    </script>
 </head>
 <body>
     {% include "layout/header.html" %}

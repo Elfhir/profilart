@@ -5,6 +5,10 @@
         height: 40px;
         padding: 4px 0;
     }
+    .header-website h1{
+        font-size: 1.4em;
+        color: #fff;
+    }
     .header-website .wrapper-logo{
         float: left;
     }
@@ -25,13 +29,66 @@
         float: right;
         text-align : right;
         margin-top: 11px;
+        margin-right: 20px;
     }
     .header-website .main-menu ul li{
         float: right;
         margin-left: 22px;  
     }
+    .header-website .form-language{
+        float: right;
+        margin-top: 5px;
+    }
+    .header-website .form-language select {
+        padding:3px;
+        margin: 0;
+        -webkit-border-radius:4px;
+        -moz-border-radius:4px;
+        border-radius:4px;
+        -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+        -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+        box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+        background: #f8f8f8;
+        color:#888;
+        border:none;
+        outline:none;
+        display: inline-block;
+        -webkit-appearance:none;
+        -moz-appearance:none;
+        appearance:none;
+        cursor:pointer;
+        width: 100px;
+    }
+    .header-website .form-language label {
+        position:relative;
+    }
+    .header-website .form-language label:after {
+        content:'<>';
+        font:11px "Consolas", monospace;
+        color:#aaa;
+        -webkit-transform:rotate(90deg);
+        -moz-transform:rotate(90deg);
+        -ms-transform:rotate(90deg);
+        transform:rotate(90deg);
+        right:8px;
+        top:4px;
+        padding:0 0 2px;
+        border-bottom:1px solid #ddd;
+        position:absolute;
+        pointer-events:none;
+    }
+    .header-website .form-language label:before {
+        content:'';
+        right:6px; top:0px;
+        width:20px; height:20px;
+        background:#f8f8f8;
+        position:absolute;
+        pointer-events:none;
+        display:block;
+    }
 </style>
 
+{% load i18n %}
 <header class="header-website">
     <div class="wrapper-content">
         <div class="wrapper-title">
@@ -39,9 +96,24 @@
                 <h1><a href="{% url 'blog.views.home' %}">Profil' Art</a></h1>
                 <div class="slogan">Push your Art</div>
             </div>
-            <div class="main-menu">
-                {% include "menu/mainMenu.html" %}
-            </div>
+        </div>
+        <div class="form-language">
+            {% get_available_languages as LANGUAGES %}
+            <form action="/i18n/setlang/" method="post">
+                {% csrf_token %}
+                <label>
+                    <select name="language" onchange="this.form.submit()">
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="{{ language.code }}" {% ifequal language.code LANGUAGE_CODE %}selected="selected"{% endifequal %}>{{ language.name_local|capfirst }}</option>
+                    {% endfor %}
+                    </select>
+                </label>
+                <noscript><input type="submit" value="OK" /></noscript>
+            </form>
+        </div>
+        <div class="main-menu">
+            {% include "menu/mainMenu.html" %}
         </div>
     </div>
 </header>

@@ -1,0 +1,17 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+    <article class="work-view">
+        <div class="work-view-picture">
+            <img src="{{ work.imagepath}}"/>
+        </div>
+        Name : <br/>
+        <p class="work-view-name">
+            {{ work.name }}
+        </p>
+        Description : <br/>
+        <p class="work-view-description">
+            {{ work.text }}
+        </p>
+    </article>
+{% endblock content %}
