@@ -1,58 +1,5 @@
 /********************
- * Reset CSS
- *******************/
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-/********************
- * Profil Art CSS
+ * Profil Art CSS - Template 1
  *******************/
 body{
     background-color: black;
@@ -60,7 +7,7 @@ body{
     font-size: 1em;
 }
 .template1 .wrapper-content .wrapper-title{
-	margin: 20px 0;
+    margin: 20px 0;
 }
 header, footer{
     height: 40px;
@@ -73,4 +20,61 @@ footer .wrapper-content{
 .wrapper-content{
     width: 1024px;
     margin: 0 auto;
+}
+.modifier-h1{
+    color: white;
+    font-size: 2em;
+    text-align: center;
+}
+.modifier-h2{
+    color: white;
+    margin-bottom: 7px;
+}
+.modifier-biography{
+    color: white;
+    font-style: italic;
+    font-size: 0.9em;
+    margin-bottom: 50px;
+}
+.modifier-biography p{
+    margin-bottom: 10px;
+}
+.modifier-quick-view-works .list-paint-works{
+    margin-bottom: 30px;
+}
+.modifier-edit-marker{
+    padding: 10px;
+    border: 1px dotted gray;
+}
+.modifier-edit-marker:hover{
+    border-color: green;
+    transition-property: all;
+    transition-duration: 0.5s;
+}
+.modifier-edit-wrapper a.modifier-edit-link{
+    text-decoration: underline;
+    font-style: normal;
+    font-size: 16px;
+    color: gray;
+}
+.modifier-edit-wrapper ul{
+    background-color: #f0f0f0;
+    padding: 6px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    width: 11%;
+    opacity: 0.6;
+    transition-property: all;
+    transition-duration: 0.1s;
+}
+.modifier-edit-wrapper ul:hover{
+    opacity: 1;
+    transition-property: all;
+    transition-duration: 0.5s;
+}
+.modifier-edit-wrapper {
+    margin-bottom: 20px;
+}
+.modifier-edit-wrapper a.modifier-edit-link:hover{
+    color: white;
 }
