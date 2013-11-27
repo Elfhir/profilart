@@ -58,7 +58,7 @@ def editWebsite(request, username):
             prefWebsite.save()
             prefWebsite.full_clean()
             return HttpResponseRedirect("/"+username+"/build")
-    return render(request, 'form/editWebsite.html', {'form': editWebsiteForm})
+    return render(request, 'form/editwebsite.html', {'form': editWebsiteForm})
 
 def editText(request, username, idText):
     if userBackOfficePermission(request, username):

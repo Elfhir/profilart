@@ -1,0 +1,22 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+	{{ formState }}
+	<form action="/{{ user.username }}/build/editimagework/{{ work.id }}/" enctype="multipart/form-data" method="post">
+            <p>
+		<label for="id_image">Image:</label> <input id="id_image" name="image" type="file">
+	    </p>
+	    <p>My current picture :</p>
+	    <div>
+		<img style="width:523px;" src="{{ work.imagepath }}"/>
+	    </div>
+            <input type="submit" value="Edit my picture" />
+	</form>
+	<hr>
+        {{ formState }}
+	<form action="/{{ user.username }}/build/editwork/{{ work.id }}/" enctype="multipart/form-data" method="post">
+            {{ editMetaWorkForm.as_p }}
+            <input type="submit" value="Edit my work" />
+	</form>
+	<a class="manager-form-cancel" href="/{{ user.username }}/build/">Cancel</a>
+{% endblock content %}

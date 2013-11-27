@@ -1,5 +1,34 @@
 {% extends "layout/base.html" %}
 
+{% block headScript %}
+    <script type="text/javascript" src="/static/script/farbtastic/farbtastic.js"></script>
+    <script type="text/javascript" src="/static/script/jquery.ui.fontSelector/jquery.ui.fontSelector.js"></script>
+    <script type="text/javascript" src="/static/script/fontPicker/fontPicker.js"></script>
+    <script type="text/javascript">
+	$(document).ready(function() {
+	    $('#colorpicker').farbtastic('#id_color').insertAfter($("#id_color"));
+	    
+	    $('select#fonts').fontSelector({
+		options: {
+		  inSpeed: 250,
+		  outSpeed: "slow",
+		},
+		fontChange: function(e, ui) {
+		  alert("The font is set to "+ui.font+" (was "+ui.oldFont+" before)");
+		},
+		styleChange: function(e, ui) {
+		  alert("The value of "+ui.style+" was set to "+ui.value);
+		}
+	    });
+	});
+    </script>
+{% endblock headScript %}
+
+{% block headStyle %}
+    <link rel="stylesheet" href="/static/script/farbtastic/farbtastic.css">
+    <link rel="stylesheet" href="/static/script/jquery.ui.fontSelector/jquery.ui.fontSelector.css">
+{% endblock headStyle %}
+
 {% block content %}
         {{ formState }}
 	<form action="/{{ user.username }}/build/editwebsite/" method="post">

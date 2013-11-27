@@ -12,3 +12,10 @@ class WorkForm(forms.Form):
     text = forms.CharField(widget=forms.Textarea)
     type = forms.MultipleChoiceField(choices=TYPES, widget=forms.CheckboxSelectMultiple())
     
+class EditMetaWork(forms.Form):
+    name = forms.CharField(max_length=30)
+    text = forms.CharField(widget=forms.Textarea)
+    type = forms.MultipleChoiceField(choices=TYPES, widget=forms.CheckboxSelectMultiple())
+    
+class EditImageWork(forms.Form):
+    image = forms.FileField()

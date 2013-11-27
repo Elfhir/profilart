@@ -6,7 +6,30 @@
             <div class="work">
                 <a href="/{{ user.username }}/work/{{ work.id }}"><img src="{{ work.imagepath }}"/></a>
                 <p>{{ work }}</p>
-                <a href="/{{ user.username }}/build/deletework/{{ work.id }}">Delete this work</a>
+                <p><a href="/{{ user.username }}/build/deletework/{{ work.id }}">Delete this work</a></p>
+                <p><a href="/{{ user.username }}/build/editwork/{{ work.id }}">Edit this work</a></p>
+                Categorie : <br/>
+                <p class="work-view-category">
+                    <ul>
+                    {% for type in workType %}
+                        <li>
+                            {% if type.idType == 1 %}
+                                Painting
+                            {% endif %}
+                        </li>
+                        <li>
+                            {% if type.idType == 2 %}
+                                Video
+                            {% endif %}
+                        </li>
+                        <li>
+                            {% if type.idType == 3 %}
+                                Intallation
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </p>
             </div>
         </article>
     {% endfor %}
