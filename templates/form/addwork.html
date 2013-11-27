@@ -1,7 +1,8 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
-        {{ formState }}
+        <h2>Adding work item</h2>
+	<p class="form-information">* all inputs are required</p>
 	<form action="/{{ user.username }}/build/addwork/" enctype="multipart/form-data" method="post">
             {{ form.as_p }}
             <input type="submit" value="Add my work" />

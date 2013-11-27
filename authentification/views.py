@@ -32,7 +32,7 @@ def loginUser(request):
                 login(request, user)
                 return HttpResponseRedirect("/")
     #At least one condition is false
-    return render_to_response('form/authentification.html', {'logInState' : 'Error identification', 'logInForm' : logInForm, 'registerForm' : registerForm})
+    return render_to_response('form/authentification.html', {'logInForm' : form, 'registerForm' : registerForm})
 
 def registerUser(request):
     logInForm = LogInForm();
@@ -70,7 +70,7 @@ def registerUser(request):
                     login(request, user)
                     return HttpResponseRedirect("/"+user.username+"/build")
     #At least one condition is false
-    return render_to_response('form/authentification.html', {'registerState' : 'Error', 'logInForm' : logInForm, 'registerForm' : registerForm})
+    return render_to_response('form/authentification.html', {'logInForm' : logInForm, 'registerForm' : form})
 
 def editAccount(request, username):
     if userBackOfficePermission(request, username):
@@ -81,11 +81,14 @@ def editAccount(request, username):
                 requestPassword = request.POST['password']
                 requestConfirmPassword = request.POST['confirmPassword']
                 requestEmail = request.POST['email']
-                user = User.objects.get(username=username)
-                user.set_password(form.cleaned_data['password'])
-                user.email = requestEmail
-                user.save()
-                return HttpResponseRedirect("/"+username+"/build")
+                formState = "Error password"
+                if requestPassword == requestConfirmPassword:
+                    user = User.objects.get(username=username)
+                    user.set_password(form.cleaned_data['password'])
+                    user.email = requestEmail
+                    user.save()
+                    return HttpResponseRedirect("/"+username+"/build")
+            return render(request, 'form/editaccount.html', {'form' : form, 'formState' : formState})
         return render(request, 'form/editaccount.html', {'form' : editAccountForm})
     return HttpResponseRedirect("/") 
 

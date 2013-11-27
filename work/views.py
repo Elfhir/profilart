@@ -38,6 +38,7 @@ def addWork(request, username):
                     workType = WorkType(idType=value, idWork=work)
                     workType.save()
                 return HttpResponseRedirect("/"+username+"/build")
+            return render(request, 'form/addwork.html', {'form' : form})
         return render(request, 'form/addwork.html', {'form' : workForm})
     return HttpResponseRedirect("/")
 
@@ -68,6 +69,8 @@ def editWork(request, username, idWork):
                     workType = WorkType(idType=value, idWork=work)
                     workType.save()
                 return HttpResponseRedirect("/"+username+"/build/editwork/"+idWork)
+            return render(request, 'form/editwork.html', {'editMetaWorkForm' : form, 'editImageWorkForm' : editImageWorkForm,
+                                                      'work': work})
         return render(request, 'form/editwork.html', {'editMetaWorkForm' : editMetaWorkForm, 'editImageWorkForm' : editImageWorkForm,
                                                       'work': work})
     return HttpResponseRedirect("/")
@@ -84,7 +87,7 @@ def editImageWork(request, username, idWork):
                 work.imagepath = path
                 work.save()
                 return HttpResponseRedirect("/"+username+"/build/editwork/"+idWork)
-        return HttpResponseRedirect("/"+username+"/build")
+        return HttpResponseRedirect("/"+username+"/build/editwork/"+idWork)
     return HttpResponseRedirect("/")
 
 def deleteWork(request, username, idWork):

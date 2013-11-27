@@ -1,7 +1,8 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
-        {{ formState }}
+        <p class="form-information">{{ formState }}</p>
+	<p class="form-information">* all inputs are required</p>
 	<form action="/{{ user.username }}/build/editaccount/" method="post">
             {{ form.as_p }}
             <input type="submit" value="Submit" />

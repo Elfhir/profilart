@@ -1,20 +1,21 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
-	<article class="logInContent">
-	    <h2>Log in</h2>
-	    {{ logInState }}
-	    <form action="/authentification/login" method="post" class="logInForm">
-		{{ logInForm.as_p }}
-		<input type="submit" value="Log In" />
-	    </form>
-	</article>
-	<article class="registerContent">
+    	<article class="registerContent">
 	    <h2>Register</h2>
-	    {{ registerState }}
+	    <p class="form-information">* all inputs are required</p>
 	    <form action="/authentification/register" method="post" class="registerForm">
 		{{ registerForm.as_p }}
 		<input type="submit" value="Register" />
 	    </form>
 	</article>
+	<article class="logInContent">
+	    <h2>Log in</h2>
+	    <p class="form-information">* all inputs are required</p>
+	    <form action="/authentification/login" method="post" class="logInForm">
+		{{ logInForm.as_p }}
+		<input type="submit" value="Log In" />
+	    </form>
+	</article>
+	<div class="clear"></div>
 {% endblock content %}
