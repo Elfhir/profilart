@@ -7,7 +7,7 @@
     <div id="interview_une" >
         <img src="{{MEDIA_URL}}{{interview.photo}}" />
         <div class="encart">
-            <h2>{{interview.titre}}</h2>
+            <h2>{% trans "blog_home_rencontreAvec"%} {{interview.artiste}}</h2>
             <p>{{interview.contenu}} <a href="">{% trans "blog_home_lireSuite" %}</a></p>
             <a href="" class="btn">{% trans "blog_home_voirSiteBtn" %}</a>
             <a href="" class="btn">{% trans "blog_home_creerSiteBtn" %}</a>
@@ -16,24 +16,39 @@
     
     <div id="creer_site" >
         <h2>{% trans "blog_home_creerSite" %}</h2>
-        <p id="creer_site_txt"></p>
+        <p id="creer_site_txt">{% trans "blog_home_creerSiteTxt" %}</p>
         <h3>{% trans "blog_home_choisirTemplate" %}</h3>
-        <a href="">{% trans "blog_home_voirTemplate" %}</a>
+        <img src="{{STATIC_URL}}img/choose-template.png"/>
+        <a href="" class="btn">{% trans "blog_home_voirTemplate" %}</a>
     </div>
     
     <div id="moteur_recherche" >
         <h2>{% trans "blog_home_moteurInnovant" %}</h2>
-        <p>{% trans "blog_home_effectuerRecherche" %}</p>
+        <div class="container">
+            <p id="moteur_recherche_txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non augue iaculis, scelerisque libero vel, cursus quam. Curabitur sit amet viverra arcu. Quisque dapibus egestas nunc ac mollis. Quisque aliquet condimentum ligula, posuere adipiscing nunc feugiat ut.</p>
+            <div id="widget_recherche">
+                <p>{% trans "blog_home_effectuerRecherche" %}</p>
+                <form>
+                    <input type="search"></input>
+                </form>
+            </div>
+        </div>
     </div>
     
     <div id="corpus_une" >
+        <img src="{{STATIC_URL}}img/analyse-corpus.png"/>
     </div>
     
     <div id="partenaire" >
-    <h2>{% trans "blog_home_galerieExpo" %}</h2>
+        <h2>{% trans "blog_home_galerieExpo" %}</h2>
+        <img src="{{STATIC_URL}}img/partenaire.png"/>
+        <a href="" class="btn">{% trans "blog_home_voirPartenaire" %}</a>
     </div>
     
     <div id="people_say" >
-    <h2>{% trans "blog_home_peopleSay" %}</h2>
+        <div class="container">
+            <h2>{% trans "blog_home_peopleSay" %}</h2>
+            <img src="{{STATIC_URL}}img/people-say.png"/>
+        </div>
     </div>
 {% endblock content %}

@@ -17,14 +17,12 @@
     {% if user.is_authenticated %}
         {% include "menu/backOfficeMenu.html" %}
     {% endif %}
-    <article>
-        <div class="wrapper-content">
-            <div class="main-content">
-                {% block content %}
-                {% endblock content %}
-            </div>
+    <div class="wrapper-content">
+        <div class="main-content">
+            {% block content %}
+            {% endblock content %}
         </div>
-    </article>
+    </div>
     <footer>
         <div class="wrapper-content">
             <p>Powered by Django</p>

@@ -19,6 +19,9 @@ msgstr "Connexion / Inscription"
 msgid "CreateWebsite"
 msgstr "Créer mon site web"
 
+msgid "blog_home_rencontreAvec"
+msgstr "Rencontre avec"
+
 msgid "blog_home_lireSuite"
 msgstr "Lire la suite..."
 
@@ -30,6 +33,9 @@ msgstr "Créer son site Profil'Art"
 
 msgid "blog_home_creerSite"
 msgstr "Créez votre site sur mesure"
+
+msgid "blog_home_creerSiteTxt"
+msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non augue iaculis, scelerisque libero vel, cursus quam. Curabitur sit amet viverra arcu. Quisque dapibus egestas nunc ac mollis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non augue iaculis, scelerisque libero vel, cursus quam. Curabitur sit amet viverra arcu. Quisque dapibus egestas nunc ac mollis."
 
 msgid "blog_home_choisirTemplate"
 msgstr "Choisissez votre template de départ :"
@@ -46,7 +52,10 @@ msgstr "Effectuer une recherche sémantique :"
 msgid "blog_home_galerieExpo"
 msgstr "Galeries & expositions partenaires"
 
+msgid "blog_home_voirPartenaire"
+msgstr "Voir tous nos partenaires"
+
 msgid "blog_home_peopleSay"
-msgstr "Ce que disent les gens de profilart"
+msgstr "Ce qu'on dit de profilart"
 
 

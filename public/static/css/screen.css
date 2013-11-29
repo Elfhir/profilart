@@ -30,7 +30,7 @@ footer .wrapper-content{
     margin: 0 auto;
 }
 .wrapper-content .main-content{
-    margin: 20px auto;
+    margin: 20px auto 0 auto;
 }
 .wrapper-manage-work{
     margin-bottom: 20px;
@@ -139,8 +139,10 @@ select{
  * Header
  ***************************/
 .header-website{
+	z-index: 1000;
     color: white;
     background-color: #a5a5a4;
+    background-color: rgba(0, 0, 0, .3);
     height: 40px;
     padding: 4px 0;
 }
@@ -260,13 +262,20 @@ select{
 /****************************
  * BLOG APP
  ***************************/
+
+.blog.home h2{
+	text-transform: uppercase;
+	font: normal normal normal 20px 'PT Sans', 'sans-serif';
+	color: #000;
+}
+
 .blog.home .btn{
 	display: inline-block;
 	background: #f7f7f7;
 	width: 200px;
 	height: 40px;
 	margin-top: 30px;
-	font: normal normal normal 16px/40px 'PT Sans', 'sans-serif';
+	font: normal normal normal 14px/40px 'PT Sans', 'sans-serif';
 	color: #666;
 	text-decoration: none;
 	text-align: center;
@@ -280,6 +289,7 @@ select{
 }
 
 .blog.home #interview_une img{
+	display: inline-block;
 	width: 100%;
 }
 
@@ -312,4 +322,101 @@ select{
 
 .blog.home #interview_une .encart .btn:nth-of-type(2){
 	font-weight: bold;
+}
+
+.blog.home #creer_site{
+	width: 950px;
+	margin: 0 auto;
+}
+
+.blog.home #creer_site h2{
+	margin: 30px 0;
+}
+
+.blog.home #creer_site #creer_site_txt{
+	font: normal normal normal 14px/24px 'PT Sans', 'sans-serif';
+	color: #333;
+	-webkit-columns: 3 300px;
+	-moz-columns: 3 300px;
+	columns: 3 300px;
+}
+
+.blog.home #creer_site h3{
+	margin: 20px 0 10px 0;
+	font: normal normal normal 16px 'PT Sans', 'sans-serif';
+}
+
+.blog.home #creer_site .btn{
+	margin: 10px 0 0 740px;	
+}
+
+.blog.home #moteur_recherche{
+	width: 950px;
+	margin: 0 auto;
+}
+
+.blog.home #moteur_recherche h2{
+	margin: 30px 0;
+}
+
+.blog.home #moteur_recherche .container{
+	position: relative;
+}
+
+.blog.home #moteur_recherche #moteur_recherche_txt{
+	width: 620px;
+	-webkit-columns: 3 300px;
+	-moz-columns: 3 300px;
+	columns: 3 300px;
+	font: normal normal normal 14px/24px 'PT Sans', 'sans-serif';
+}
+
+.blog.home #moteur_recherche #widget_recherche p{
+	position: absolute;
+	top: 0;
+	right: 20px;
+	width: 280px;
+}
+
+.blog.home #moteur_recherche #widget_recherche form{
+	position: absolute;
+	width: 280px;
+	top: 30px;
+	right: 20px;
+}
+
+.blog.home #moteur_recherche #widget_recherche form input{
+	width: 100%;
+}
+
+.blog.home #corpus_une{
+	margin-top: 30px;
+}
+
+.blog.home #partenaire{
+	width: 950px;
+	margin: 0 auto;
+}
+
+.blog.home #partenaire .btn{
+	margin: 10px 0 0 740px;	
+}
+
+.blog.home #partenaire h2{
+	margin: 30px 0;
+}
+
+.blog.home #people_say{
+	background: #d3d3d3;
+	margin-top: 30px;
+}
+
+.blog.home #people_say .container{
+	width: 950px;
+	margin: 0 auto;
+	padding: 30px;
+}
+
+.blog.home #people_say h2{
+	margin: 0 0 10px 0;
 }
