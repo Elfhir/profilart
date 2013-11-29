@@ -257,3 +257,59 @@ select{
 .menu-backoffice .menu-vertical a:hover{
     text-decoration: underline;
 }
+/****************************
+ * BLOG APP
+ ***************************/
+.blog.home .btn{
+	display: inline-block;
+	background: #f7f7f7;
+	width: 200px;
+	height: 40px;
+	margin-top: 30px;
+	font: normal normal normal 16px/40px 'PT Sans', 'sans-serif';
+	color: #666;
+	text-decoration: none;
+	text-align: center;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.blog.home #interview_une{
+	position: relative;
+	top: -20px;
+}
+
+.blog.home #interview_une img{
+	width: 100%;
+}
+
+.blog.home #interview_une .encart{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 420px;
+	background: #fff;
+	background: rgba(255, 255, 255, .5);
+	padding: 20px;
+	font: normal normal normal 14px 'EB Garamond', 'serif';
+}
+
+.blog.home #interview_une .encart h2{
+	text-transform: uppercase;
+	font: normal normal normal 20px 'PT Sans', 'sans-serif';
+	color: #000;
+}
+
+.blog.home #interview_une .encart p a{
+	display: block;
+	font: normal bold normal 14px 'PT Sans', 'sans-serif';
+	color: #0a7180;
+}
+
+.blog.home #interview_une .encart .btn:nth-of-type(1){
+	margin-right: 10px;
+}
+
+.blog.home #interview_une .encart .btn:nth-of-type(2){
+	font-weight: bold;
+}

@@ -18,3 +18,33 @@ msgstr "Log In / Sign Up"
 
 msgid "CreateWebsite"
 msgstr "Create my website"
+
+msgid "blog_home_lireSuite"
+msgstr "Read more..."
+
+msgid "blog_home_voirSiteBtn"
+msgstr "See his Profil'Art website"
+
+msgid "blog_home_creerSiteBtn"
+msgstr "Create your Profil'Art website"
+
+msgid "blog_home_creerSite"
+msgstr "Create your customized website"
+
+msgid "blog_home_choisirTemplate"
+msgstr "Choose your starting template :"
+
+msgid "blog_home_voirTemplate"
+msgstr "See all templates"
+
+msgid "blog_home_moteurInnovant"
+msgstr "An innovative search engine"
+
+msgid "blog_home_effectuerRecherche"
+msgstr "Perform a semantic search"
+
+msgid "blog_home_galerieExpo"
+msgstr "Galleries & Exhibitions partners"
+
+msgid "blog_home_peopleSay"
+msgstr "What people are saying"

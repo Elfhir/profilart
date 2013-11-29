@@ -7,10 +7,12 @@
     {% endblock headScript %}
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/screen.css">
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
     {% block headStyle %}
     {% endblock headStyle %}
 </head>
-<body>
+<body class="{% block bodyClass %} {% endblock %}">
     {% include "layout/header.html" %}
     {% if user.is_authenticated %}
         {% include "menu/backOfficeMenu.html" %}

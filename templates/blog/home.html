@@ -1,11 +1,39 @@
 {% extends "layout/base.html" %}
+{% block bodyClass %}blog home{% endblock %}
 
 {% load i18n %}
 {% block content %}
-    {% if user.is_authenticated %}
-        <p><strong>{{ user.username }}</strong>,<br/>
-        {% trans "Welcome" %}</p>
-    {% else %}
-        <p>{% trans "Welcome" %}</p>
-    {% endif %}
+
+    <div id="interview_une" >
+        <img src="{{MEDIA_URL}}{{interview.photo}}" />
+        <div class="encart">
+            <h2>{{interview.titre}}</h2>
+            <p>{{interview.contenu}} <a href="">{% trans "blog_home_lireSuite" %}</a></p>
+            <a href="" class="btn">{% trans "blog_home_voirSiteBtn" %}</a>
+            <a href="" class="btn">{% trans "blog_home_creerSiteBtn" %}</a>
+        </div>
+    </div>
+    
+    <div id="creer_site" >
+        <h2>{% trans "blog_home_creerSite" %}</h2>
+        <p id="creer_site_txt"></p>
+        <h3>{% trans "blog_home_choisirTemplate" %}</h3>
+        <a href="">{% trans "blog_home_voirTemplate" %}</a>
+    </div>
+    
+    <div id="moteur_recherche" >
+        <h2>{% trans "blog_home_moteurInnovant" %}</h2>
+        <p>{% trans "blog_home_effectuerRecherche" %}</p>
+    </div>
+    
+    <div id="corpus_une" >
+    </div>
+    
+    <div id="partenaire" >
+    <h2>{% trans "blog_home_galerieExpo" %}</h2>
+    </div>
+    
+    <div id="people_say" >
+    <h2>{% trans "blog_home_peopleSay" %}</h2>
+    </div>
 {% endblock content %}

@@ -18,3 +18,35 @@ msgstr "Connexion / Inscription"
 
 msgid "CreateWebsite"
 msgstr "Créer mon site web"
+
+msgid "blog_home_lireSuite"
+msgstr "Lire la suite..."
+
+msgid "blog_home_voirSiteBtn"
+msgstr "Voir son site Profil'Art"
+
+msgid "blog_home_creerSiteBtn"
+msgstr "Créer son site Profil'Art"
+
+msgid "blog_home_creerSite"
+msgstr "Créez votre site sur mesure"
+
+msgid "blog_home_choisirTemplate"
+msgstr "Choisissez votre template de départ :"
+
+msgid "blog_home_voirTemplate"
+msgstr "Voir tous les templates"
+
+msgid "blog_home_moteurInnovant"
+msgstr "Un moteur de recherche innovant"
+
+msgid "blog_home_effectuerRecherche"
+msgstr "Effectuer une recherche sémantique :"
+
+msgid "blog_home_galerieExpo"
+msgstr "Galeries & expositions partenaires"
+
+msgid "blog_home_peopleSay"
+msgstr "Ce que disent les gens de profilart"
+
+
