@@ -1,0 +1,25 @@
+{% extends "layout/base.html" %}
+{% block bodyClass %}blog home{% endblock %}
+
+{% load i18n %}
+{% block content %}
+    <h2>Archives</h2>
+    {% for interview in interviews %}
+        <div id="interview" >
+            <img src="{{MEDIA_URL}}{{interview.photo}}" />
+            <div class="encart">
+                <h2>{% trans "blog_home_rencontreAvec"%} {{interview.artiste}}</h2>
+                <p>{{interview.contenu}}</p>
+                <a href="" class="btn">{% trans "blog_home_voirSiteBtn" %}</a>
+            </div>
+        </div>
+    {% endfor %}
+    {% for corpus in corpuses %}
+        <div id="corpus" >
+            <div class="encart">
+                <h2>{{corpus.titre}}</h2>
+                <p>{{corpus.contenu}}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}
