@@ -12,34 +12,41 @@ from django.core.files.base import ContentFile
 def home(request, username):
     #If the user exists
     if User.objects.filter(username=username).count():
+        user = User.objects.get(username=username)
         requestedUser = User.objects.get(username=username)
         text = TextType.objects.get(user_id=requestedUser.id)
         prefWebsite = PrefWebsite.objects.get(user_id=requestedUser.id)
         images = ImageType.objects.filter(user_id=requestedUser.id).order_by("weight")
         workType = WorkType.objects.all()
         works = Work.objects.all()
+        firstname = user.first_name
+        name = user.last_name
         editMode = False
         return render(request, 'buildengine/template/template1.html', {'username' : username, 'blockText' : text, 'blockImage' : images,
                                                                        'blockWork' : works, 'workType' : workType, 'prefWebsite' : prefWebsite,
-                                                                       'editMode' : editMode})
+                                                                       'firstname' : firstname, 'name' : name, 'editMode' : editMode})
     return HttpResponseRedirect("/")
 
 def backOffice(request, username):
     sessionUserString = request.user.username.encode('utf8')
     usernameString = username.encode('utf8')
+    user = User.objects.filter(username=username)
     #If the user exists
-    if User.objects.filter(username=username).count():
+    if user.count():
         #If the user and the url are the same
         if sessionUserString == usernameString :
+            user = User.objects.get(username=username)
             text = TextType.objects.get(user_id=request.user.id)
             prefWebsite = PrefWebsite.objects.get(user_id=request.user.id)
             images = ImageType.objects.filter(user_id=request.user.id).order_by("weight")
             workType = WorkType.objects.all()
             works = Work.objects.all()
+            firstname = user.first_name
+            name = user.last_name
             editMode = True
             return render(request, 'buildengine/build.html', {'username' : username, 'blockText' : text, 'blockImage' : images,
                                                               'blockWork' : works, 'workType' : workType, 'prefWebsite' : prefWebsite,
-                                                              'editMode' : editMode})
+                                                              'firstname' : firstname, 'name' : name, 'editMode' : editMode})
     return HttpResponseRedirect("/")
 
 def editWebsite(request, username):

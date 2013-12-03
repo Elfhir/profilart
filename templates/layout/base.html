@@ -19,8 +19,8 @@
     
     {% include "layout/header.html" %}
     
-    {% if user.is_authenticated and request.path != "/" %}
-        {% include "menu/backOfficeMenu.html" %}
+    {% if user.is_authenticated and "/build" in request.path %}
+            {% include "menu/backOfficeMenu.html" %}
     {% endif %}
 
     <div class="wrapper-content">
