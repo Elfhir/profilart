@@ -2,19 +2,27 @@
 {% block bodyClass %}blog home{% endblock %}
 
 {% load i18n %}
+
+{% block sliderHome %}
+    <div class="interview_une_image_mask">
+        <img class="interview_une_image" src="{{MEDIA_URL}}{{interview.photo}}" />
+    </div>
+{% endblock sliderHome %}
+
 {% block content %}
 
     <div id="interview_une" >
-        <img src="{{MEDIA_URL}}{{interview.photo}}" />
         <div class="encart">
-            <h2>{% trans "blog_home_rencontreAvec"%} {{interview.artiste}}</h2>
-            <p>{{interview.contenu}} <a href="">{% trans "blog_home_lireSuite" %}</a></p>
+            <h2>{% trans "blog_home_rencontreAvec"%} <a href="#">{{interview.artiste}}</a></h2>
+            <p class="home_interview_content">{{interview.contenu}}</p>
+            <p><a href="">{% trans "blog_home_lireSuite" %}</a></p>
             <a href="" class="btn">{% trans "blog_home_voirSiteBtn" %}</a>
             <a href="" class="btn">{% trans "blog_home_creerSiteBtn" %}</a>
         </div>
     </div>
+    <div class="clear"></div>
     
-    <div id="creer_site" >
+    <div id="creer_site" class="block_home" >
         <h2>{% trans "blog_home_creerSite" %}</h2>
         <p id="creer_site_txt">{% trans "blog_home_creerSiteTxt" %}</p>
         <h3>{% trans "blog_home_choisirTemplate" %}</h3>
@@ -22,7 +30,7 @@
         <a href="" class="btn">{% trans "blog_home_voirTemplate" %}</a>
     </div>
     
-    <div id="moteur_recherche" >
+    <div id="moteur_recherche" class="block_home" >
         <h2>{% trans "blog_home_moteurInnovant" %}</h2>
         <div class="container">
             <p id="moteur_recherche_txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non augue iaculis, scelerisque libero vel, cursus quam. Curabitur sit amet viverra arcu. Quisque dapibus egestas nunc ac mollis. Quisque aliquet condimentum ligula, posuere adipiscing nunc feugiat ut.</p>
@@ -35,17 +43,17 @@
         </div>
     </div>
     
-    <div id="corpus_une" >
+    <div id="corpus_une" class="block_home" >
         <img src="{{STATIC_URL}}img/analyse-corpus.png"/>
     </div>
     
-    <div id="partenaire" >
+    <div id="partenaire" class="block_home" >
         <h2>{% trans "blog_home_galerieExpo" %}</h2>
         <img src="{{STATIC_URL}}img/partenaire.png"/>
         <a href="" class="btn">{% trans "blog_home_voirPartenaire" %}</a>
     </div>
     
-    <div id="people_say" >
+    <div id="people_say" class="block_home" >
         <div class="container">
             <h2>{% trans "blog_home_peopleSay" %}</h2>
             <img src="{{STATIC_URL}}img/people-say.png"/>

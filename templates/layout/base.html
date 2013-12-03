@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <title>Profil Art</title>
     <script type="text/javascript" src="/static/script/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="/static/script/main.js"></script>
     {% block headScript %}
     {% endblock headScript %}
     <link rel="stylesheet" href="/static/css/reset.css">
@@ -13,16 +14,22 @@
     {% endblock headStyle %}
 </head>
 <body class="{% block bodyClass %} {% endblock %}">
+    {% block sliderHome %}
+    {% endblock sliderHome %}
+    
     {% include "layout/header.html" %}
-    {% if user.is_authenticated %}
+    
+    {% if user.is_authenticated and request.path != "/" %}
         {% include "menu/backOfficeMenu.html" %}
     {% endif %}
+
     <div class="wrapper-content">
         <div class="main-content">
             {% block content %}
             {% endblock content %}
         </div>
     </div>
+    
     <footer>
         <div class="wrapper-content">
             <p>Powered by Django</p>

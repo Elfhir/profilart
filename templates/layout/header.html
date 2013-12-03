@@ -1,15 +1,20 @@
 {% load i18n %}
-<header class="header-website">
+
+{% if request.path != "/" %}
+    <header class="header-website">
+{% else %}
+    <header class="header-website header-website-transparent">
+{% endif %}
     <div class="wrapper-content">
         <div class="wrapper-title">
             <div class="wrapper-logo">
-                <h1><a href="{% url 'blog.views.home' %}">Profil' Art</a></h1>
+                <h1><img src="/static/img/logo.png" /><a href="{% url 'blog.views.home' %}">Profil' Art</a></h1>
                 <div class="slogan">Push your Art</div>
             </div>
         </div>
         <div class="form-language">
             {% get_available_languages as LANGUAGES %}
-            <form action="/i18n/setlang/" method="post">
+            <form action="/i18n/setlang/" method="post" class="form-select-language">
                 {% csrf_token %}
                 <label>
                     <select name="language" onchange="this.form.submit()">
@@ -20,6 +25,11 @@
                     </select>
                 </label>
                 <noscript><input type="submit" value="OK" /></noscript>
+            </form>
+        </div>
+        <div class="form-search">
+            <form action="#" method="post" class="form-search-header">
+                <input type="search" placeholder="Search ..." name="the_search">
             </form>
         </div>
         <div class="main-menu">

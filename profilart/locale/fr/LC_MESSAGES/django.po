@@ -14,7 +14,7 @@ msgid "AccessArchives"
 msgstr "Archives"
 
 msgid "LogInSignUp"
-msgstr "Connexion / Inscription"
+msgstr "Log In / Inscription"
 
 msgid "CreateWebsite"
 msgstr "Créer mon site web"

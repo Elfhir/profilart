@@ -139,12 +139,14 @@ select{
  * Header
  ***************************/
 .header-website{
-	z-index: 1000;
+    z-index: 1000;
     color: white;
     background-color: #a5a5a4;
-    background-color: rgba(0, 0, 0, .3);
     height: 40px;
     padding: 4px 0;
+}
+.header-website-transparent{
+    background-color: rgba(0, 0, 0, .3);
 }
 .header-website h1{
     font-size: 1.4em;
@@ -152,6 +154,12 @@ select{
 }
 .header-website .wrapper-logo{
     float: left;
+    margin-top: 1px;
+}
+.header-website .wrapper-logo img{
+    float: left;
+    margin-top: 3px;
+    margin-right: 7px;
 }
 .header-website a{
     color: white;
@@ -163,14 +171,27 @@ select{
 }
 .header-website .slogan{
     font-size: 0.8em;
-    margin-left: 5px;
+    margin-left: 41px;
 }
 .header-website .main-menu{
-    width: 530px;
+    width: 394px;
     float: right;
     text-align : right;
     margin-top: 11px;
     margin-right: 20px;
+}
+.header-website .form-search-header input{
+    float: left;
+    width: 430px;
+    height: 49px;
+    margin-top: -5px;
+    border: none;
+    margin-left: 15px;
+    padding: 14px;
+    font-size: 15px;
+    color: #21747a;
+    font-style: italic;
+    opacity: 0.85;
 }
 .header-website .main-menu ul li{
     float: right;
@@ -179,17 +200,11 @@ select{
 .header-website .form-language{
     float: right;
     margin-top: 5px;
+    opacity: 0.85;
 }
 .header-website .form-language select {
-    padding:3px;
-    margin: 0;
-    -webkit-border-radius:4px;
-    -moz-border-radius:4px;
-    border-radius:4px;
-    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-    background: #f8f8f8;
+    padding:2px;
+    background: #f0f0f0;
     color:#888;
     border:none;
     outline:none;
@@ -198,27 +213,30 @@ select{
     -moz-appearance:none;
     appearance:none;
     cursor:pointer;
-    width: 100px;
+    width: 35px;
+}
+.header-website .form-select-language{
+    padding: 0 4px;
+    background-color: #f0f0f0;
 }
 .header-website .form-language label {
     position:relative;
 }
 .header-website .form-language label:after {
-    content:'<>';
+    content:'>';
     font:11px "Consolas", monospace;
     color:#aaa;
     -webkit-transform:rotate(90deg);
     -moz-transform:rotate(90deg);
     -ms-transform:rotate(90deg);
     transform:rotate(90deg);
-    right:8px;
-    top:4px;
+    right:5px;
+    top:7px;
     padding:0 0 2px;
-    border-bottom:1px solid #ddd;
     position:absolute;
     pointer-events:none;
 }
-.header-website .form-language label:before {
+/*.header-website .form-language label:before {
     content:'';
     right:6px; top:0px;
     width:20px; height:20px;
@@ -226,7 +244,7 @@ select{
     position:absolute;
     pointer-events:none;
     display:block;
-}
+}*/
 /****************************
  * Back Office menu
  ***************************/
@@ -247,7 +265,7 @@ select{
     border-bottom: 1px solid #cdcdcd;
 }
 .menu-backoffice .menu-vertical{
-    padding-top: 14px;
+    padding-top: 9px;
     width: 100%;
     float: right;
 }
@@ -284,8 +302,10 @@ select{
 }
 
 .blog.home #interview_une{
-	position: relative;
-	top: -20px;
+        margin-top: -20px;
+        z-index: -1;
+        float: right;
+        margin-bottom: 200px;
 }
 
 .blog.home #interview_une img{
@@ -294,26 +314,59 @@ select{
 }
 
 .blog.home #interview_une .encart{
-	position: absolute;
-	top: 0;
+	top: 69px;
 	right: 0;
 	width: 420px;
 	background: #fff;
-	background: rgba(255, 255, 255, .5);
+	background: rgba(255, 255, 255, .8);
 	padding: 20px;
 	font: normal normal normal 14px 'EB Garamond', 'serif';
 }
 
+.interview_une_image{
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        top: -100px;
+}
+
+.interview_une_image_mask{
+        width: 100%;
+        position: absolute;
+        overflow: hidden;
+        height: 520px;
+        z-index: -1;
+}
+
 .blog.home #interview_une .encart h2{
+        font-size: 18px;
 	text-transform: uppercase;
 	font: normal normal normal 20px 'PT Sans', 'sans-serif';
 	color: #000;
+}
+
+.blog.home #interview_une .encart h2 a{
+        color: #0a7180;
+        text-decoration: none;
+}
+
+.blog.home #interview_une .encart h2 a:hover{
+        text-decoration: underline;
 }
 
 .blog.home #interview_une .encart p a{
 	display: block;
 	font: normal bold normal 14px 'PT Sans', 'sans-serif';
 	color: #0a7180;
+        text-decoration: none;
+}
+
+.blog.home #interview_une .encart p a:hover{
+        text-decoration: underline;
+}
+
+.blog.home #interview_une .encart p.home_interview_content{
+        margin-bottom: 5px;
 }
 
 .blog.home #interview_une .encart .btn:nth-of-type(1){
@@ -322,15 +375,6 @@ select{
 
 .blog.home #interview_une .encart .btn:nth-of-type(2){
 	font-weight: bold;
-}
-
-.blog.home #creer_site{
-	width: 950px;
-	margin: 0 auto;
-}
-
-.blog.home #creer_site h2{
-	margin: 30px 0;
 }
 
 .blog.home #creer_site #creer_site_txt{
@@ -348,15 +392,6 @@ select{
 
 .blog.home #creer_site .btn{
 	margin: 10px 0 0 740px;	
-}
-
-.blog.home #moteur_recherche{
-	width: 950px;
-	margin: 0 auto;
-}
-
-.blog.home #moteur_recherche h2{
-	margin: 30px 0;
 }
 
 .blog.home #moteur_recherche .container{
@@ -393,17 +428,12 @@ select{
 	margin-top: 30px;
 }
 
-.blog.home #partenaire{
-	width: 950px;
-	margin: 0 auto;
+.blog.home .block_home{
+	margin-top: 40px;
 }
 
 .blog.home #partenaire .btn{
 	margin: 10px 0 0 740px;	
-}
-
-.blog.home #partenaire h2{
-	margin: 30px 0;
 }
 
 .blog.home #people_say{
@@ -415,8 +445,4 @@ select{
 	width: 950px;
 	margin: 0 auto;
 	padding: 30px;
-}
-
-.blog.home #people_say h2{
-	margin: 0 0 10px 0;
 }

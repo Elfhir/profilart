@@ -2,14 +2,13 @@
 {% if user.is_authenticated %}
     <ul>
 	<li><a href="{% url 'authentification.views.logOut' %}">{% trans "LogOut" %}</a></li>
-	<li><a href="/{{ user.username }}">{% trans "MyWebsite" %}</a></li>
 	<li><a href="/{{ user.username }}/build">{% trans "EditWebsite" %}</a></li>
 	<li><a href="{% url 'blog.views.archives' %}">{% trans "AccessArchives" %}</a></li>
     </ul>
 {% else %}
     <ul>
 	<li><a href="{% url 'authentification.views.authentification' %}">{% trans "LogInSignUp" %}</a></li>
-	<li><a href="#">{% trans "CreateWebsite" %}</a></li>
+	<li><a href="{% url 'authentification.views.authentification' %}">{% trans "CreateWebsite" %}</a></li>
 	<li><a href="{% url 'blog.views.archives' %}">{% trans "AccessArchives" %}</a></li>
     </ul>
 {% endif %}
