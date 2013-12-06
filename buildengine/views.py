@@ -1,4 +1,5 @@
 from buildengine.models import *
+from profilart.settings import USER_IMAGE_AVERAGE_PATH
 from work.models import Work, WorkType
 from django.shortcuts import render_to_response, HttpResponseRedirect, render
 from django.template import RequestContext
@@ -8,6 +9,7 @@ from django.contrib.contenttypes.models import ContentType
 from buildengine.form import *
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
+import Image
 
 def home(request, username):
     #If the user exists
@@ -93,12 +95,14 @@ def addImage(request, username):
                 requestImage = request.FILES['file']            
                 #Create new image in the database
                 user = User.objects.get(username=username)
-                path = "/static/user_media/image/average/"+requestImage.name
+                path = USER_IMAGE_AVERAGE_PATH+requestImage.name
                 contentType = ContentType.objects.get(model="imagetype")
                 imageQuery = ImageType(user_id=user.id, path=path, content_type_id=contentType.id)
                 imageQuery.save()
                 imageQuery.full_clean()
-                default_storage.save("static/user_media/image/average/"+requestImage.name, ContentFile(requestImage.read()))          
+                #half = 0.5
+                #requestImageResized = requestImage.resize( [int(half * s) for s in im.size] )
+                #default_storage.save(USER_IMAGE_AVERAGE_PATH+requestImage.name, ContentFile(requestImageResized.read()), quality=4)                
                 return HttpResponseRedirect("/"+username+"/build")
         return render(request, 'form/generator/image.html', {'form' : imageForm})
     return HttpResponseRedirect("/") 

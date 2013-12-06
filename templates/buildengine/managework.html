@@ -4,7 +4,7 @@
     {% for work in blockWork %}
         <article class="wrapper-manage-work">
             <div class="work">
-                <a href="/{{ user.username }}/work/{{ work.id }}"><img src="{{ work.imagepath }}"/></a>
+                <a href="/{{ user.username }}/work/{{ work.id }}"><img src="/static/{{ work.image }}"/></a>
                 <p>{{ work }}</p>
                 <p><a href="/{{ user.username }}/build/deletework/{{ work.id }}">Delete this work</a></p>
                 <p><a href="/{{ user.username }}/build/editwork/{{ work.id }}">Edit this work</a></p>
@@ -13,17 +13,17 @@
                     <ul>
                     {% for type in workType %}
                         <li>
-                            {% if type.idType == 1 %}
+                            {% if type.idWork_id == work.id and type.idType == 1 %}
                                 Painting
                             {% endif %}
                         </li>
                         <li>
-                            {% if type.idType == 2 %}
+                            {% if type.idWork_id == work.id and type.idType == 2 %}
                                 Video
                             {% endif %}
                         </li>
                         <li>
-                            {% if type.idType == 3 %}
+                            {% if type.idWork_id == work.id and type.idType == 3 %}
                                 Intallation
                             {% endif %}
                         </li>
@@ -33,6 +33,7 @@
             </div>
         </article>
     {% endfor %}
+    <div class="clear"></div>
     <div>
         <a href="/{{ user.username }}/build/addwork">Add a work</a>
     </div>

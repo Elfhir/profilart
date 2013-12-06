@@ -12,6 +12,10 @@ ADMINS = (
 MANAGERS = ADMINS
 
 PROJECT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),'../')
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+BDD_USER_IMAGE_AVERAGE_PATH = '/static/user_media/image/average/'
+USER_IMAGE_AVERAGE_PATH = 'user_media/image/average/'
 
 DATABASES = {
     'default': {

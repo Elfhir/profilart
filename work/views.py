@@ -1,4 +1,5 @@
 from work.form import *
+from profilart.settings import USER_IMAGE_AVERAGE_PATH, BDD_USER_IMAGE_AVERAGE_PATH
 from buildengine.views import userBackOfficePermission
 from django.shortcuts import render_to_response, HttpResponseRedirect, render
 from buildengine.models import *
@@ -9,6 +10,9 @@ from django.contrib.contenttypes.models import ContentType
 from buildengine.form import TextForm, ImageForm
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
+from PIL import Image
+import StringIO
+import os
 
 def home(request, username, idWork):
     work = Work.objects.get(id=idWork)
@@ -27,16 +31,18 @@ def addWork(request, username):
                 requestType = request.POST.getlist('type')
                 #Create new image in the database
                 user = User.objects.get(username=username)
-                path = "/static/user_media/image/average/"+requestImage.name
-                default_storage.save("user_media/image/average/"+requestImage.name, ContentFile(requestImage.read()))
                 #Create Work in the database
                 contentType = ContentType.objects.get(model="work")
-                work = Work(name=requestName, text=requestText, user_id=user.id, imagepath=path, content_type_id=contentType.id)
+                work = Work(name=requestName, text=requestText, user_id=user.id, image=requestImage, content_type_id=contentType.id)
                 work.save()
                 #Create WorkType in the database
                 for value in requestType:
                     workType = WorkType(idType=value, idWork=work)
                     workType.save()
+                #Resize
+                image = Image.open(work.image)
+                image.thumbnail((820, 820), Image.ANTIALIAS)
+                image.save(work.image.path)
                 return HttpResponseRedirect("/"+username+"/build")
             return render(request, 'form/addwork.html', {'form' : form})
         return render(request, 'form/addwork.html', {'form' : workForm})
@@ -82,10 +88,12 @@ def editImageWork(request, username, idWork):
             if form.is_valid():
                 work = Work.objects.get(id=idWork)
                 requestImage = request.FILES['image']
-                path = "/static/user_media/image/average/"+requestImage.name
-                default_storage.save("public/static/user_media/image/average/"+requestImage.name, ContentFile(requestImage.read()))
-                work.imagepath = path
+                work.image = requestImage
                 work.save()
+                #Resize
+                image = Image.open(work.image)
+                image.thumbnail((820, 820), Image.ANTIALIAS)
+                image.save(work.image.path)
                 return HttpResponseRedirect("/"+username+"/build/editwork/"+idWork)
         return HttpResponseRedirect("/"+username+"/build/editwork/"+idWork)
     return HttpResponseRedirect("/")

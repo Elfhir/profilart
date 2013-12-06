@@ -5,7 +5,7 @@ class Work(models.Model):
     name = models.CharField(max_length=100)
     text = models.CharField(max_length=2000)
     user = models.ForeignKey(User)
-    imagepath = models.CharField(max_length=200)
+    image = models.ImageField(upload_to="user_media/image/average/")
     content_type = models.ForeignKey(ContentType)
     date_pub = models.DateTimeField(auto_now=True)
     

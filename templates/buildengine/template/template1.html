@@ -39,6 +39,7 @@
                         </article>
                     </article>
                     
+                    <!--
                     <article role="image-presentation" class="modifier-image-presentation modifier-edit-wrapper">
                         <ul>
                             <li>
@@ -57,7 +58,7 @@
                             {% endfor %}
                         </article>
                     </article>
-                    
+                    -->
                     <article role="quick-view-works" class="modifier-quick-view-works modifier-edit-wrapper">
                         <ul>
                             <li>
@@ -73,7 +74,7 @@
                                     {% for type in workType %}
                                         {% if work.id == type.idWork_id and type.idType == 1 %}
                                             <a href="/{{ user.username }}/work/{{ work.id }}">
-                                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                                                <img style="width: 190px;" src="/static/{{ work.image }}"/>
                                             </a>
                                         {% endif %}
                                     {% endfor %}
@@ -86,7 +87,7 @@
                                     {% for type in workType %}
                                         {% if work.id == type.idWork_id and type.idType == 2 %}
                                             <a href="/{{ user.username }}/work/{{ work.id }}">
-                                                <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                                                <img style="width: 190px;" src="/static/{{ work.image }}"/>
                                             </a>
                                         {% endif %}
                                     {% endfor %}
@@ -98,7 +99,7 @@
                                 {% for work in blockWork %}
                                     {% for type in workType %}
                                         {% if work.id == type.idWork_id and type.idType == 3 %}
-                                            <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                                            <img style="width: 190px;" src="/static/{{ work.image }}"/>
                                         {% endif %}
                                     {% endfor %}
                                 {% endfor %}
@@ -125,7 +126,7 @@
                                 {% for type in workType %}
                                     {% if work.id == type.idWork_id and type.idType == 1 %}
                                         <a href="/{{ user.username }}/work/{{ work.id }}">
-                                            <img title="Go to see {{ work.name }}" style="width: 190px;" src="{{ work.imagepath }}"/>
+                                            <img title="Go to see {{ work.name }}" style="width: 190px;" src="/static/{{ work.image }}"/>
                                         </a>
                                     {% endif %}
                                 {% endfor %}
@@ -138,7 +139,7 @@
                                 {% for type in workType %}
                                     {% if work.id == type.idWork_id and type.idType == 2 %}
                                         <a href="/{{ user.username }}/work/{{ work.id }}">
-                                            <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                                            <img style="width: 190px;" src="/static/{{ work.image }}"/>
                                         </a>
                                     {% endif %}
                                 {% endfor %}
@@ -150,7 +151,7 @@
                             {% for work in blockWork %}
                                 {% for type in workType %}
                                     {% if work.id == type.idWork_id and type.idType == 3 %}
-                                        <img style="width: 190px;" src="{{ work.imagepath }}"/>
+                                        <img style="width: 190px;" src="/static/{{ work.image }}"/>
                                     {% endif %}
                                 {% endfor %}
                             {% endfor %}
