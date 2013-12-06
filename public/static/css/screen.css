@@ -174,7 +174,6 @@ select{
     margin-left: 41px;
 }
 .header-website .main-menu{
-    width: 394px;
     float: right;
     text-align : right;
     margin-top: 11px;
@@ -183,11 +182,10 @@ select{
 .header-website .form-search-header input{
     float: left;
     width: 430px;
-    height: 49px;
     margin-top: -5px;
     border: none;
     margin-left: 15px;
-    padding: 14px;
+    padding: 16px;
     font-size: 15px;
     color: #21747a;
     font-style: italic;
@@ -210,11 +208,12 @@ select{
     outline:none;
     display: inline-block;
     -webkit-appearance:none;
-    -moz-appearance:none;
-    appearance:none;
-    cursor:pointer;
-    width: 35px;
-}
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: "";
+    cursor: pointer;
+    width: 40px;
+}    
 .header-website .form-select-language{
     padding: 0 4px;
     background-color: #f0f0f0;

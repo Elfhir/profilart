@@ -27,8 +27,8 @@ def addWork(request, username):
                 requestType = request.POST.getlist('type')
                 #Create new image in the database
                 user = User.objects.get(username=username)
-                path = "public/static/user_media/image/average/"+requestImage.name
-                default_storage.save("static/user_media/image/average/"+requestImage.name, ContentFile(requestImage.read()))
+                path = "/static/user_media/image/average/"+requestImage.name
+                default_storage.save("user_media/image/average/"+requestImage.name, ContentFile(requestImage.read()))
                 #Create Work in the database
                 contentType = ContentType.objects.get(model="work")
                 work = Work(name=requestName, text=requestText, user_id=user.id, imagepath=path, content_type_id=contentType.id)

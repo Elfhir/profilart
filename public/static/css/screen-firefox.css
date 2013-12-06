@@ -1,0 +1,14 @@
+/********************
+ * Profil Art CSS - Firefox StyleSheet
+ *******************/
+@-moz-document url-prefix()
+{
+    .header-website .form-search-header input {
+        width: 396px;
+        margin-top: -6px;
+    }
+    .header-website .form-language select {
+        width: 52px;
+        padding: 5px;
+    }
+}

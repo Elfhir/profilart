@@ -1,0 +1,16 @@
+/********************
+ * Profil Art CSS - IE9 StyleSheet
+ *******************/
+.header-website .form-search-header input {
+    width: 396px;
+}
+.header-website .form-language select {
+    width: 45px;
+    padding-top: 6px;
+}
+.header-website .form-language label:after {
+    content:'';
+}
+.header-website .main-menu {
+    margin-top: 13px;
+}

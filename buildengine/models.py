@@ -37,4 +37,4 @@ class PrefWebsite(models.Model):
     font_family = models.CharField(max_length=50)
     
     def __unicode__(self):
-        return "%s" % (self.TemplateID)
+        return "%s" % (self.user)
