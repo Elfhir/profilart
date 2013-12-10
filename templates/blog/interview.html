@@ -4,7 +4,7 @@
 {% load i18n %}
 {% block content %}
     <div id="interview" >
-        <h2>{% trans "blog_home_rencontreAvec"%} {{interview.artiste}}</h2>
+        <h2>{% trans "blog_home_rencontreAvec"%} <a href=''>{{interview.artiste}}</a></h2>
         <a href="" class="btn">{% trans "blog_home_voirSiteBtn" %}</a>
         <img src="{{MEDIA_URL}}{{interview.photo}}" />
         <div class="encart">

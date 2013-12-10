@@ -48,6 +48,10 @@ footer .wrapper-content{
     width: 100%;
     margin-bottom: 5px;
 }
+
+.clear{
+	clear: both;
+}
 /****************************
  * Form
  ***************************/
@@ -327,10 +331,10 @@ select{
 }
 
 .blog.home #interview_une{
-        margin-top: -20px;
-        z-index: -1;
-        float: right;
-        margin-bottom: 200px;
+    margin-top: -20px;
+    z-index: -1;
+    float: right;
+    margin-bottom: 200px;
 }
 
 .blog.home #interview_une img{
@@ -349,34 +353,34 @@ select{
 }
 
 .interview_une_image{
-        position: absolute;
-        z-index: -1;
-        width: 100%;
-        top: -100px;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    top: -100px;
 }
 
 .interview_une_image_mask{
-        width: 100%;
-        position: absolute;
-        overflow: hidden;
-        height: 520px;
-        z-index: -1;
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+    height: 520px;
+    z-index: -1;
 }
 
 .blog.home #interview_une .encart h2{
-        font-size: 18px;
+    font-size: 18px;
 	text-transform: uppercase;
 	font: normal normal normal 20px 'PT Sans', 'sans-serif';
 	color: #000;
 }
 
 .blog.home #interview_une .encart h2 a{
-        color: #0a7180;
-        text-decoration: none;
+    color: #0a7180;
+    text-decoration: none;
 }
 
 .blog.home #interview_une .encart h2 a:hover{
-        text-decoration: underline;
+    text-decoration: underline;
 }
 
 .blog.home #interview_une .encart p a{
@@ -472,6 +476,77 @@ select{
 	padding: 30px;
 }
 
+.blog.archives .main-content h1{
+	font: normal normal normal 30px/40px 'PT Sans', 'sans-serif';
+	text-transform: uppercase;
+	color: #000;
+	margin: 20px 0;
+}
+
+.blog.archives h2{
+	margin-bottom: 0px;
+}
+
+.blog.archives #archive-tab{
+	margin-bottom: 20px;
+}
+
+.blog.archives #archive-tab a{
+	font: normal normal normal 15px/40px 'PT Sans', 'sans-serif';
+	margin: 0 100px;
+	text-transform: uppercase;
+	color: #999;
+	cursor: pointer;
+}
+
+.blog.archives #archive-tab a.active{
+	font: normal normal normal 25px/40px 'PT Sans', 'sans-serif';
+	color: #000;
+	cursor: default;
+}
+
+.blog.archives #archive-tab a:not(.active):hover{
+	color: #000;
+	text-decoration: underline;	
+}
+
+.blog.archives .interview,
+.blog.archives .corpus{
+	position: relative;
+	clear: both;
+}
+
+.blog.archives .date{
+	color: #666;
+	font: italic normal normal 12px 'PT Sans', 'sans-serif';
+	margin-bottom: 10px;
+} 
+
+.blog.archives .interview .encart p{
+	font: normal normal normal 16px/25px 'EB Garamond', 'serif';
+	margin-bottom: 10px;
+	text-align: justify;
+}
+
+.blog.archives .interview .encart a.btn{
+	position: absolute;
+	bottom: 30px;
+}
+
+.blog.archives .interview .encart p a{
+	display: block;
+	font: normal bold normal 14px 'PT Sans', 'sans-serif';
+	color: #0a7180;
+    text-decoration: none;
+}
+
+.blog.archives .interview img{
+	width: 60%;
+	margin-right: 30px;
+	margin-bottom: 30px;
+	float: left;
+}
+
 .blog.interview #interview{
 	position: relative;
 	top: 10px;
@@ -483,13 +558,17 @@ select{
 	font-size: 30px;
 }
 
+.blog.interview #interview h2 a{
+        color: #0a7180;
+        text-decoration: none;
+}
+
 .blog.interview #interview .btn{
 	position: absolute;
 	top: 0;
 	right: 0;
 	margin: 0;
 }
-
 
 .blog.interview #interview img{
 	width: 70%;

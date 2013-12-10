@@ -3,22 +3,27 @@
 
 {% load i18n %}
 {% block content %}
-    <h2>Archives</h2>
+    <h1>Archives</h1>
+    <div id="archive-tab">
+        <a id="interview-tab">Interview</a>
+        <a id="analyse-corpus-tab">Analyse de corpus</a>
+    </div>
     {% for interview in interviews %}
-        <div id="interview" >
+        <div class="interview" >
             <h2>{% trans "blog_home_rencontreAvec"%} {{interview.artiste}}</h2>
-            <span>Le {{interview.date|date:"j F Y"}}</span>
+            <p class="date">Le {{interview.date|date:"j F Y"}}</p>
             <img src="{{MEDIA_URL}}{{interview.photo}}" />
             <div class="encart">
                 <p>{{interview.contenu}}</p>
                 <p><a href="{% url 'blog.views.interview' interview.id %}">{% trans "blog_home_lireSuite" %}</a></p>
                 <a href="" class="btn">{% trans "blog_home_voirSiteBtn" %}</a>
             </div>
+            <div class="clear"></div>
         </div>
     {% endfor %}
     {% for analyseCorpus in analyseCorpuses %}
-        <div id="corpus" >
-            <span>Le {{analyseCorpus.date|date:"j F Y"}}</span>
+        <div class="corpus" >
+            <p class="date">Le {{analyseCorpus.date|date:"j F Y"}}</p>
             <div class="encart">
                 <h2>{{analyseCorpus.titre}}</h2>
                 <p>{{analyseCorpus.contenu}}</p>
@@ -26,4 +31,29 @@
             </div>
         </div>
     {% endfor %}
+    
+    <script>
+        $(document).ready( function(){
+            $('#interview-tab').addClass('active');
+            updateDisplay();
+            
+            $('#archive-tab a').on('click', function(){
+                if( !$(this).hasClass("active") ){
+                    $('#archive-tab a').toggleClass("active");
+                    updateDisplay();
+                }
+            });
+            
+            function updateDisplay(){
+                if($('#interview-tab').hasClass("active")){
+                    $(".interview").css({"display": "block"});
+                    $(".corpus").css({"display": "none"});
+                }
+                else{
+                    $(".interview").css({"display": "none"});
+                    $(".corpus").css({"display": "block"});
+                }
+            }
+        });
+    </script>
 {% endblock content %}
