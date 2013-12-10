@@ -1,24 +1,28 @@
 {% extends "layout/base.html" %}
-{% block bodyClass %}blog home{% endblock %}
+{% block bodyClass %}blog archives{% endblock %}
 
 {% load i18n %}
 {% block content %}
     <h2>Archives</h2>
     {% for interview in interviews %}
         <div id="interview" >
+            <h2>{% trans "blog_home_rencontreAvec"%} {{interview.artiste}}</h2>
+            <span>Le {{interview.date|date:"j F Y"}}</span>
             <img src="{{MEDIA_URL}}{{interview.photo}}" />
             <div class="encart">
-                <h2>{% trans "blog_home_rencontreAvec"%} {{interview.artiste}}</h2>
                 <p>{{interview.contenu}}</p>
+                <p><a href="{% url 'blog.views.interview' interview.id %}">{% trans "blog_home_lireSuite" %}</a></p>
                 <a href="" class="btn">{% trans "blog_home_voirSiteBtn" %}</a>
             </div>
         </div>
     {% endfor %}
-    {% for corpus in corpuses %}
+    {% for analyseCorpus in analyseCorpuses %}
         <div id="corpus" >
+            <span>Le {{analyseCorpus.date|date:"j F Y"}}</span>
             <div class="encart">
-                <h2>{{corpus.titre}}</h2>
-                <p>{{corpus.contenu}}</p>
+                <h2>{{analyseCorpus.titre}}</h2>
+                <p>{{analyseCorpus.contenu}}</p>
+                <p><a href="{% url 'blog.views.analyseCorpus' analyseCorpus.id %}">{% trans "blog_home_lireSuite" %}</a></p>
             </div>
         </div>
     {% endfor %}

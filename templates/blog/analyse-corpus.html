@@ -1,0 +1,13 @@
+{% extends "layout/base.html" %}
+{% block bodyClass %}blog analyse-corpus{% endblock %}
+
+{% load i18n %}
+{% block content %}
+    <div id="corpus" >
+        <div class="encart">
+            <h2>{{analyseCorpus.titre}}</h2>
+            <span>{{analyseCorpus.date|date:"j F Y"}}</span>
+            <p>{{analyseCorpus.contenu}}</p>
+        </div>
+    </div>
+{% endblock content %}

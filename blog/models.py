@@ -13,4 +13,6 @@ class Interview(models.Model):
 class AnalyseCorpus(models.Model):
     contenu = models.TextField(null=False)
     auteur = models.CharField(max_length=100)
-    photo = models.ImageField(upload_to="blog/analyse-corpus/")
+    date = models.DateTimeField(auto_now_add=True, auto_now=True, verbose_name="Date de parution")
+    photo = models.ImageField(upload_to="blog/analyse-corpus/", blank=True)
+    
