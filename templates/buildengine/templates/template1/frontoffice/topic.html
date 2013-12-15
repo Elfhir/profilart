@@ -36,25 +36,35 @@
             </div>
         </article>
         <div class="clear"></div>
-        <section class="last-works">
+        <section class="sub-title">
             <div class="wrapper-content">
-                <ul class="bxslider">
-                    {% for work in lastWorks %}
-                        <li class="wrapper-last-work">
-                            <img src="/static/{{ work.image }}"/>
-                        </li>
-                    {% endfor %}
-                </ul>
+                {{ nameTopic }}
             </div>
         </section>
-        <section class="last-works">
+        <section class="topic-series">
             <div class="wrapper-content">
-                    {% for work in lastWorks %}
-                        <div class="wrapper-last-work">
-                            <img src="/static/{{ work.image }}"/>
-                        </div>
+                {% for type in workTopic %}
+                    {% for topic in topics %}
+                        {% if topic.id == type.idWork_id %}
+                            <div class="topic-line">
+                                <p>
+                                    <a href="/{{ username }}/carteltopic/{{ topic.id }}/">
+                                        <span class="title-topic"><strong>{{ topic.name }}</strong></span>
+                                    </a> - <em>{{ topic.date_pub.year }}</em>
+                                </p>
+                                <p class="topic-text"><em>{{ topic.text }}</em></p>
+                                {% for work in works %}
+                                    {% if work.work_topic_id == topic.id %}
+                                        <a href="/{{ username }}/cartel/{{ work.id }}/">
+                                            <img class="topic-work-image" src="/static/{{ work.image }}"/>
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
+                                <div class="clear"></div>
+                            </div>
+                        {% endif %}
                     {% endfor %}
-                </ul>
+                {% endfor %}
             </div>
         </section>
     </div>

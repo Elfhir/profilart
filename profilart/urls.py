@@ -8,5 +8,8 @@ urlpatterns = patterns('',
     url(r'^authentification', include('authentification.urls')),
     url(r'^(?P<username>\w+)', include('buildengine.urls')),
     url(r'^(?P<username>\w+)/work', include('work.urls')),
+    url(r'^(?P<username>\w+)/topic/(?P<nameTopic>.+)/$', 'work.views.displayTopic'),
+    url(r'^(?P<username>\w+)/carteltopic/(?P<idTopic>.+)/$', 'work.views.displayCartelTopic'),
+    url(r'^(?P<username>\w+)/cartel/(?P<idWork>.+)/$', 'work.views.displayCartelWork'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 )

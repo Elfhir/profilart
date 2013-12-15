@@ -140,6 +140,14 @@ select{
 .form-type .work-view-category{
     margin-bottom: 15px;
 }
+.form-editwebsite .wrapper-font-color{
+    float: right;
+    margin-right: 40px;
+}
+.form-editwebsite .wrapper-font{
+    width: 68%;
+    float: left;
+}
 /****************************
  * Works
  ***************************/

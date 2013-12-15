@@ -88,7 +88,7 @@ def editTopic(request, idTopic, username):
         works = Work.objects.filter(work_topic_id=idTopic)
         workTopicType = WorkTopicType.objects.filter(idWork_id=idTopic)
         if request.method == 'POST':
-            form = EditMetaWork(request.POST)
+            form = WorkTopicForm(request.POST)
             if form.is_valid():
                 requestName = request.POST['name']
                 requestText = request.POST['text']
@@ -173,3 +173,49 @@ def deleteWork(request, username, idWork):
         work.delete()
         return HttpResponseRedirect("/"+username+"/build")
     return HttpResponseRedirect("/")
+
+def displayTopic(request, username, nameTopic):
+    user = User.objects.get(username=username)
+    prefWebsite = PrefWebsite.objects.get(user_id=user.id)
+    if nameTopic == "paintings": idTopic = "1"
+    if nameTopic == "photographies": idTopic = "2"
+    if nameTopic == "video": idTopic = "3"
+    if nameTopic == "sculptures": idTopic = "4"
+    if nameTopic == "installations": idTopic = "5"
+    if nameTopic == "Others": idTopic = "6"
+    workTopic = WorkTopicType.objects.filter(idType=idTopic, idWork_id__user=user.id)
+    topics = WorkTopic.objects.filter(user_id=user.id)
+    works = Work.objects.filter(user_id=user.id)
+    workTopicType = WorkTopicType.objects.filter(idWork_id__user_id=user.id).order_by("idType").values_list("idType")
+    firstname = user.first_name
+    name = user.last_name
+    return render(request, 'buildengine/templates/template1/frontoffice/topic.html', {'username' : username, 'prefWebsite' : prefWebsite,
+                                                               'firstname' : firstname, 'name' : name, 'workType' : set(workTopicType),
+                                                               'nameTopic' : nameTopic, 'workTopic' : workTopic, 'works' : works,
+                                                               'topics': topics})
+
+def displayCartelTopic(request, username, idTopic):
+    user = User.objects.get(username=username)
+    prefWebsite = PrefWebsite.objects.get(user_id=user.id)
+    workTopic = WorkTopic.objects.get(id=idTopic)
+    works = Work.objects.filter(work_topic_id=workTopic)
+    workTopicType = WorkTopicType.objects.filter(idWork_id__user_id=user.id).order_by("idType").values_list("idType")
+    firstname = user.first_name
+    name = user.last_name
+    return render(request, 'buildengine/templates/template1/frontoffice/carteltopic.html', {'username' : username, 'prefWebsite' : prefWebsite,
+                                                           'firstname' : firstname, 'name' : name, 'topic': workTopic, 'works' : works,
+                                                           'workType' : set(workTopicType)})
+
+def displayCartelWork(request, username, idWork):
+    user = User.objects.get(username=username)
+    prefWebsite = PrefWebsite.objects.get(user_id=user.id)
+    work = Work.objects.get(id=idWork)
+    workTopic = WorkTopic.objects.get(id=work.work_topic_id)
+    workTopicType = WorkTopicType.objects.filter(idWork_id__user_id=user.id).order_by("idType").values_list("idType")
+    firstname = user.first_name
+    name = user.last_name
+    return render(request, 'buildengine/templates/template1/frontoffice/cartel.html', {'username' : username, 'prefWebsite' : prefWebsite,
+                                                           'firstname' : firstname, 'name' : name, 'work' : work, 'workTopic' : workTopic,
+                                                           'workType' : set(workTopicType)})
+
+

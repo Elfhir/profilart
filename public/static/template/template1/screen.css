@@ -85,10 +85,31 @@ footer .wrapper-content{
 	float: left;
 }
 .template1 .wrapper-headermenu ul.headermenu li a{
-	color: #777;
+	opacity: 0.5;
 	margin-left: 20px;
 	font-size: 15px;
 	text-decoration: none;
+}
+.template1 .topic-text{
+	font-size: 0.9em;
+	opacity: 0.5;
+	width: 31%;
+	float: left;
+}
+.template1 .topic-work-image{
+	width: 174px;
+	float: left;
+}
+.template1 .topic-line{
+	margin-bottom: 20px;
+}
+.template1 .sub-title{
+	margin-top: 50px;
+	margin-bottom: 30px;
+	font-size: 1.3em;
+}
+.template1 .sub-title:first-letter {
+	text-transform: uppercase;
 }
 .template1 .wrapper-headermenu ul.headermenu li a:hover{
 	text-decoration: underline;

@@ -1,6 +1,6 @@
 from buildengine.models import *
 from profilart.settings import USER_IMAGE_AVERAGE_PATH
-from work.models import Work, WorkType
+from work.models import *
 from django.shortcuts import render_to_response, HttpResponseRedirect, render
 from django.template import RequestContext
 from django.http import Http404
@@ -15,17 +15,16 @@ def home(request, username):
     #If the user exists
     if User.objects.filter(username=username).count():
         user = User.objects.get(username=username)
-        requestedUser = User.objects.get(username=username)
-        text = TextType.objects.get(user_id=requestedUser.id)
-        prefWebsite = PrefWebsite.objects.get(user_id=requestedUser.id)
-        images = ImageType.objects.filter(user_id=requestedUser.id).order_by("weight")
-        workType = WorkType.objects.all()
-        lastWorks = Work.objects.filter(user_id=request.user.id).order_by("date_pub")[:3]
+        text = TextType.objects.get(user_id=user.id)
+        prefWebsite = PrefWebsite.objects.get(user_id=user.id)
+        images = ImageType.objects.filter(user_id=user.id).order_by("weight")
+        workTopicType = WorkTopicType.objects.filter(idWork_id__user_id=user.id).order_by("idType").values_list("idType")
+        lastWorks = Work.objects.filter(user_id=user.id).order_by("date_pub")[:3]
         firstname = user.first_name
         name = user.last_name
         editMode = False
         return render(request, 'buildengine/templates/template1/frontoffice/home.html', {'username' : username, 'blockText' : text, 'blockImage' : images,
-                                                                       'lastWorks' : lastWorks, 'workType' : workType, 'prefWebsite' : prefWebsite,
+                                                                       'lastWorks' : lastWorks, 'workType' : set(workTopicType), 'prefWebsite' : prefWebsite,
                                                                        'firstname' : firstname, 'name' : name, 'editMode' : editMode})
     return HttpResponseRedirect("/")
 
@@ -56,18 +55,20 @@ def backOffice(request, username):
 def editWebsite(request, username):
     prefWebsite = PrefWebsite.objects.get(user_id=request.user.id)
     colorDefault = prefWebsite.color
+    fontColorDefault = prefWebsite.font_color
     fontStyleDefault = prefWebsite.font_family
-    editWebsiteForm = EditWebsiteForm(initial={'color' : colorDefault, 'font' : fontStyleDefault});
+    editWebsiteForm = EditWebsiteForm(initial={'color' : colorDefault, 'font' : fontStyleDefault, 'font_color' : fontColorDefault});
     if request.method == 'POST':
         form = EditWebsiteForm(request.POST)
         if form.is_valid():
             requestColor = request.POST['color']
             requestFont = request.POST['font']
+            requestFontColor = request.POST['font_color']
             prefWebsite = PrefWebsite.objects.get(user_id=request.user.id)
             prefWebsite.color = requestColor
             prefWebsite.font_family = requestFont
+            prefWebsite.font_color = requestFontColor
             prefWebsite.save()
-            prefWebsite.full_clean()
             return HttpResponseRedirect("/"+username+"/build")
     return render(request, 'form/editwebsite.html', {'form': editWebsiteForm})
 

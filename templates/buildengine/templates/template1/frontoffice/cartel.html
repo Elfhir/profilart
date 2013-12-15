@@ -36,25 +36,16 @@
             </div>
         </article>
         <div class="clear"></div>
-        <section class="last-works">
+        <section>
             <div class="wrapper-content">
-                <ul class="bxslider">
-                    {% for work in lastWorks %}
-                        <li class="wrapper-last-work">
-                            <img src="/static/{{ work.image }}"/>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </section>
-        <section class="last-works">
-            <div class="wrapper-content">
-                    {% for work in lastWorks %}
-                        <div class="wrapper-last-work">
-                            <img src="/static/{{ work.image }}"/>
-                        </div>
-                    {% endfor %}
-                </ul>
+                <p>{{ workTopic.name }}</p>
+                <p>{{ work.name }}</p>
+                <p><img src="/static/{{ work.image }}"/></p>
+                <p>{{ work.text }}</p>
+                <p>Width : {{ work.width }}</p>
+                <p>Height : {{ work.height }}</p>
+                <p>Material : {{ work.material }}</p>
+                <p>Current localisation : {{ work.current_local }}</p>
             </div>
         </section>
     </div>

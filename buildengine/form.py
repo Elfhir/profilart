@@ -16,5 +16,5 @@ class ImageForm(forms.Form):
     
 class EditWebsiteForm(forms.Form):
     color = forms.CharField()
-    font =  forms.ChoiceField(choices=FONTS, widget=forms.Select())
-    
+    font_color =  forms.CharField()
+    font =  forms.ChoiceField(choices=FONTS, widget=forms.Select())   

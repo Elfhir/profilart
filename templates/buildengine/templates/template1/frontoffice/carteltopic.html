@@ -36,25 +36,19 @@
             </div>
         </article>
         <div class="clear"></div>
-        <section class="last-works">
+        <section>
             <div class="wrapper-content">
-                <ul class="bxslider">
-                    {% for work in lastWorks %}
-                        <li class="wrapper-last-work">
-                            <img src="/static/{{ work.image }}"/>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </section>
-        <section class="last-works">
-            <div class="wrapper-content">
-                    {% for work in lastWorks %}
-                        <div class="wrapper-last-work">
-                            <img src="/static/{{ work.image }}"/>
-                        </div>
-                    {% endfor %}
-                </ul>
+                <p>
+                    <a href="/{{ username }}/carteltopic/{{ topic.id }}/">
+                        <span class="title-topic"><strong>{{ topic.name }}</strong></span>
+                    </a> - <em>{{ topic.date_pub.year }}</em>
+                </p>
+                <p>{{ topic.text }}</p>
+                {% for work in works %}
+                    {% if work.work_topic_id == topic.id %}
+                        <a href="/{{ username }}/cartel/{{ work.id }}/"><img class="topic-work-image" src="/static/{{ work.image }}"/></a>
+                    {% endif %}
+                {% endfor %}
             </div>
         </section>
     </div>

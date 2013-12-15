@@ -35,6 +35,7 @@ class PrefWebsite(models.Model):
     id_template = models.PositiveIntegerField(default=1)
     color = models.CharField(max_length=10)
     font_family = models.CharField(max_length=50)
+    font_color = models.CharField(max_length=10)
     
     def __unicode__(self):
         return "%s" % (self.user)
