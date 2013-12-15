@@ -3,4 +3,7 @@ $(document).ready(function() {
         var value = $(this).val().toUpperCase();
         $(this).html(value);
     });
+    $("#datepicker").datepicker({
+        dateFormat: 'yy-mm-dd'
+    });
 });

@@ -20,12 +20,12 @@ def home(request, username):
         prefWebsite = PrefWebsite.objects.get(user_id=requestedUser.id)
         images = ImageType.objects.filter(user_id=requestedUser.id).order_by("weight")
         workType = WorkType.objects.all()
-        works = Work.objects.all()
+        lastWorks = Work.objects.filter(user_id=request.user.id).order_by("date_pub")[:3]
         firstname = user.first_name
         name = user.last_name
         editMode = False
-        return render(request, 'buildengine/template/template1.html', {'username' : username, 'blockText' : text, 'blockImage' : images,
-                                                                       'blockWork' : works, 'workType' : workType, 'prefWebsite' : prefWebsite,
+        return render(request, 'buildengine/templates/template1/frontoffice/home.html', {'username' : username, 'blockText' : text, 'blockImage' : images,
+                                                                       'lastWorks' : lastWorks, 'workType' : workType, 'prefWebsite' : prefWebsite,
                                                                        'firstname' : firstname, 'name' : name, 'editMode' : editMode})
     return HttpResponseRedirect("/")
 
@@ -45,10 +45,12 @@ def backOffice(request, username):
             works = Work.objects.all()
             firstname = user.first_name
             name = user.last_name
+            pathTemplate = "buildengine/templates/template"+str(prefWebsite.id_template)+"/backoffice/home.html"
             editMode = True
             return render(request, 'buildengine/build.html', {'username' : username, 'blockText' : text, 'blockImage' : images,
                                                               'blockWork' : works, 'workType' : workType, 'prefWebsite' : prefWebsite,
-                                                              'firstname' : firstname, 'name' : name, 'editMode' : editMode})
+                                                              'firstname' : firstname, 'name' : name, 'pathTemplate' : pathTemplate,
+                                                              'editMode' : editMode})
     return HttpResponseRedirect("/")
 
 def editWebsite(request, username):

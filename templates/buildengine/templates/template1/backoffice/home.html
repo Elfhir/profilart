@@ -1,0 +1,32 @@
+<!doctype html>
+<head>
+    <meta charset="UTF-8">
+    <title>Profil Art</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/screen.css">
+    <link rel="stylesheet" href="/static/template/template1/screen.css">
+</head>
+<body style="background-color:{{ prefWebsite.color }};">
+    {% if user.is_authenticated and user.username in request.path %}
+        {% if "/build" in request.path %}
+        {% else %}
+            <div class="manager-template-full-mode">
+                <p><a href="/{{ user.username }}/build">Switch to edit mode</a></p>
+            </div>
+        {% endif %}
+    {% endif %}
+    <div class="template1" style="font-family: {{ prefWebsite.font_family }}">
+        <article role="header" >
+            <div class="wrapper-content">
+                <div class="wrapper-title">
+                    <h1 class="modifier-h1">{{ firstname }} {{ name }}</h1>
+                </div>
+            </div>
+        </article>
+        <article>
+            <div class="wrapper-content">
+                
+            </div>
+        </article>
+    </div>
+</body>

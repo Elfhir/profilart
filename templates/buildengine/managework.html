@@ -1,40 +1,30 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
-    {% for work in blockWork %}
+    {% for topic in blockTopic %}
         <article class="wrapper-manage-work">
-            <div class="work">
-                <a href="/{{ user.username }}/work/{{ work.id }}"><img src="/static/{{ work.image }}"/></a>
-                <p>{{ work }}</p>
-                <p><a href="/{{ user.username }}/build/deletework/{{ work.id }}">Delete this work</a></p>
-                <p><a href="/{{ user.username }}/build/editwork/{{ work.id }}">Edit this work</a></p>
-                Categorie : <br/>
-                <p class="work-view-category">
-                    <ul>
-                    {% for type in workType %}
-                        <li>
-                            {% if type.idWork_id == work.id and type.idType == 1 %}
-                                Painting
-                            {% endif %}
-                        </li>
-                        <li>
-                            {% if type.idWork_id == work.id and type.idType == 2 %}
-                                Video
-                            {% endif %}
-                        </li>
-                        <li>
-                            {% if type.idWork_id == work.id and type.idType == 3 %}
-                                Intallation
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                    </ul>
+            <div class="work wrapper-work-serie">
+                <p class="title-serie">{{ topic }}</p>
+                {% for work in works %}
+                    {% if work.work_topic_id == topic.id %}
+                        <div class="work-serie">
+                            <a href="/{{ user.username }}/work/{{ work.id }}">
+                                <img style="width: 200px;" src="/static/{{ work.image }}"/>
+                            </a>    
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="clear"></div>
+                <p>
+                    <a href="/{{ user.username }}/build/deletetopic/{{ topic.id }}">Delete this topic</a>
+                    <a href="/{{ user.username }}/build/edittopic/{{ topic.id }}">Edit this topic</a>
+                    <a href="/{{ user.username }}/build/addwork/{{ topic.id }}">Add a work</a>
                 </p>
             </div>
         </article>
     {% endfor %}
     <div class="clear"></div>
     <div>
-        <a href="/{{ user.username }}/build/addwork">Add a work</a>
+        <a href="/{{ user.username }}/build/addtopic">Add a topic</a>
     </div>
 {% endblock content %}

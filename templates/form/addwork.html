@@ -3,8 +3,9 @@
 {% block content %}
         <h2>Adding work item</h2>
 	<p class="form-information">* all inputs are required</p>
-	<form action="/{{ user.username }}/build/addwork/" enctype="multipart/form-data" method="post">
+	<form action="/{{ user.username }}/build/addwork/{{ idTopic }}/" enctype="multipart/form-data" method="post" class="form-type">
             {{ form.as_p }}
+	    <div class="clear"></div>
             <input type="submit" value="Add my work" />
 	</form>
 {% endblock content %}

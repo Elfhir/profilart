@@ -17,8 +17,9 @@
 	<article class="modify-information-work">
 	    <h2>Update information</h2>
 	    <p class="form-information">* all inputs are required</p>
-	    <form action="/{{ user.username }}/build/editwork/{{ work.id }}/" enctype="multipart/form-data" method="post">
+	    <form action="/{{ user.username }}/build/editwork/{{ work.id }}/" class="form-type" method="post">
 		{{ editMetaWorkForm.as_p }}
+		<div class="clear"></div>
 		<input type="submit" value="Update my information" />
 	    </form>
 	</article>

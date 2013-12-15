@@ -1,0 +1,56 @@
+<!doctype html>
+<head>
+    <meta charset="UTF-8">
+    <title>Profil Art</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/screen.css">
+    <link rel="stylesheet" href="/static/template/template1/screen.css">
+        <link rel="stylesheet" href="/static/script/bxslider/jquery.bxslider.css">
+    <script type="text/javascript" src="/static/script/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="/static/script/bxslider/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="/static/template/template1/script.js"></script>
+</head>
+<body style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }}">
+    {% if user.is_authenticated and user.username in request.path %}
+        {% if "/build" in request.path %}
+        {% else %}
+            <div class="manager-template-full-mode">
+                <p><a href="/{{ user.username }}/build">Switch to edit mode</a></p>
+            </div>
+        {% endif %}
+    {% endif %}
+    <div class="template1">
+        <article role="header" >
+            <div class="wrapper-content">
+                <div class="wrapper-title">
+                    <h1 class="modifier-h1">{{ firstname }} {{ name }}</h1>
+                </div>
+                <div class="wrapper-headermenu">
+                    {% include "buildengine/templates/template1/frontoffice/headermenu.html" %}
+                </div>
+            </div>
+        </article>
+        <div class="clear"></div>
+        <section class="last-works">
+            <div class="wrapper-content">
+                <ul class="bxslider">
+                    {% for work in lastWorks %}
+                        <li class="wrapper-last-work">
+                            <img src="/static/{{ work.image }}"/>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+        <section class="last-works">
+            <div class="wrapper-content">
+                    {% for work in lastWorks %}
+                        <div class="wrapper-last-work">
+                            <img src="/static/{{ work.image }}"/>
+                        </div>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+    </div>
+</body>

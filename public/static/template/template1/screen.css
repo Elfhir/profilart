@@ -7,7 +7,8 @@ body{
     font-size: 1em;
 }
 .template1 .wrapper-content .wrapper-title{
-    margin: 20px 0;
+    margin: 20px 82px 0 0;
+    float: left;
 }
 header, footer{
     height: 40px;
@@ -22,16 +23,15 @@ footer .wrapper-content{
     margin: 0 auto;
 }
 .modifier-h1{
-    color: white;
-    font-size: 2em;
-    text-align: center;
+    color: black;
+    font-size: 1.9em;
 }
 .modifier-h2{
-    color: white;
+    color: black;
     margin-bottom: 7px;
 }
 .modifier-biography{
-    color: white;
+    color: black;
     font-style: italic;
     font-size: 0.9em;
     margin-bottom: 50px;
@@ -77,4 +77,42 @@ footer .wrapper-content{
 }
 .modifier-edit-wrapper a.modifier-edit-link:hover{
     color: white;
+}
+.template1 .wrapper-headermenu{
+	padding-top: 32px;
+}
+.template1 .wrapper-headermenu ul.headermenu li{
+	float: left;
+}
+.template1 .wrapper-headermenu ul.headermenu li a{
+	color: #777;
+	margin-left: 20px;
+	font-size: 15px;
+	text-decoration: none;
+}
+.template1 .wrapper-headermenu ul.headermenu li a:hover{
+	text-decoration: underline;
+}
+.template1 .last-works .wrapper-last-work{
+	float: left;
+	margin-top: 60px;
+}
+.template1 .last-works .wrapper-last-work img{
+	width: 330px;
+	margin-right: 16px;
+	box-shadow: 0px 0px 20px #AAA;
+}
+.template1 .last-works .bxslider img{
+	width: 100%;
+	position: relative;
+	top: -70px;
+}
+.template1 .last-works .bxslider li{
+	margin-top: 0;
+}
+.template1 .last-works .wrapper-last-work:last-child img{
+	margin-right: 0px;
+}
+.template1 .bx-wrapper{
+	margin-top: 45px;
 }

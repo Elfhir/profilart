@@ -44,11 +44,20 @@ footer .wrapper-content{
     float: left;
     margin-right: 62px;
 }
+.wrapper-manage-work .wrapper-work-serie{
+    width: 100%;
+    margin-bottom: 15px;
+}
+.wrapper-manage-work .wrapper-work-serie .title-serie{
+    margin-bottom: 5px;
+}
 .wrapper-manage-work .work img{
     width: 100%;
     margin-bottom: 5px;
 }
-
+.wrapper-manage-work .work .work-serie{
+    float:left;
+}
 .clear{
 	clear: both;
 }
@@ -63,6 +72,9 @@ input{
 }
 input[type=text], input[type=password]{
     width: 200px;
+}
+#ui-datepicker-div{
+    font-size: 0.8em;
 }
 input[type=submit]{
     padding: 5px 15px;
@@ -120,6 +132,13 @@ select{
 .modify-information-work{
     width: 50%;
     float: right;
+}
+.form-type ul li{
+    float: left;
+    margin-right: 10px;
+}
+.form-type .work-view-category{
+    margin-bottom: 15px;
 }
 /****************************
  * Works

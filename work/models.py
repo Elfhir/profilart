@@ -1,19 +1,45 @@
 from django.db import models
 from django.contrib.auth.models import User, ContentType
 
-class Work(models.Model):
+class WorkTopic(models.Model):
     name = models.CharField(max_length=100)
     text = models.CharField(max_length=2000)
     user = models.ForeignKey(User)
-    image = models.ImageField(upload_to="user_media/image/average/")
     content_type = models.ForeignKey(ContentType)
     date_pub = models.DateTimeField(auto_now=True)
     
     def __unicode__(self):
         return "%s" % (self.name)
     
+class Work(models.Model):
+    name = models.CharField(max_length=100)
+    text = models.CharField(max_length=2000)
+    user = models.ForeignKey(User)
+    image = models.ImageField(upload_to="user_media/image/average/")
+    content_type = models.ForeignKey(ContentType)
+    work_topic = models.ForeignKey(WorkTopic)
+    keywords = models.CharField(max_length=2000)
+    date_created = models.DateTimeField()
+    width = models.IntegerField()
+    height = models.IntegerField()
+    material = models.CharField(max_length=2000)
+    current_local = models.CharField(max_length=100)
+    topview = models.BooleanField()
+    weight = models.IntegerField(default=0)
+    date_pub = models.DateTimeField(auto_now=True)
+    
+    def __unicode__(self):
+        return "%s" % (self.name)
+    
+class WorkTopicType(models.Model):
+    idType = models.CharField(max_length=100)
+    idWork = models.ForeignKey(WorkTopic)
+    
+    def __unicode__(self):
+        return "%s" % (self.idType)
+    
 class WorkType(models.Model):
-    idType = models.PositiveSmallIntegerField()
+    idType = models.CharField(max_length=100)
     idWork = models.ForeignKey(Work)
     
     def __unicode__(self):
