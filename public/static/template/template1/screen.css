@@ -92,7 +92,7 @@ footer .wrapper-content{
 }
 .template1 .topic-text{
 	font-size: 0.9em;
-	opacity: 0.5;
+	opacity: 0.6;
 	width: 31%;
 	float: left;
 }
@@ -108,8 +108,8 @@ footer .wrapper-content{
 	margin-bottom: 30px;
 	font-size: 1.3em;
 }
-.template1 .sub-title:first-letter {
-	text-transform: uppercase;
+.template1 .title-topic{
+	text-transform: lowercase;
 }
 .template1 .wrapper-headermenu ul.headermenu li a:hover{
 	text-decoration: underline;
@@ -126,7 +126,7 @@ footer .wrapper-content{
 .template1 .last-works .bxslider img{
 	width: 100%;
 	position: relative;
-	top: -70px;
+	min-height: 613px;
 }
 .template1 .last-works .bxslider li{
 	margin-top: 0;
@@ -136,4 +136,58 @@ footer .wrapper-content{
 }
 .template1 .bx-wrapper{
 	margin-top: 45px;
+}
+.template1 .bx-wrapper .bx-viewport {
+	border: none;
+	box-shadow: 0px 0px 30px #AAA;
+	height: 484px !important;
+}
+.template1 .wrapper-title-topic{
+	margin-top: 50px;
+}
+.template1 .text-line-description{
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	line-height: 20px;
+}
+.template1 .image-work-topic{
+	margin-top: 50px;
+}
+.template1 .cartel-topic .topic-work-image{
+	width: 240px;
+}
+.template1 .wrapper-content-cartel .wrapper-title-topic{
+	margin-bottom: 3px;
+}
+.template1 .wrapper-content-cartel .localisation-work{
+	margin-bottom: 15px;
+	opacity: 0.6;
+}
+.template1 .wrapper-content-cartel{
+	width: 830px;
+	margin: 0 auto;
+}
+.template1 .wrapper-content-cartel .text-line-description{
+	font-size: 0.8em;
+}
+.template1 .cartel-image img{
+	margin-bottom: 15px;
+	box-shadow: 0px 0px 21px #BBB;
+}
+.template1 .info-complement{
+	margin-top: 8px;
+}
+.template1 .info-complement p{
+	margin-top: 5px;
+	font-size: 0.8em;
+}
+.template1 .up-wrapper{
+	margin-top: 25px;
+}
+.template1 .wrapper-bio{
+	margin-top: 40px;
+	opacity: 0.6;
+	font-size: 0.9em;
+	line-height: 20px;
 }

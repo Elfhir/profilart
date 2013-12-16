@@ -8,12 +8,9 @@ FONTS = [
        ('Frutiger', 'Frutiger'),
     ]
 
-class TextForm(forms.Form):
-    content = forms.CharField(widget=forms.Textarea)
-    
-class ImageForm(forms.Form):
-    file = forms.FileField()
-    
+class BioForm(forms.Form):
+    text = forms.CharField(widget=forms.Textarea)
+
 class EditWebsiteForm(forms.Form):
     color = forms.CharField()
     font_color =  forms.CharField()

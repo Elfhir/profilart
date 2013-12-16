@@ -37,15 +37,16 @@
         </article>
         <div class="clear"></div>
         <section>
-            <div class="wrapper-content">
-                <p>{{ workTopic.name }}</p>
-                <p>{{ work.name }}</p>
-                <p><img src="/static/{{ work.image }}"/></p>
-                <p>{{ work.text }}</p>
-                <p>Width : {{ work.width }}</p>
-                <p>Height : {{ work.height }}</p>
-                <p>Material : {{ work.material }}</p>
-                <p>Current localisation : {{ work.current_local }}</p>
+            <div class="wrapper-content-cartel">
+                <p class="wrapper-title-topic"><em><strong>{{ workTopic.name }}</strong> - {{ work.date_created|date:"Y" }} /
+                <span class="title-topic">{{ work.name }}</span></em></p>
+                <p class="localisation-work"><em>{{ work.current_local }}</em></p>
+                <p class="cartel-image"><img src="/static/{{ work.image }}"/></p>
+                <p class="topic-text text-line-description"><em>{{ work.text }}</em></p>
+                <section class="info-complement">
+                    <p><u>Size</u> : {{ work.width }} x {{ work.height }}</p>
+                    <p><u>Material</u> : {{ work.material }}</p>
+                </section>
             </div>
         </section>
     </div>

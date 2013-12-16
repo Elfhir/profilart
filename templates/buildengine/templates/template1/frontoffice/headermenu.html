@@ -5,7 +5,7 @@
 </style>
 
 <ul class="headermenu">
-    <li><a href="#">Biography</a></li>
+    <li><a href="/{{ username }}/biography">Biography</a></li>
     {% for work in workType %}
         {% for item in work %}
             {% if item == "1" %}<li><a href="/{{ username }}/topic/paintings">Paintings</a></li>{% endif %}

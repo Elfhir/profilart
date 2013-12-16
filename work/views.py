@@ -7,7 +7,6 @@ from work.models import *
 from django.template import RequestContext
 from django.contrib.auth.models import Group, User
 from django.contrib.contenttypes.models import ContentType
-from buildengine.form import TextForm, ImageForm
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from PIL import Image

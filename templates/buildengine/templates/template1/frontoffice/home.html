@@ -41,7 +41,7 @@
                 <ul class="bxslider">
                     {% for work in lastWorks %}
                         <li class="wrapper-last-work">
-                            <img src="/static/{{ work.image }}"/>
+                            <img height="{{ work.image.height }}" src="/static/{{ work.image }}"/>
                         </li>
                     {% endfor %}
                 </ul>
@@ -49,12 +49,12 @@
         </section>
         <section class="last-works">
             <div class="wrapper-content">
-                    {% for work in lastWorks %}
-                        <div class="wrapper-last-work">
-                            <img src="/static/{{ work.image }}"/>
-                        </div>
-                    {% endfor %}
-                </ul>
+                <!--{% for work in lastWorks %}
+                    <div class="wrapper-last-work">
+                        <img src="/static/{{ work.image }}"/>
+                    </div>
+                {% endfor %}-->
+                
             </div>
         </section>
     </div>

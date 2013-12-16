@@ -198,6 +198,7 @@ select{
 .header-website a{
     color: white;
     text-decoration: none;
+    font-weight: normal;
 }
 .header-website a:hover{
     color: white;
