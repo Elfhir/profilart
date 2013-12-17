@@ -60,7 +60,6 @@ def registerUser(request):
             #Create file for this user
             #createUserFile(requestUsername)
             #Create pre-template
-            textType = TextType.objects.create(text="Bonjour !", user_id = user.id, weight = 0, content_type_id = 10)
             prefWebsite = PrefWebsite.objects.create(user_id = user.id, id_template = 1, color = "#000", font_family="Arial")
             #If the user exists
             user = authenticate(username=requestUsername, password=requestPassword)

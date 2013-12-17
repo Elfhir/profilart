@@ -17,9 +17,9 @@ h1{
 }
 h2{
     font-size: 1.2em;
-    color: black;
     color: grey;
     margin-bottom: 13px;
+    font-weight: normal;
 }
 footer .wrapper-content{
     padding-top: 11px;

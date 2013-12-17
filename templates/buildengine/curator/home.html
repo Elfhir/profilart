@@ -1,0 +1,22 @@
+<!doctype html>
+<head>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/screen.css">
+    <script type="text/javascript" src="/static/script/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="/static/script/main.js"></script>
+</head>
+<body class="page-curator">
+    {% include "layout/header.html" %}
+    {% include "menu/backOfficeMenu.html" %}
+    <section>
+        <div class="wrapper-content">
+            <h2>Page curateur de {{ firstname }} {{ name }}</h2>
+        </div>
+    </section>
+    <section class="biography">
+        <div class="wrapper-content">
+            {{ biography.text }}
+        </div>
+    </section>
+    {% include "layout/footer.html" %}
+</body>
