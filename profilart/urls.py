@@ -1,6 +1,9 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
+from work.api import EntryResource
+
+entry_resource = EntryResource()
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
@@ -13,4 +16,5 @@ urlpatterns = patterns('',
     url(r'^(?P<username>\w+)/carteltopic/(?P<idTopic>.+)/$', 'work.views.displayCartelTopic'),
     url(r'^(?P<username>\w+)/cartel/(?P<idWork>.+)/$', 'work.views.displayCartelWork'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^api/', include(entry_resource.urls)),
 )

@@ -5,12 +5,13 @@ class Exhibition(models.Model):
     nameGallery = models.CharField(max_length=100)
     mapLongitude =  models.FloatField (max_length=20)
     mapLatitude =  models.FloatField (max_length=20)
-    adress =  models.CharField(max_length=100)
+    adress =   models.CharField(max_length=100)
     zipcode = models.PositiveIntegerField()
     curator = models.ForeignKey(User)
     text = models.CharField(max_length=2000)
     date_begin = models.DateTimeField()
     date_end = models.DateTimeField()
+    rate = models.PositiveSmallIntegerField()
     content_type = models.ForeignKey(ContentType)
     date_update = models.DateTimeField(auto_now=True)
     date_pub = models.DateTimeField(auto_now=True)
@@ -19,7 +20,7 @@ class Exhibition(models.Model):
        return self.nameGallery
     
 class ExhibitionArtistCuratorLink(models.Model):
-    curator = models.ForeignKey(User, related_name='curator_targets')
+    #curator = models.ForeignKey(User, related_name='curator_targets')
     artist = models.ForeignKey(User, related_name='artist_targets')
     exhibition = models.ForeignKey(Exhibition)
     

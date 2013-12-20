@@ -1,5 +1,4 @@
 import os.path
-
 # Django settings for profilart project.
 
 DEBUG = True
@@ -155,6 +154,7 @@ INSTALLED_APPS = (
     'blog',
     'buildengine',
     'searchengine',
+    'tastypie',
     'work',
     'exhibition',
     # Uncomment the next line to enable the admin:
