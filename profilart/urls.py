@@ -1,9 +1,13 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
-from work.api import EntryResource
+from tastypie.api import Api
+from exhibition.api import ExhibitionResource
+from work.api import WorkResource
 
-entry_resource = EntryResource()
+v1_api = Api(api_name='v1')
+v1_api.register(ExhibitionResource())
+v1_api.register(WorkResource())
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
@@ -16,5 +20,5 @@ urlpatterns = patterns('',
     url(r'^(?P<username>\w+)/carteltopic/(?P<idTopic>.+)/$', 'work.views.displayCartelTopic'),
     url(r'^(?P<username>\w+)/cartel/(?P<idWork>.+)/$', 'work.views.displayCartelWork'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
-    url(r'^api/', include(entry_resource.urls)),
+    url(r'^api/', include(v1_api.urls)),
 )

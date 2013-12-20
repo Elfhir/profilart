@@ -9,11 +9,19 @@ from buildengine.views import userBackOfficePermission
 def manageExhibitions(request, username):
     if userBackOfficePermission(request, username):
         user = User.objects.get(username=username)
-        return render(request, 'buildengine/manageexhibition.html', {'firstname' : user.first_name, 'name' : user.last_name})
+        exhibitions = Exhibition.objects.filter(user_id=user.id)
+        return render(request, 'buildengine/manageexhibition.html', {'firstname' : user.first_name, 'name' : user.last_name,
+                                                                     'exhibitions' : exhibitions})
     return HttpResponseRedirect("/")
 
 def addExhibition(request, username):
     if userBackOfficePermission(request, username):
         user = User.objects.get(username=username)
         form = ExhibitionForm()
+        if request.method == 'POST':
+            form = ExhibitionForm(request.POST)
+            if form.is_valid():
+                form.save(request)
+                return render(request, 'buildengine/manageexhibition.html', {'firstname' : user.first_name, 'name' : user.last_name})
         return render(request, 'form/addexhibition.html', {'firstname' : user.first_name, 'name' : user.last_name, 'form' : form})
+    return HttpResponseRedirect("/")

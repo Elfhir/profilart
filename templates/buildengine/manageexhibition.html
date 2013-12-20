@@ -1,6 +1,17 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
+    <article class="wrapper-manage-exhibition">
+        <h2>Manage exhibitions</h2>
+        <div class="exhibition wrapper-exhibition">
+            {% for exhibition in exhibitions %}
+                <div class="exhibition-object">
+                    <p>{{ exhibition.nameGallery }}</p>
+                    <p>{{ exhibition.adress }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </article>
     <div class="clear"></div>
     <div>
         <a href="/{{ user.username }}/build/addexhibition">Add an exhibition</a>

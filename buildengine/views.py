@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response, HttpResponseRedirect, render
 from django.template import RequestContext
 from django.http import Http404
 from django.contrib.auth.models import User, Group
+from exhibition.models import *
 from django.contrib.contenttypes.models import ContentType
 from buildengine.form import *
 from django.core.files.storage import default_storage
@@ -28,7 +29,9 @@ def home(request, username):
             bio = Biography.objects.get(user_id=user.id)
             firstname = user.first_name
             name = user.last_name
-            return render(request, 'buildengine/curator/home.html', {'firstname' : firstname, 'name' : name, 'biography' : bio})
+            exhibitions = Exhibition.objects.filter(user=user.id)
+            return render(request, 'buildengine/curator/home.html', {'firstname' : firstname, 'name' : name, 'biography' : bio,
+                                                                     'exhibitions' : exhibitions})
     return HttpResponseRedirect("/")
 
 def backOffice(request, username):
@@ -56,7 +59,9 @@ def backOffice(request, username):
             formBio = BioForm(initial={'text' : bio.text})
             firstname = user.first_name
             name = user.last_name
-            return render(request, 'buildengine/curator/build.html', {'firstname' : firstname, 'name' : name, 'formBio' : formBio})
+            exhibitions = Exhibition.objects.filter(user=user.id)
+            return render(request, 'buildengine/curator/build.html', {'firstname' : firstname, 'name' : name, 'formBio' : formBio,
+                                                                      'exhibitions' : exhibitions})
     return HttpResponseRedirect("/")
 
 def editWebsite(request, username):

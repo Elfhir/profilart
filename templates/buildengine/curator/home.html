@@ -18,5 +18,20 @@
             {{ biography.text }}
         </div>
     </section>
+    <section>
+        <div class="wrapper-content">
+            <h2>Expositions actuelles</h2>
+            <article class="wrapper-manage-exhibition">
+                <div class="exhibition wrapper-exhibition">
+                    {% for exhibition in exhibitions %}
+                        <div class="exhibition-object">
+                            <p>{{ exhibition.nameGallery }}</p>
+                            <p>{{ exhibition.adress }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </article>
+        </div>
+    </section>
     {% include "layout/footer.html" %}
 </body>

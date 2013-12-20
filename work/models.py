@@ -22,6 +22,7 @@ class Work(models.Model):
     date_created = models.DateTimeField()
     width = models.IntegerField()
     height = models.IntegerField()
+    #depth = models.IntegerField()
     material = models.CharField(max_length=2000)
     current_local = models.CharField(max_length=100)
     topview = models.BooleanField()
