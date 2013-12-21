@@ -24,6 +24,11 @@ class PrefWebsite(models.Model):
     color = models.CharField(max_length=10)
     font_family = models.CharField(max_length=50)
     font_color = models.CharField(max_length=10)
+    isvisible_homeslider = models.BooleanField()
+    isvisible_homebio = models.BooleanField()
+    isvisible_homeexhibition = models.BooleanField()
+    color = models.CharField(max_length=10)
+    color = models.CharField(max_length=10)
     
     def __unicode__(self):
         return "%s" % (self.user)

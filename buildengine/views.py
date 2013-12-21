@@ -22,7 +22,7 @@ def home(request, username):
             lastWorks = Work.objects.filter(user_id=user.id).order_by("date_pub")[:3]
             firstname = user.first_name
             name = user.last_name
-            return render(request, 'buildengine/templates/template1/frontoffice/home.html', {'username' : username, 'lastWorks' : lastWorks,
+            return render(request, 'buildengine/templates/template'+str(prefWebsite.id_template)+'/frontoffice/home.html', {'username' : username, 'lastWorks' : lastWorks,
                                                                             'workType' : set(workTopicType), 'prefWebsite' : prefWebsite,
                                                                             'firstname' : firstname, 'name' : name,})
         if user.groups.filter(name='Curator'):
@@ -50,10 +50,11 @@ def backOffice(request, username):
                 works = Work.objects.all()
                 firstname = user.first_name
                 name = user.last_name
+                lastWorks = Work.objects.filter(user_id=user.id).order_by("date_pub")[:3]
                 pathTemplate = "buildengine/templates/template"+str(prefWebsite.id_template)+"/backoffice/home.html"
                 return render(request, 'buildengine/build.html', {'username' : username, 'blockWork' : works, 'workType' : workType,
                                                                   'prefWebsite' : prefWebsite, 'firstname' : firstname, 'name' : name,
-                                                                  'pathTemplate' : pathTemplate,})
+                                                                  'pathTemplate' : pathTemplate, 'lastWorks' : lastWorks})
         if user.groups.filter(name='Curator'):
             bio = Biography.objects.get(user_id=user.id)
             formBio = BioForm(initial={'text' : bio.text})
@@ -118,8 +119,22 @@ def displayBio(request, username):
     bio = Biography.objects.get(user_id=user.id)
     firstname = user.first_name
     name = user.last_name
+    workTopicType = WorkTopicType.objects.filter(idWork_id__user_id=user.id).order_by("idType").values_list("idType")
     return render(request, 'buildengine/templates/template1/frontoffice/bio.html', {'username' : username, 'prefWebsite' : prefWebsite,
-                                                           'firstname' : firstname, 'name' : name, 'bio' : bio})
+                                                           'firstname' : firstname, 'name' : name, 'bio' : bio, 'workType' : set(workTopicType)})
+
+def switchVisible(request, username):
+    if userBackOfficePermission(request, username):
+        if request.is_ajax():
+            user = User.objects.get(username=username)
+            prefWebsite = PrefWebsite.objects.get(user_id=user.id)
+            if request.POST['element'] == "homeslider":
+                if request.POST['isVisible'] == "False":
+                    prefWebsite.isvisible_homeslider = True
+                else:
+                    prefWebsite.isvisible_homeslider = False
+            prefWebsite.save()
+    return HttpResponseRedirect("/")
 
 def userBackOfficePermission(request, username):
     sessionUserString = request.user.username.encode('utf8')

@@ -46,6 +46,13 @@ footer .wrapper-content{
     padding: 10px;
     border: 1px dotted gray;
 }
+.template1 .modifier-edit-marker .bx-wrapper {
+	margin-top: 0;
+	margin-bottom: 50px;
+}
+.wrapper-bxslider{
+	margin-top: 45px;
+}
 .modifier-edit-marker:hover{
     border-color: green;
     transition-property: all;
@@ -190,4 +197,15 @@ footer .wrapper-content{
 	opacity: 0.6;
 	font-size: 0.9em;
 	line-height: 20px;
+}
+.template1 .wrapper-exhibition{
+	margin-top: 40px;
+	line-height: 20px;
+}
+.template1 .address-exhibition{
+	opacity: 0.6;
+}
+.template1 .id-exhibition{
+	opacity: 0.6;
+	font-size: 0.7em;
 }
