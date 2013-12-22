@@ -198,6 +198,13 @@ footer .wrapper-content{
 	font-size: 0.9em;
 	line-height: 20px;
 }
+.template1 .wrapper-home-biography{
+	font-size: 0.9em;
+	line-height: 20px;
+}
+.template1 .wrapper-home-biography p{
+	opacity: 0.6;
+}
 .template1 .wrapper-exhibition{
 	margin-top: 40px;
 	line-height: 20px;
@@ -208,4 +215,21 @@ footer .wrapper-content{
 .template1 .id-exhibition{
 	opacity: 0.6;
 	font-size: 0.7em;
+}
+.template1 .wrapper-home-content-alignleft{
+    float: left;
+    width: 45%;
+}
+.template1 .wrapper-home-content-alignright{
+    float: right;
+    width: 45%;
+}
+.template1 .bx-wrapper .bx-controls-direction a {
+    z-index: 998 !important;
+}
+.template1 .sub-home{
+	margin-top: 35px;
+}
+.template1 .wrapper-home-exhibition .object-exhibition{
+	margin-bottom: 12px;
 }

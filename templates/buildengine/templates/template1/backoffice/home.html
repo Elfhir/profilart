@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/screen.css">
     <link rel="stylesheet" href="/static/template/template1/screen.css">
+    <link rel='stylesheet' type='text/css' href="/static/script/modal/jquery.modal.css">
     <link rel="stylesheet" href="/static/script/bxslider/jquery.bxslider.css">
     <style type="text/css">
         .template1 a{
@@ -13,6 +14,8 @@
     </style>
     <script type="text/javascript" src="/static/script/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="/static/script/bxslider/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="/static/script/modal/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/static/script/highlight/highlight.pack.js"></script>
     <script type="text/javascript" src="/static/template/template1/script.js"></script>
     <script type="text/javascript" src="/static/template/backoffice_ajax.js"></script>
 </head>
@@ -48,7 +51,11 @@
                                         isVisible="{{ prefWebsite.isvisible_homeslider }}" user="{{ username }}" element="homeslider" />
                                     </div>
                                 </li>
+                                <li>
+                                    <a href="#ex1" rel="modal:open"><img src="/static/img/icons/cog.png"></a>
+                                </li>
                             </ul>
+                            <div class="clear"></div>
                             <ul class="bxslider">
                                 {% for work in lastWorks %}
                                     <li class="wrapper-last-work">
@@ -56,10 +63,58 @@
                                     </li>
                                 {% endfor %}
                             </ul>
+                            <div class="modal" id="ex1" style="display:none;">
+                                <p>Essai modal</p>
+                            </div>
                         </div>
                     </div>
                 </section>
             </div>
         </article>
+        <div class="sub-home">
+            <article class="wrapper-home-biography">
+                <div class="wrapper-content">
+                    <div class="wrapper-home-content-alignleft modifier-edit-marker switch-homebio switch-parent">
+                        <ul class="list-modifier-edit">
+                            <li>
+                                <div class="modifier-edit-link">
+                                    <img class="switch-visibility" src="/static/img/icons/eye.png" title="Visible / invisible"
+                                    isVisible="{{ prefWebsite.isvisible_homebio }}" user="{{ username }}" element="homebio" />
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#ex1" rel="modal:open"><img src="/static/img/icons/cog.png"></a>
+                            </li>
+                        </ul>
+                        <p><em>{{ biography|truncatewords:100 }} <a href="/{{ username }}/build/editbio/">Read more ></a></em></p>
+                    </div>
+                </div>
+            </article>
+            <article class="wrapper-home-exhibition">
+                <div class="wrapper-content">
+                    <div class="wrapper-home-content-alignright modifier-edit-marker switch-homeexhibition switch-parent">
+                        <ul class="list-modifier-edit">
+                            <li>
+                                <div class="modifier-edit-link">
+                                    <img class="switch-visibility" src="/static/img/icons/eye.png" title="Visible / invisible"
+                                    isVisible="{{ prefWebsite.isvisible_homeexhibition }}" user="{{ username }}" element="homeexhibition" />
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#ex1" rel="modal:open"><img src="/static/img/icons/cog.png"></a>
+                            </li>
+                        </ul>
+                        <h2>Last exhibitions</h2>
+                        {% for exhibition in exhibitions %}
+                            <div class="object-exhibition">
+                                <p class="title-exhibition"><strong>{{ exhibition.nameGallery }}</strong></p>
+                                <p class="address-exhibition"><em>{{ exhibition.adress }}</em></p>
+                                <p class="id-exhibition"><em>Ref : N°{{ exhibition.id }}</em></p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </article>
+        </div>
     </div>
 </body>

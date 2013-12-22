@@ -49,15 +49,29 @@
                 </div>
             </section>
         {% endif %}
-        <section class="last-works">
+        <div class="sub-home">
             <div class="wrapper-content">
-                <!--{% for work in lastWorks %}
-                    <div class="wrapper-last-work">
-                        <img src="/static/{{ work.image }}"/>
+            {% if prefWebsite.isvisible_homebio == True %}
+                <article class="wrapper-home-biography">
+                    <div {% if prefWebsite.isvisible_homeexhibition == True %} class="wrapper-home-content-alignleft" {% endif %}>
+                        <p><em>{{ biography|truncatewords:100 }} <a href="/{{ username }}/biography/">Read more ></a></em></p>
                     </div>
-                {% endfor %}-->
-                
-            </div>
-        </section>
+                </article>
+            {% endif %}
+            {% if prefWebsite.isvisible_homeexhibition == True %}
+                <article class="wrapper-home-exhibition">
+                    <div {% if prefWebsite.isvisible_homebio == True %}class="wrapper-home-content-alignright" {% endif %}>
+                        <h2>Last exhibitions</h2>
+                        {% for exhibition in exhibitions %}
+                            <div class="object-exhibition">
+                                <p class="title-exhibition"><strong>{{ exhibition.nameGallery }}</strong></p>
+                                <p class="address-exhibition"><em>{{ exhibition.adress }}</em></p>
+                                <p class="id-exhibition"><em>Ref : N°{{ exhibition.id }}</em></p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </article>
+            {% endif %}
+        </div>
     </div>
 </body>

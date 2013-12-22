@@ -1,4 +1,5 @@
 from buildengine.models import *
+from buildengine.form import *
 from profilart.settings import USER_IMAGE_AVERAGE_PATH
 from work.models import *
 from django.shortcuts import render_to_response, HttpResponseRedirect, render
@@ -7,7 +8,6 @@ from django.http import Http404
 from django.contrib.auth.models import User, Group
 from exhibition.models import *
 from django.contrib.contenttypes.models import ContentType
-from buildengine.form import *
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 import Image
@@ -22,9 +22,12 @@ def home(request, username):
             lastWorks = Work.objects.filter(user_id=user.id).order_by("date_pub")[:3]
             firstname = user.first_name
             name = user.last_name
+            biography = Biography.objects.get(user_id=user.id)
+            lastExhibitions = Exhibition.objects.filter(user_id=user.id).order_by("date_pub")[:3]
             return render(request, 'buildengine/templates/template'+str(prefWebsite.id_template)+'/frontoffice/home.html', {'username' : username, 'lastWorks' : lastWorks,
                                                                             'workType' : set(workTopicType), 'prefWebsite' : prefWebsite,
-                                                                            'firstname' : firstname, 'name' : name,})
+                                                                            'firstname' : firstname, 'name' : name, 'biography': biography,
+                                                                            'exhibitions': lastExhibitions})
         if user.groups.filter(name='Curator'):
             bio = Biography.objects.get(user_id=user.id)
             firstname = user.first_name
@@ -51,10 +54,13 @@ def backOffice(request, username):
                 firstname = user.first_name
                 name = user.last_name
                 lastWorks = Work.objects.filter(user_id=user.id).order_by("date_pub")[:3]
+                biography = Biography.objects.get(user_id=user.id)
+                lastExhibitions = Exhibition.objects.filter(user_id=user.id).order_by("date_pub")[:3]
                 pathTemplate = "buildengine/templates/template"+str(prefWebsite.id_template)+"/backoffice/home.html"
                 return render(request, 'buildengine/build.html', {'username' : username, 'blockWork' : works, 'workType' : workType,
                                                                   'prefWebsite' : prefWebsite, 'firstname' : firstname, 'name' : name,
-                                                                  'pathTemplate' : pathTemplate, 'lastWorks' : lastWorks})
+                                                                  'pathTemplate' : pathTemplate, 'lastWorks' : lastWorks,
+                                                                  'biography': biography, 'exhibitions': lastExhibitions})
         if user.groups.filter(name='Curator'):
             bio = Biography.objects.get(user_id=user.id)
             formBio = BioForm(initial={'text' : bio.text})
@@ -133,6 +139,16 @@ def switchVisible(request, username):
                     prefWebsite.isvisible_homeslider = True
                 else:
                     prefWebsite.isvisible_homeslider = False
+            if request.POST['element'] == "homebio":
+                if request.POST['isVisible'] == "False":
+                    prefWebsite.isvisible_homebio = True
+                else:
+                    prefWebsite.isvisible_homebio = False
+            if request.POST['element'] == "homeexhibition":
+                if request.POST['isVisible'] == "False":
+                    prefWebsite.isvisible_homeexhibition = True
+                else:
+                    prefWebsite.isvisible_homeexhibition = False
             prefWebsite.save()
     return HttpResponseRedirect("/")
 

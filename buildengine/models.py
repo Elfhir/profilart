@@ -16,7 +16,7 @@ class Biography(models.Model):
     date_pub = models.DateTimeField(auto_now=True)
     
     def __unicode__(self):
-        return "%s" % (self.user)
+        return "%s" % (self.text)
     
 class PrefWebsite(models.Model):
     user = models.ForeignKey(User)

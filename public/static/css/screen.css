@@ -131,12 +131,16 @@ select{
     width: 50%;
     float: left;
 }
-.wrapper-bxslider .list-modifier-edit{
-    margin-top: -20px;
-    position: absolute;
-    z-index: 999;
+.list-modifier-edit li{
+    float: left;
+    margin-right: 10px;
 }
-.wrapper-bxslider .list-modifier-edit img{
+.list-modifier-edit{
+    margin-top: -24px;
+    position: absolute;
+    z-index: 900;
+}
+.list-modifier-edit img{
     background-color: white;
     padding: 5px 5px 3px 5px;
     border-radius: 4px;
@@ -646,12 +650,18 @@ select{
 }
 
 .blog.interview #interview #encart{
-	width: 100%;
+    width: 100%;
 }
 
 .blog.interview #interview .encart p{
-	font: normal normal normal 16px/25px 'EB Garamond', 'serif';
-	margin-top: 30px;
-	margin-bottom: 30px;
-	text-align: justify;
+    font: normal normal normal 16px/25px 'EB Garamond', 'serif';
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: justify;
+}
+.modal{
+    z-index: 999 !important;
+}
+.jquery-modal{
+    z-index: 998 !important;
 }
