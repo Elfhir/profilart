@@ -24,10 +24,11 @@ def home(request, username):
             name = user.last_name
             biography = Biography.objects.get(user_id=user.id)
             lastExhibitions = Exhibition.objects.filter(user_id=user.id).order_by("date_pub")[:3]
+            prefWebsiteSlider = PrefWebsiteSlider.objects.get(user_id=user.id)
             return render(request, 'buildengine/templates/template'+str(prefWebsite.id_template)+'/frontoffice/home.html', {'username' : username, 'lastWorks' : lastWorks,
                                                                             'workType' : set(workTopicType), 'prefWebsite' : prefWebsite,
                                                                             'firstname' : firstname, 'name' : name, 'biography': biography,
-                                                                            'exhibitions': lastExhibitions})
+                                                                            'exhibitions': lastExhibitions, 'prefWebsiteSlider': prefWebsiteSlider})
         if user.groups.filter(name='Curator'):
             bio = Biography.objects.get(user_id=user.id)
             firstname = user.first_name
@@ -56,11 +57,16 @@ def backOffice(request, username):
                 lastWorks = Work.objects.filter(user_id=user.id).order_by("date_pub")[:3]
                 biography = Biography.objects.get(user_id=user.id)
                 lastExhibitions = Exhibition.objects.filter(user_id=user.id).order_by("date_pub")[:3]
+                prefWebsiteSlider = PrefWebsiteSlider.objects.get(user_id=user.id)
+                formSlider = SliderForm(initial={'mode': prefWebsiteSlider.mode, 'speed': prefWebsiteSlider.speed,
+                                                 'thumb': prefWebsiteSlider.thumb, 'auto': prefWebsiteSlider.auto,
+                                                 'ticker': prefWebsiteSlider.ticker})
                 pathTemplate = "buildengine/templates/template"+str(prefWebsite.id_template)+"/backoffice/home.html"
                 return render(request, 'buildengine/build.html', {'username' : username, 'blockWork' : works, 'workType' : workType,
                                                                   'prefWebsite' : prefWebsite, 'firstname' : firstname, 'name' : name,
                                                                   'pathTemplate' : pathTemplate, 'lastWorks' : lastWorks,
-                                                                  'biography': biography, 'exhibitions': lastExhibitions})
+                                                                  'biography': biography, 'exhibitions': lastExhibitions,
+                                                                  'prefWebsiteSlider': prefWebsiteSlider, 'formSlider': formSlider})
         if user.groups.filter(name='Curator'):
             bio = Biography.objects.get(user_id=user.id)
             formBio = BioForm(initial={'text' : bio.text})
@@ -152,6 +158,15 @@ def switchVisible(request, username):
             prefWebsite.save()
     return HttpResponseRedirect("/")
 
+def editSlider(request, username):
+    if userBackOfficePermission(request, username):
+        user = User.objects.get(username=username)
+        form = SliderForm(request.POST)
+        if form.is_valid():
+            form.save(request)
+        return HttpResponseRedirect("/"+user.username+"/build/")
+    return HttpResponseRedirect("/")
+    
 def userBackOfficePermission(request, username):
     sessionUserString = request.user.username.encode('utf8')
     usernameString = username.encode('utf8')

@@ -18,6 +18,47 @@
     <script type="text/javascript" src="/static/script/highlight/highlight.pack.js"></script>
     <script type="text/javascript" src="/static/template/template1/script.js"></script>
     <script type="text/javascript" src="/static/template/backoffice_ajax.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.bxslider').bxSlider({
+                {% if prefWebsiteSlider.ticker == True %}
+                    {% if prefWebsiteSlider.mode == "fade" %}
+                        mode: "horizontal",
+                        {% else %}
+                        mode: "{{ prefWebsiteSlider.mode }}",
+                    {% endif %} 
+                {% else %}
+                    mode: "{{ prefWebsiteSlider.mode }}",
+                {% endif %} 
+                infiniteLoop: true,
+                {% if prefWebsiteSlider.ticker == True %}
+                    auto: false,
+                {% else %}
+                    auto: {{ prefWebsiteSlider.auto|lower }},
+                {% endif %}  
+                autoControls: {{ prefWebsiteSlider.auto|lower }},
+                {% if prefWebsiteSlider.thumb == True %}
+                    pagerCustom: '.bx-pager',
+                {% endif %}  
+                ticker: {{ prefWebsiteSlider.ticker|lower }},
+                minSlides: 4,
+                maxSlides: 4,
+                speed: {{ prefWebsiteSlider.speed }}{% if prefWebsiteSlider.ticker == True %}*5{% endif %}
+            })
+              
+            $(document).on($.modal.CLOSE, function(event, modal) {
+                location.reload();
+            });
+                          
+            $("a.open-modal").click(function(event) {
+                $(this).modal({
+                    fadeDuration: 200
+                });
+                return false;
+            });
+
+        });
+    </script>
 </head>
 <body style="background-color:{{ prefWebsite.color }};">
     {% if user.is_authenticated and user.username in request.path %}
@@ -52,7 +93,7 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <a href="#ex1" rel="modal:open"><img src="/static/img/icons/cog.png"></a>
+                                    <a href="#modal-slider" class="open-modal" rel="modal:open"><img src="/static/img/icons/cog.png"></a>
                                 </li>
                             </ul>
                             <div class="clear"></div>
@@ -63,8 +104,24 @@
                                     </li>
                                 {% endfor %}
                             </ul>
-                            <div class="modal" id="ex1" style="display:none;">
-                                <p>Essai modal</p>
+                            {% if prefWebsiteSlider.thumb == True %}
+                                <div class="bx-pager">
+                                    {% for work in lastWorks %}
+                                        <span class="wrapper-last-work-thumb">
+                                            <a data-slide-index='{{ forloop.counter|add:"-1" }}' href="#">
+                                                <img width="120px" src="/static/{{ work.image }}" />
+                                            </a>
+                                        </span>
+                                    {% endfor %}
+                                </div>
+                                <div class="clear"></div>
+                            {% endif %}
+                            <div class="modal" id="modal-slider" style="display:none;">
+                                <h2>Edit Slider</h2>
+                                <form action="/{{ user.username }}/build/editslider/" method="post">
+                                    {{ formSlider.as_p }}
+                                    <input type="submit" value="Submit" />
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -82,9 +139,6 @@
                                     isVisible="{{ prefWebsite.isvisible_homebio }}" user="{{ username }}" element="homebio" />
                                 </div>
                             </li>
-                            <li>
-                                <a href="#ex1" rel="modal:open"><img src="/static/img/icons/cog.png"></a>
-                            </li>
                         </ul>
                         <p><em>{{ biography|truncatewords:100 }} <a href="/{{ username }}/build/editbio/">Read more ></a></em></p>
                     </div>
@@ -101,7 +155,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="#ex1" rel="modal:open"><img src="/static/img/icons/cog.png"></a>
+                                <a href="/{{ username }}/build/addexhibition/"><img src="/static/img/icons/add.png"></a>
                             </li>
                         </ul>
                         <h2>Last exhibitions</h2>
@@ -113,8 +167,16 @@
                             </div>
                         {% endfor %}
                     </div>
+                    <div class="modal" id="ex1" style="display:none;">
+                    </div>
                 </div>
+                <div class="clear"></div>
             </article>
         </div>
+        <section class="wrapper-footer" role="footer">
+            <div class="wrapper-content">
+                <p>Powered by Profil Art - Create my Website</p>
+            </div>
+        </section>
     </div>
 </body>

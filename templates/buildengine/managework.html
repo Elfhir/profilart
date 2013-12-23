@@ -3,28 +3,37 @@
 {% block content %}
     {% for topic in blockTopic %}
         <article class="wrapper-manage-work">
-            <div class="work wrapper-work-serie">
+            <div class="work wrapper-work-serie">               
+                <ul class="list-modifier-edit modifier-alignright">
+                    <li>
+                        <a href="/{{ user.username }}/build/edittopic/{{ topic.id }}"><img src="/static/img/icons/pencil.png"></a>
+                    </li>
+                    <li>
+                        <a href="/{{ user.username }}/build/deletetopic/{{ topic.id }}"><img src="/static/img/icons/cross.png"></a>
+                    </li>
+                    <li>
+                        <a href="/{{ user.username }}/build/addwork/{{ topic.id }}"><img src="/static/img/icons/add.png"></a>
+                    </li>
+                </ul>
+                <div class="clear"></div>                 
                 <p class="title-serie">{{ topic }}</p>
                 {% for work in works %}
                     {% if work.work_topic_id == topic.id %}
                         <div class="work-serie">
-                            <a href="/{{ user.username }}/work/{{ work.id }}">
-                                <img style="width: 200px;" src="/static/{{ work.image }}"/>
-                            </a>    
+                            <div class="wrapper-thumb-overlay">
+                                <a href="/{{ user.username }}/build/editwork/{{ work.id }}">
+                                    <img style="width: 200px;" src="/static/{{ work.image }}"/>
+                                </a>
+                            </div>
                         </div>
                     {% endif %}
                 {% endfor %}
                 <div class="clear"></div>
-                <p>
-                    <a href="/{{ user.username }}/build/deletetopic/{{ topic.id }}">Delete this topic</a>
-                    <a href="/{{ user.username }}/build/edittopic/{{ topic.id }}">Edit this topic</a>
-                    <a href="/{{ user.username }}/build/addwork/{{ topic.id }}">Add a work</a>
-                </p>
             </div>
         </article>
     {% endfor %}
     <div class="clear"></div>
-    <div>
+    <div class="input-button">
         <a href="/{{ user.username }}/build/addtopic">Add a topic</a>
     </div>
 {% endblock content %}

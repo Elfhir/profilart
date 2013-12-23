@@ -8,10 +8,52 @@ FONTS = [
        ('Frutiger', 'Frutiger'),
     ]
 
+MODE = [
+       ('fade', 'fade'),
+       ('horizontal', 'horizontal'),
+       ('vertical', 'vertical'),
+    ]
+
+SPEED = [
+       (6000, 'slow'),
+       (3500, 'average'),
+       (1500, 'fast'),
+    ]
+
+YES_OR_NO = [
+    (True, 'Yes'),
+    (False, 'No')
+]
 class BioForm(forms.Form):
     text = forms.CharField(widget=forms.Textarea)
 
 class EditWebsiteForm(forms.Form):
     color = forms.CharField()
     font_color =  forms.CharField()
-    font =  forms.ChoiceField(choices=FONTS, widget=forms.Select())   
+    font =  forms.ChoiceField(choices=FONTS, widget=forms.Select())
+    
+class SliderForm(forms.Form):
+    mode = forms.ChoiceField(choices=MODE, widget=forms.Select())
+    speed = forms.ChoiceField(choices=SPEED, widget=forms.Select())
+    auto = forms.BooleanField(widget=forms.RadioSelect(choices=YES_OR_NO), required=False)
+    thumb = forms.BooleanField(widget=forms.RadioSelect(choices=YES_OR_NO), required=False)
+    ticker = forms.BooleanField(widget=forms.RadioSelect(choices=YES_OR_NO), required=False)
+    
+    def save(self, request):
+        slider = PrefWebsiteSlider.objects.get(user_id=request.user.id)
+        print request.POST
+        slider.mode = request.POST['mode']
+        slider.speed = request.POST['speed']
+        if request.POST['thumb'] == "True":
+            slider.thumb = True
+        else:
+            slider.thumb = False
+        if request.POST['auto'] == "True":
+            slider.auto = True
+        else:
+            slider.auto = False
+        if request.POST['ticker'] == "True":
+            slider.ticker = True
+        else:
+            slider.ticker = False
+        slider.save()

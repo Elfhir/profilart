@@ -47,7 +47,9 @@
                 <section class="image-work-topic cartel-topic">
                     {% for work in works %}
                         {% if work.work_topic_id == topic.id %}
+                        <div class="wrapper-bigthumb-overlay">
                             <a href="/{{ username }}/cartel/{{ work.id }}/"><img class="topic-work-image" src="/static/{{ work.image }}"/></a>
+                        </div>
                         {% endif %}
                     {% endfor %}
                 </section>

@@ -44,7 +44,7 @@ footer .wrapper-content{
 }
 .modifier-edit-marker{
     padding: 10px;
-    border: 1px dotted gray;
+    border: 1px solid #AAA;
 }
 .template1 .modifier-edit-marker .bx-wrapper {
 	margin-top: 0;
@@ -228,8 +228,24 @@ footer .wrapper-content{
     z-index: 998 !important;
 }
 .template1 .sub-home{
-	margin-top: 35px;
+	margin-top: 55px;
+	margin-bottom: 30px;
 }
 .template1 .wrapper-home-exhibition .object-exhibition{
 	margin-bottom: 12px;
+}
+.template1 .wrapper-last-work-thumb{
+	width: 120px;
+	margin-right: 10px;
+}
+.template1 .bx-pager{
+	margin-top: -33px;
+	text-align: center;
+}
+.template1 .bx-pager a{
+	text-decoration: none;
+}
+.template1 .wrapper-footer{
+	margin-bottom: 20px;
+	font-size: 0.8em;
 }

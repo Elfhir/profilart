@@ -49,6 +49,9 @@ footer .wrapper-content{
     float: left;
     margin-right: 62px;
 }
+.wrapper-mosaic-serie .work-serie{
+    padding: 10px;
+}
 .wrapper-manage-work .wrapper-work-serie{
     width: 100%;
     margin-bottom: 15px;
@@ -56,7 +59,7 @@ footer .wrapper-content{
 .wrapper-manage-work .wrapper-work-serie .title-serie{
     margin-bottom: 5px;
 }
-.wrapper-manage-work .work img{
+.wrapper-manage-work .work .wrapper-thumb-overlay img{
     width: 100%;
     margin-bottom: 5px;
 }
@@ -74,6 +77,17 @@ input{
     margin-bottom: 10px;
     border: 1px solid #aeaeae;
     background-color: #ffffff;
+}
+.input-button{
+    margin-bottom: 15px;
+}
+.input-button a{
+    padding: 5px 15px;
+    border: 1px solid #aeaeae;
+    background-color: #ffffff;
+    color: black;
+    text-decoration: none;
+    font-size: 1em;
 }
 input[type=text], input[type=password]{
     width: 200px;
@@ -140,12 +154,11 @@ select{
     position: absolute;
     z-index: 900;
 }
-.list-modifier-edit img{
+.list-modifier-edit img{   
     background-color: white;
     padding: 5px 5px 3px 5px;
-    border-radius: 4px;
-    box-shadow: 0px 1px 4px #000;
     cursor: pointer;
+    border: 1px solid #AAA;
 }
 .modify-picture-work img{
     width: 267px;
@@ -664,4 +677,27 @@ select{
 }
 .jquery-modal{
     z-index: 998 !important;
+}
+.wrapper-thumb-overlay{
+    float:left;
+    width: 174px;
+    height: 142px;
+    overflow: hidden;
+    margin-right: 28px;
+}
+.wrapper-bigthumb-overlay{
+    float:left;
+    width: 239px;
+    height: 194px;
+    overflow: hidden;
+    margin-right: 28px;
+}
+.modifier-alignright{
+    float: right;
+    position: relative;
+}
+.work-serie .list-modifier-edit{
+    margin-left: 109px;
+    position: absolute;
+    margin-top: -11px;
 }

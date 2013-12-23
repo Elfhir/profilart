@@ -55,9 +55,12 @@
                                 <p class="topic-text"><em>{{ topic.text }}</em></p>
                                 {% for work in works %}
                                     {% if work.work_topic_id == topic.id %}
-                                        <a href="/{{ username }}/cartel/{{ work.id }}/">
-                                            <img class="topic-work-image" src="/static/{{ work.image }}"/>
-                                        </a>
+                                        <div class="wrapper-thumb-overlay">
+                                            <a href="/{{ username }}/cartel/{{ work.id }}/">
+                                                <img class="topic-work-image" src="/static/{{ work.image }}"/>
+                                            </a>
+                                            <div class="clear"></div>
+                                        </div>
                                     {% endif %}
                                 {% endfor %}
                                 <div class="clear"></div>

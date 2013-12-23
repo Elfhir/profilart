@@ -9,23 +9,29 @@
     
     <hr>
     <article class="wrapper-manage-work">
-        <div class="work wrapper-work-serie">          
+        <div class="work wrapper-work-serie wrapper-mosaic-serie">
             {% for work in works %}
                 <div class="work-serie">
-                    <a href="/{{ user.username }}/work/{{ work.id }}">
-                        <img style="width: 200px;" src="/static/{{ work.image }}"/>
-                    </a>
+                    <ul class="list-modifier-edit modifier-alignright">
+                        <li>
+                            <a href="/{{ user.username }}/build/editwork/{{ work.id }}"><img src="/static/img/icons/pencil.png"></a>
+                        </li>
+                        <li>
+                            <a href="/{{ user.username }}/build/deletework/{{ work.id }}"><img src="/static/img/icons/cross.png"></a>
+                        </li>
+                    </ul>
+                    <div class="wrapper-thumb-overlay">
+                        <a href="/{{ user.username }}/work/{{ work.id }}">
+                            <img style="width: 200px;" src="/static/{{ work.image }}"/>
+                        </a>
+                    </div>
                     <div class="clear"></div>
-                    <p>
-                        <a href="/{{ user.username }}/build/deletework/{{ work.id }}">Delete this work</a>
-                        <a href="/{{ user.username }}/build/editwork/{{ work.id }}">Edit this work</a>
-                    </p>
                 </div>
             {% endfor %}
         </div>
     </article>
     <br/><br/>
-    <div>
+    <div class="input-button">
         <a href="/{{ user.username }}/build/addwork/{{ idTopic }}/">Add a work</a>
     </div>
 {% endblock content %}

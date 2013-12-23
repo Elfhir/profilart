@@ -19,12 +19,50 @@ def addExhibition(request, username):
     if userBackOfficePermission(request, username):
         user = User.objects.get(username=username)
         form = ExhibitionForm()
+        exhibitions = Exhibition.objects.filter(user_id=user.id)
         if request.method == 'POST':
             form = ExhibitionForm(request.POST)
             if form.is_valid():
                 form.save(request)
-                return render(request, 'buildengine/manageexhibition.html', {'firstname' : user.first_name, 'name' : user.last_name})
+                return render(request, 'buildengine/manageexhibition.html', {'firstname' : user.first_name, 'name' : user.last_name,
+                                                                             'exhibitions' : exhibitions})
         return render(request, 'form/addexhibition.html', {'firstname' : user.first_name, 'name' : user.last_name, 'form' : form})
+    return HttpResponseRedirect("/")
+
+def editExhibition(request, username, idExhibition):
+    if userBackOfficePermission(request, username):
+        user = User.objects.get(username=username)
+        exhibition = Exhibition.objects.get(id=idExhibition)
+        exhibitions = Exhibition.objects.filter(user_id=user.id)
+        form = ExhibitionForm(initial={'nameGallery':exhibition.nameGallery, 'mapLongitude':exhibition.mapLongitude, 'mapLatitude':exhibition.mapLatitude,
+                                       'adress':exhibition.adress, 'zipcode':exhibition.zipcode, 'country':exhibition.country, 'text':exhibition.text,
+                                       'date_begin':str(exhibition.date_begin)[0:10], 'date_end':str(exhibition.date_end)[0:10]})
+        if request.method == 'POST':
+            form = ExhibitionForm(request.POST)
+            if form.is_valid():
+                exhibition.nameGallery = request.POST["nameGallery"]
+                exhibition.mapLongitude = request.POST["mapLongitude"]
+                exhibition.mapLatitude = request.POST["mapLatitude"]
+                exhibition.adress = request.POST["adress"]
+                exhibition.zipcode = request.POST["zipcode"]
+                exhibition.country = request.POST["country"]
+                exhibition.text = request.POST["text"]
+                exhibition.date_begin = request.POST["date_begin"]
+                exhibition.date_end = request.POST["date_end"]
+                exhibition.save()
+                return render(request, 'buildengine/manageexhibition.html', {'firstname' : user.first_name, 'name' : user.last_name,
+                                                                             'exhibitions' : exhibitions})
+        return render(request, 'form/editexhibition.html', {'firstname' : user.first_name, 'name' : user.last_name, 'form' : form, 'exhibition': exhibition})
+    return HttpResponseRedirect("/")
+
+def deleteExhibition(request, username, idExhibition):
+    if userBackOfficePermission(request, username):
+        user = User.objects.get(username=username)
+        exhibitions = Exhibition.objects.filter(user_id=user.id)
+        exhibition = Exhibition.objects.get(id=idExhibition)
+        exhibition.delete()
+        return render(request, 'buildengine/manageexhibition.html', {'firstname' : user.first_name, 'name' : user.last_name,
+                                                                             'exhibitions' : exhibitions})
     return HttpResponseRedirect("/")
 
 def displayFrontExhibition(request, username):

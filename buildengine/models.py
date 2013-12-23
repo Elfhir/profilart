@@ -32,3 +32,14 @@ class PrefWebsite(models.Model):
     
     def __unicode__(self):
         return "%s" % (self.user)
+    
+class PrefWebsiteSlider(models.Model):
+    user = models.ForeignKey(User)
+    mode = models.CharField(max_length=50)
+    speed = models.PositiveIntegerField()
+    thumb = models.BooleanField()
+    auto = models.BooleanField()
+    ticker = models.BooleanField()
+    
+    def __unicode__(self):
+        return "%s" % (self.mode)
