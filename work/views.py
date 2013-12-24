@@ -30,10 +30,19 @@ def addWork(request, idTopic, username):
                 requestKeywords = request.POST['keywords']
                 requestWidth = request.POST['width']
                 requestHeight = request.POST['height']
+                requestDepth = request.POST['depth']
                 requestCreated = request.POST['dateCreated']
                 requestMaterial = request.POST['material']
                 requestLocal = request.POST['current_local']
                 requestType = request.POST.getlist('type')
+                if request.POST['dateCreated'] == "":
+                    requestCreated = None
+                if request.POST['width'] == "":
+                    requestWidth = None
+                if request.POST['height'] == "":
+                    requestHeight = None
+                if request.POST['depth'] == "":
+                    requestDepth = None
                 #Create new image in the database
                 user = User.objects.get(username=username)
                 workTopic = WorkTopic.objects.get(id=idTopic)
@@ -41,7 +50,7 @@ def addWork(request, idTopic, username):
                 contentType = ContentType.objects.get(model="work")
                 work = Work(name=requestName, text=requestText, user_id=user.id, image=requestImage, content_type_id=contentType.id,
                             work_topic_id=workTopic.id, keywords=requestKeywords, date_created=requestCreated ,width=requestWidth, height=requestHeight,
-                            material=requestMaterial, current_local=requestLocal)
+                            material=requestMaterial, current_local=requestLocal, depth=requestDepth)
                 work.save()
                 #Create WorkType in the database
                 for value in requestType:
@@ -123,20 +132,42 @@ def editWork(request, username, idWork):
         work = Work.objects.get(id=idWork)
         workTypeTuple = WorkType.objects.filter(idWork_id=idWork)
         editMetaWorkForm = EditMetaWork(initial={'name': work.name, 'text': work.text, 'keywords' : work.keywords,
-                                                 'dateCreated' : work.date_created, 'width' : work.width, 'height' : work.height,
+                                                 'dateCreated' : str(work.date_created)[0:10], 'width' : work.width, 'height' : work.height,
                                                  'material' : work.material, 'current_local' : work.current_local,
-                                                 'type' : workTypeTuple})
+                                                 'type' : workTypeTuple, 'depth': work.depth})
         editImageWorkForm = EditImageWork()
         workType = WorkType.objects.all()
         #If the form has been sent
         if request.method == 'POST':
-            form = EditMetaWork(request.POST, request.FILES)
+            form = EditMetaWork(request.POST)
             if form.is_valid():
                 requestName = request.POST['name']
                 requestText = request.POST['text']
+                requestKeywords = request.POST['keywords']
+                requestWidth = request.POST['width']
+                requestHeight = request.POST['height']
+                requestDepth = request.POST['depth']
+                requestCreated = request.POST['dateCreated']
+                requestMaterial = request.POST['material']
+                requestLocal = request.POST['current_local']
                 requestType = request.POST.getlist('type')
+                if request.POST['dateCreated'] == "":
+                    requestCreated = None
+                if request.POST['width'] == "":
+                    requestWidth = None
+                if request.POST['height'] == "":
+                    requestHeight = None
+                if request.POST['depth'] == "":
+                    requestDepth = None
                 work.name = requestName
                 work.text = requestText
+                work.keywords = requestKeywords
+                work.width = requestWidth
+                work.height = requestHeight
+                work.depth = requestDepth
+                work.date_created = requestCreated
+                work.material = requestMaterial
+                work.current_local = requestLocal
                 work.save()
                 WorkType.objects.filter(idWork_id=idWork).delete()
                 for value in requestType:
