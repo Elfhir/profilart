@@ -28,7 +28,15 @@
             <article class="wrapper-manage-exhibition">
                 <div class="exhibition wrapper-exhibition">
                     {% for exhibition in exhibitions %}
-                        <div class="exhibition-object">
+                        <div class="object-exhibition">
+                            <ul class="list-modifier-edit modifier-alignright">
+                                <li>
+                                    <a href="/{{ user.username }}/build/editexhibition/{{ exhibition.id }}"><img src="/static/img/icons/pencil.png"></a>
+                                </li>
+                                <li>
+                                    <a href="/{{ user.username }}/build/deleteexhibition/{{ exhibition.id }}"><img src="/static/img/icons/cross.png"></a>
+                                </li>
+                            </ul>
                             <p>{{ exhibition.nameGallery }}</p>
                             <p>{{ exhibition.adress }}</p>
                         </div>
@@ -36,7 +44,7 @@
                 </div>
             </article>        
             <div class="clear"></div>
-            <div>
+            <div class="input-button">
                 <a href="/{{ user.username }}/build/addexhibition">Add an exhibition</a>
             </div>
         </div>

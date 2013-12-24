@@ -60,7 +60,10 @@ def registerUser(request):
             #Create file for this user
             #createUserFile(requestUsername)
             #Create pre-template
-            prefWebsite = PrefWebsite.objects.create(user_id = user.id, id_template = 1, color = "#000", font_family="Arial")
+            prefWebsite = PrefWebsite.objects.create(user_id = user.id, id_template = 1, color = "#FFFFFF", font_color="#000000",
+                                                     font_family="Arial")
+            biography = Biography(user_id=user.id, text="").save()
+            prefWebsiteSlider = PrefWebsiteSlider(user_id=user.id, mode="fade", speed=3500, thumb=False, auto=False, ticker=False).save()
             #If the user exists
             user = authenticate(username=requestUsername, password=requestPassword)
             if user is not None:
