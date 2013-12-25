@@ -7,4 +7,6 @@ $(document).ready(function() {
     $("#datepicker, #datepicker2").datepicker({
         dateFormat: 'yy-mm-dd'
     });
+    
+    $("input#id_in_focus_0").closest("ul").after('<div class="clear"></div>');
 });

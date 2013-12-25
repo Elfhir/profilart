@@ -43,7 +43,7 @@ class EditMetaWork(forms.Form):
     height = forms.IntegerField(required=False)
     depth = forms.IntegerField(required=False)
     material = forms.CharField(max_length=2000, required=False)
-    in_focus = forms.BooleanField(widget=forms.RadioSelect(choices=YES_OR_NO), required=False)
+    in_focus = forms.BooleanField(widget=forms.RadioSelect(choices=YES_OR_NO), initial=True, required=False)
     current_local = forms.CharField(max_length=100, required=False)
     type = forms.MultipleChoiceField(choices=TYPES, widget=forms.CheckboxSelectMultiple())
     

@@ -19,7 +19,8 @@ def home(request, username):
         if user.groups.filter(name='Artist'):
             prefWebsite = PrefWebsite.objects.get(user_id=user.id)
             workTopicType = WorkTopicType.objects.filter(idWork_id__user_id=user.id).order_by("idType").values_list("idType")
-            lastWorks = Work.objects.filter(user_id=user.id).order_by("date_pub")[:3]
+            lastWorks = Work.objects.filter(user_id=user.id).order_by("date_pub")[:6]
+            focusWorks = Work.objects.filter(in_focus=1).order_by("date_pub")[:6]
             firstname = user.first_name
             name = user.last_name
             biography = Biography.objects.get(user_id=user.id)
@@ -28,7 +29,7 @@ def home(request, username):
             return render(request, 'buildengine/templates/template'+str(prefWebsite.id_template)+'/frontoffice/home.html', {'username' : username, 'lastWorks' : lastWorks,
                                                                             'workType' : set(workTopicType), 'prefWebsite' : prefWebsite,
                                                                             'firstname' : firstname, 'name' : name, 'biography': biography,
-                                                                            'exhibitions': lastExhibitions, 'prefWebsiteSlider': prefWebsiteSlider})
+                                                                            'exhibitions': lastExhibitions, 'prefWebsiteSlider': prefWebsiteSlider, 'focusWorks': focusWorks})
         if user.groups.filter(name='Curator'):
             bio = Biography.objects.get(user_id=user.id)
             firstname = user.first_name
@@ -54,19 +55,20 @@ def backOffice(request, username):
                 works = Work.objects.all()
                 firstname = user.first_name
                 name = user.last_name
-                lastWorks = Work.objects.filter(user_id=user.id).order_by("date_pub")[:3]
+                lastWorks = Work.objects.filter(user_id=user.id).order_by("date_pub")[:6]
+                focusWorks = Work.objects.filter(in_focus=1).order_by("date_pub")[:6]
                 biography = Biography.objects.get(user_id=user.id)
                 lastExhibitions = Exhibition.objects.filter(user_id=user.id).order_by("date_pub")[:3]
                 prefWebsiteSlider = PrefWebsiteSlider.objects.get(user_id=user.id)
                 formSlider = SliderForm(initial={'mode': prefWebsiteSlider.mode, 'speed': prefWebsiteSlider.speed,
                                                  'thumb': prefWebsiteSlider.thumb, 'auto': prefWebsiteSlider.auto,
-                                                 'ticker': prefWebsiteSlider.ticker})
+                                                 'ticker': prefWebsiteSlider.ticker, 'kind_works': prefWebsiteSlider.kind})
                 pathTemplate = "buildengine/templates/template"+str(prefWebsite.id_template)+"/backoffice/home.html"
                 return render(request, 'buildengine/build.html', {'username' : username, 'blockWork' : works, 'workType' : workType,
                                                                   'prefWebsite' : prefWebsite, 'firstname' : firstname, 'name' : name,
                                                                   'pathTemplate' : pathTemplate, 'lastWorks' : lastWorks,
                                                                   'biography': biography, 'exhibitions': lastExhibitions,
-                                                                  'prefWebsiteSlider': prefWebsiteSlider, 'formSlider': formSlider})
+                                                                  'prefWebsiteSlider': prefWebsiteSlider, 'formSlider': formSlider, 'focusWorks': focusWorks})
         if user.groups.filter(name='Curator'):
             bio = Biography.objects.get(user_id=user.id)
             formBio = BioForm(initial={'text' : bio.text})

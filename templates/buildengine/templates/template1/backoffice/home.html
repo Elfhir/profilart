@@ -98,23 +98,44 @@
                             </ul>
                             <div class="clear"></div>
                             <ul class="bxslider">
-                                {% for work in lastWorks %}
-                                    <li class="wrapper-last-work">
-                                        <img height="{{ work.image.height }}" src="/static/{{ work.image }}"/>
-                                    </li>
-                                {% endfor %}
+                                {% if prefWebsiteSlider.kind == "last" %}
+                                    {% for work in lastWorks %}
+                                        <li class="wrapper-last-work">
+                                            <img height="{{ work.image.height }}" src="/static/{{ work.image }}"/>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if prefWebsiteSlider.kind == "focus" %}
+                                    {% for work in focusWorks %}
+                                        <li class="wrapper-focus-work">
+                                            <img height="{{ work.image.height }}" src="/static/{{ work.image }}"/>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
                             </ul>
                             {% if prefWebsiteSlider.thumb == True %}
-                                <div class="bx-pager">
-                                    {% for work in lastWorks %}
-                                        <span class="wrapper-last-work-thumb">
-                                            <a data-slide-index='{{ forloop.counter|add:"-1" }}' href="#">
-                                                <img width="120px" src="/static/{{ work.image }}" />
-                                            </a>
-                                        </span>
-                                    {% endfor %}
-                                </div>
-                                <div class="clear"></div>
+                                {% if prefWebsiteSlider.kind == "last" %}
+                                    <div class="bx-pager">
+                                        {% for work in lastWorks %}
+                                            <span class="wrapper-last-work-thumb">
+                                                <a data-slide-index='{{ forloop.counter|add:"-1" }}' href="#">
+                                                    <img width="120px" src="/static/{{ work.image }}" />
+                                                </a>
+                                            </span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                {% if prefWebsiteSlider.kind == "focus" %}
+                                    <div class="bx-pager">
+                                        {% for work in focusWorks %}
+                                            <span class="wrapper-last-work-thumb">
+                                                <a data-slide-index='{{ forloop.counter|add:"-1" }}' href="#">
+                                                    <img width="120px" src="/static/{{ work.image }}" />
+                                                </a>
+                                            </span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
                             {% endif %}
                             <div class="modal" id="modal-slider" style="display:none;">
                                 <h2>Edit Slider</h2>
@@ -123,6 +144,7 @@
                                     <input type="submit" value="Submit" />
                                 </form>
                             </div>
+                            <div class="clear"></div>
                         </div>
                     </div>
                 </section>

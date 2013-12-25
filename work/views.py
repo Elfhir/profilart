@@ -34,6 +34,10 @@ def addWork(request, idTopic, username):
                 requestCreated = request.POST['dateCreated']
                 requestMaterial = request.POST['material']
                 requestLocal = request.POST['current_local']
+                if request.POST['in_focus'] == "False":
+                    requestFocus = False
+                else:
+                    requestFocus = True
                 requestType = request.POST.getlist('type')
                 if request.POST['dateCreated'] == "":
                     requestCreated = None
@@ -50,7 +54,7 @@ def addWork(request, idTopic, username):
                 contentType = ContentType.objects.get(model="work")
                 work = Work(name=requestName, text=requestText, user_id=user.id, image=requestImage, content_type_id=contentType.id,
                             work_topic_id=workTopic.id, keywords=requestKeywords, date_created=requestCreated ,width=requestWidth, height=requestHeight,
-                            material=requestMaterial, current_local=requestLocal, depth=requestDepth)
+                            material=requestMaterial, current_local=requestLocal, depth=requestDepth, in_focus=requestFocus)
                 work.save()
                 #Create WorkType in the database
                 for value in requestType:
@@ -131,10 +135,13 @@ def editWork(request, username, idWork):
     if userBackOfficePermission(request, username):
         work = Work.objects.get(id=idWork)
         workTypeTuple = WorkType.objects.filter(idWork_id=idWork)
+        dateCreated = str(work.date_created)[0:10]
+        if work.date_created is None:
+            dateCreated = ""   
         editMetaWorkForm = EditMetaWork(initial={'name': work.name, 'text': work.text, 'keywords' : work.keywords,
-                                                 'dateCreated' : str(work.date_created)[0:10], 'width' : work.width, 'height' : work.height,
+                                                 'dateCreated' : dateCreated, 'width' : work.width, 'height' : work.height,
                                                  'material' : work.material, 'current_local' : work.current_local,
-                                                 'type' : workTypeTuple, 'depth': work.depth})
+                                                 'type' : workTypeTuple, 'depth': work.depth, 'in_focus':work.in_focus})
         editImageWorkForm = EditImageWork()
         workType = WorkType.objects.all()
         #If the form has been sent
@@ -150,6 +157,7 @@ def editWork(request, username, idWork):
                 requestCreated = request.POST['dateCreated']
                 requestMaterial = request.POST['material']
                 requestLocal = request.POST['current_local']
+                requestFocus = request.POST['in_focus']
                 requestType = request.POST.getlist('type')
                 if request.POST['dateCreated'] == "":
                     requestCreated = None
@@ -159,6 +167,10 @@ def editWork(request, username, idWork):
                     requestHeight = None
                 if request.POST['depth'] == "":
                     requestDepth = None
+                if request.POST['in_focus'] == "False":
+                    work.in_focus = False
+                else:
+                    work.in_focus = True
                 work.name = requestName
                 work.text = requestText
                 work.keywords = requestKeywords

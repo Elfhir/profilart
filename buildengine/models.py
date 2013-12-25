@@ -28,7 +28,6 @@ class PrefWebsite(models.Model):
     isvisible_homebio = models.BooleanField()
     isvisible_homeexhibition = models.BooleanField()
     color = models.CharField(max_length=10)
-    color = models.CharField(max_length=10)
     
     def __unicode__(self):
         return "%s" % (self.user)
@@ -40,6 +39,7 @@ class PrefWebsiteSlider(models.Model):
     thumb = models.BooleanField()
     auto = models.BooleanField()
     ticker = models.BooleanField()
+    kind = models.CharField(max_length=10)
     
     def __unicode__(self):
         return "%s" % (self.mode)
