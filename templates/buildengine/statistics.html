@@ -1,0 +1,22 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+    <article class="wrapper-manage-following">
+        <div>
+            <h2>Following</h2>
+            {% for user in userFollowing %}
+                <li class="wrapper-last-work">
+                    {{ user.username }}
+                </li>
+            {% endfor %}
+        </div>
+        <div>
+            <h2>Followers</h2>
+            {% for user in userFollowers %}
+                    <li class="wrapper-last-work">
+                        {{ user.username }}
+                    </li>
+            {% endfor %}
+        </div>
+    </article>
+{% endblock content %}

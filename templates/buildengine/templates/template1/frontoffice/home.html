@@ -1,7 +1,7 @@
 <!doctype html>
 {% include "buildengine/templates/template1/frontoffice/header.html" %}
 <body style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }}; color: {{ prefWebsite.font_color }}">
-    {% if user.is_authenticated and request.user.username in request.path %}
+    {% if user.is_authenticated and user.id == request.user.id %}
         {% if "/build" in request.path %}
         {% else %}
             <div class="manager-template-full-mode">

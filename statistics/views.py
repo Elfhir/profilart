@@ -6,7 +6,26 @@ from buildengine.models import *
 from statistics.models import *
 from buildengine.views import userBackOfficePermission
 import os
-                    
+
+def display(request, username):
+    if userBackOfficePermission(request, username):
+        user = User.objects.get(username=username)
+        userFollowers = []
+        userFollowing = []
+        following = FriendSocial.objects.filter(user1_id = user.id)
+        followers = FriendSocial.objects.filter(user2_id = user.id)
+        for f in followers:
+            query = User.objects.get(id = f.user1_id)
+            userFollowers.append(query)
+        for f in following:
+            query = User.objects.get(id = f.user2_id)
+            userFollowing.append(query)
+        firstname = user.first_name
+        name = user.last_name
+        return render(request, 'buildengine/statistics.html', {'user': user, 'firstname' : firstname, 'name' : name,
+                                                               'userFollowers': userFollowers, 'userFollowing': userFollowing})
+    return HttpResponseRedirect("/")
+
 def addFollow(request, username):
     if request.is_ajax():
         if not request.user.is_authenticated():
