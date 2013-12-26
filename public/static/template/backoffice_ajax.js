@@ -20,4 +20,15 @@ $(document).ready(function() {
             });
             return false;
         });
+    
+        $(document).on($.modal.CLOSE, function(event, modal) {
+            location.reload();
+        });
+                      
+        $("a.open-modal").click(function(event) {
+            $(this).modal({
+                fadeDuration: 200
+            });
+            return false;
+        });
 });

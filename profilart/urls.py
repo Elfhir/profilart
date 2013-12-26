@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^(?P<username>\w+)/exhibitions/$', 'exhibition.views.displayFrontExhibition'),
     url(r'^(?P<username>\w+)/carteltopic/(?P<idTopic>.+)/$', 'work.views.displayCartelTopic'),
     url(r'^(?P<username>\w+)/cartel/(?P<idWork>.+)/$', 'work.views.displayCartelWork'),
+    url(r'^(?P<username>\w+)/social', include('statistics.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^api/', include(v1_api.urls)),
 )

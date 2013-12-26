@@ -29,7 +29,7 @@ def home(request, username):
             return render(request, 'buildengine/templates/template'+str(prefWebsite.id_template)+'/frontoffice/home.html', {'username' : username, 'lastWorks' : lastWorks,
                                                                             'workType' : set(workTopicType), 'prefWebsite' : prefWebsite,
                                                                             'firstname' : firstname, 'name' : name, 'biography': biography,
-                                                                            'exhibitions': lastExhibitions, 'prefWebsiteSlider': prefWebsiteSlider, 'focusWorks': focusWorks})
+                                                                            'exhibitions': lastExhibitions, 'prefWebsiteSlider': prefWebsiteSlider, 'focusWorks': focusWorks, 'user': user})
         if user.groups.filter(name='Curator'):
             bio = Biography.objects.get(user_id=user.id)
             firstname = user.first_name

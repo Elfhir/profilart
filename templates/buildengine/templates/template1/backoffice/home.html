@@ -45,17 +45,6 @@
                 maxSlides: 4,
                 speed: {{ prefWebsiteSlider.speed }}{% if prefWebsiteSlider.ticker == True %}*5{% endif %}
             })
-              
-            $(document).on($.modal.CLOSE, function(event, modal) {
-                location.reload();
-            });
-                          
-            $("a.open-modal").click(function(event) {
-                $(this).modal({
-                    fadeDuration: 200
-                });
-                return false;
-            });
 
         });
     </script>
@@ -197,7 +186,7 @@
         </div>
         <section class="wrapper-footer" role="footer">
             <div class="wrapper-content">
-                <p>Powered by Profil Art - Create my Website</p>
+                <p>Powered by Profil Art - Create my Website - Suivre cet artiste</p>
             </div>
         </section>
     </div>

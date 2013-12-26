@@ -1,0 +1,50 @@
+<!doctype html>
+<head>
+    <meta charset="UTF-8">
+    <title>Profil Art</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/screen.css">
+    <link rel="stylesheet" href="/static/template/template1/screen.css">
+    <link rel='stylesheet' type='text/css' href="/static/script/modal/jquery.modal.css">
+    <link rel="stylesheet" href="/static/script/bxslider/jquery.bxslider.css">
+    <style type="text/css">
+        .template1 a{
+            color : {{ prefWebsite.font_color }};
+        }
+    </style>
+    <script type="text/javascript" src="/static/script/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="/static/script/bxslider/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="/static/script/modal/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/static/script/highlight/highlight.pack.js"></script>
+    <script type="text/javascript" src="/static/template/template1/script.js"></script>
+    <script type="text/javascript" src="/static/template/frontoffice_ajax.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {    
+            $('.bxslider').bxSlider({
+                {% if prefWebsiteSlider.ticker == True %}
+                    {% if prefWebsiteSlider.mode == "fade" %}
+                        mode: "horizontal",
+                        {% else %}
+                        mode: "{{ prefWebsiteSlider.mode }}",
+                    {% endif %} 
+                {% else %}
+                    mode: "{{ prefWebsiteSlider.mode }}",
+                {% endif %} 
+                infiniteLoop: true,
+                {% if prefWebsiteSlider.ticker == True %}
+                    auto: false,
+                {% else %}
+                    auto: {{ prefWebsiteSlider.auto|lower }},
+                {% endif %}  
+                autoControls: {{ prefWebsiteSlider.auto|lower }},
+                {% if prefWebsiteSlider.thumb == True %}
+                    pagerCustom: '.bx-pager',
+                {% endif %}  
+                ticker: {{ prefWebsiteSlider.ticker|lower }},
+                minSlides: 4,
+                maxSlides: 4,
+                speed: {{ prefWebsiteSlider.speed }}{% if prefWebsiteSlider.ticker == True %}*5{% endif %}
+            })
+        });
+    </script>
+</head>

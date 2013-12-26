@@ -1,0 +1,20 @@
+    <section class="wrapper-footer" role="footer">
+        <div class="wrapper-content">
+            <p>Powered by Profil Art - Create my Website -
+                <a class="addfollow" href="" username="{{ username }}" iduser="{{ user.id }}"
+                   requestiduser="{{ request.user.id }}">
+                    Follow this artist
+                </a>
+            </p>
+            <div class="modal" id="modalfollowsuccess" style="display:none;">
+                Vous suivez maintenant cet artiste.
+            </div>
+            <div class="modal" id="modalfollowerror" style="display:none;">
+                Vous suivez déjà cet artiste.
+            </div>
+            <div class="modal" id="modalfollowanonymous" style="display:none;">
+                Connectez-vous pour suivre vos artistes favoris.
+            </div>
+        </div>
+    </section>
+</body>

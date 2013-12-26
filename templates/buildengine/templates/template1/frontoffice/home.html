@@ -1,51 +1,7 @@
 <!doctype html>
-<head>
-    <meta charset="UTF-8">
-    <title>Profil Art</title>
-    <link rel="stylesheet" href="/static/css/reset.css">
-    <link rel="stylesheet" href="/static/css/screen.css">
-    <link rel="stylesheet" href="/static/template/template1/screen.css">
-    <link rel="stylesheet" href="/static/script/bxslider/jquery.bxslider.css">
-    <style type="text/css">
-        .template1 a{
-            color : {{ prefWebsite.font_color }};
-        }
-    </style>
-    <script type="text/javascript" src="/static/script/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" src="/static/script/bxslider/jquery.bxslider.min.js"></script>
-    <script type="text/javascript" src="/static/template/template1/script.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {    
-            $('.bxslider').bxSlider({
-                {% if prefWebsiteSlider.ticker == True %}
-                    {% if prefWebsiteSlider.mode == "fade" %}
-                        mode: "horizontal",
-                        {% else %}
-                        mode: "{{ prefWebsiteSlider.mode }}",
-                    {% endif %} 
-                {% else %}
-                    mode: "{{ prefWebsiteSlider.mode }}",
-                {% endif %} 
-                infiniteLoop: true,
-                {% if prefWebsiteSlider.ticker == True %}
-                    auto: false,
-                {% else %}
-                    auto: {{ prefWebsiteSlider.auto|lower }},
-                {% endif %}  
-                autoControls: {{ prefWebsiteSlider.auto|lower }},
-                {% if prefWebsiteSlider.thumb == True %}
-                    pagerCustom: '.bx-pager',
-                {% endif %}  
-                ticker: {{ prefWebsiteSlider.ticker|lower }},
-                minSlides: 4,
-                maxSlides: 4,
-                speed: {{ prefWebsiteSlider.speed }}{% if prefWebsiteSlider.ticker == True %}*5{% endif %}
-            })
-        });
-    </script>
-</head>
+{% include "buildengine/templates/template1/frontoffice/header.html" %}
 <body style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }}; color: {{ prefWebsite.font_color }}">
-    {% if user.is_authenticated and user.username in request.path %}
+    {% if user.is_authenticated and request.user.username in request.path %}
         {% if "/build" in request.path %}
         {% else %}
             <div class="manager-template-full-mode">
@@ -138,9 +94,5 @@
             <div class="clear"></div>
         </div>
     </div>
-    <section class="wrapper-footer" role="footer">
-        <div class="wrapper-content">
-            <p>Powered by Profil Art - Create my Website</p>
-        </div>
-    </section>
+    {% include "buildengine/templates/template1/frontoffice/footer.html" %}
 </body>
