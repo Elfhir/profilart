@@ -12,6 +12,7 @@ v1_api.register(WorkResource())
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('blog.urls')),
+    url(r'^search', include('searchengine.urls')),
     url(r'^authentification', include('authentification.urls')),
     url(r'^(?P<username>\w+)', include('buildengine.urls')),
     url(r'^(?P<username>\w+)/work', include('work.urls')),
