@@ -18,5 +18,25 @@
                     </li>
             {% endfor %}
         </div>
-    </article>
+        {% for group in user.groups.all %}
+            {% if group.name == "Curator" %}
+                <div>
+                    <h2>Last Activity : Work</h2>
+                    {% for user in userFollowers %}
+                            <li class="wrapper-last-work">
+                                {{ user.username }}
+                            </li>
+                    {% endfor %}
+                </div>
+                <div>
+                    <h2>Last Activity : Exhibition</h2>
+                    {% for user in userFollowers %}
+                            <li class="wrapper-last-work">
+                                {{ user.username }}
+                            </li>
+                    {% endfor %}
+                </div>
+            </article>
+        {% endif %}
+    {% endfor %}
 {% endblock content %}
