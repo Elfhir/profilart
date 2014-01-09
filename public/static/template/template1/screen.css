@@ -7,7 +7,7 @@ body{
     font-size: 1em;
 }
 .template1 .wrapper-content .wrapper-title{
-    margin: 20px 82px 0 0;
+    margin: 26px 82px 0 0;
     float: left;
 }
 header, footer{
@@ -24,7 +24,15 @@ footer .wrapper-content{
 }
 .modifier-h1{
     color: black;
-    font-size: 1.9em;
+    font-size: 1.6em;
+    font-weight: normal;
+    opacity: 0.8;
+}
+.modifier-h1 a{
+	text-decoration: none;
+}
+.modifier-h1 a:hover{
+	text-decoration: underline;
 }
 .modifier-h2{
     color: black;

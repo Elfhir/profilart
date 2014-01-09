@@ -13,8 +13,9 @@
         <article role="header" >
             <div class="wrapper-content">
                 <div class="wrapper-title">
-                    <h1 class="modifier-h1" style="color: {{ prefWebsite.font_color }}">{{ firstname }} {{ name }}</h1>
-                </div>
+                    <h1 class="modifier-h1" style="color: {{ prefWebsite.font_color }}">
+                        <a href="/{{ user.username }}/">{{ firstname }} {{ name }}</a>
+                    </h1>                </div>
                 <div class="wrapper-headermenu">
                     {% include "buildengine/templates/template1/frontoffice/headermenu.html" %}
                 </div>
@@ -38,6 +39,7 @@
                         {% endif %}
                     {% endfor %}
                 </section>
+                <div class="clear"></div>
             </div>
         </section>
         {% include "buildengine/templates/template1/frontoffice/footer.html" %}
