@@ -10,8 +10,15 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from PIL import Image
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 import StringIO
 import os
+
+#@receiver(post_save, sender=Work)
+#def printConsole(sender, **kwargs):    
+#    if kwargs['created'] == True:
+#        print "OK TRUE"
 
 def home(request, username, idWork):
     work = Work.objects.get(id=idWork)

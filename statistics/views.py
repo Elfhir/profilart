@@ -4,6 +4,7 @@ from django.contrib.auth.models import Group, User
 from authentification.form import *
 from buildengine.models import *
 from statistics.models import *
+from work.models import *
 from buildengine.views import userBackOfficePermission
 import os
 
@@ -12,6 +13,7 @@ def display(request, username):
         user = User.objects.get(username=username)
         userFollowers = []
         userFollowing = []
+        userLastWorks = []
         following = FriendSocial.objects.filter(user1_id = user.id)
         followers = FriendSocial.objects.filter(user2_id = user.id)
         for f in followers:
@@ -20,6 +22,9 @@ def display(request, username):
         for f in following:
             query = User.objects.get(id = f.user2_id)
             userFollowing.append(query)
+        for f in userFollowing:
+            query = Work.objects.order_by('date_pub').filter(user_id = f.id)[:5]
+            userLastWorks.append(query)
         firstname = user.first_name
         name = user.last_name
         return render(request, 'buildengine/statistics.html', {'user': user, 'firstname' : firstname, 'name' : name,
