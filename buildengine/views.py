@@ -20,7 +20,7 @@ def home(request, username):
             prefWebsite = PrefWebsite.objects.get(user_id=user.id)
             workTopicType = WorkTopicType.objects.filter(idWork_id__user_id=user.id).order_by("idType").values_list("idType")
             lastWorks = Work.objects.filter(user_id=user.id).order_by("date_pub")[:6]
-            focusWorks = Work.objects.filter(in_focus=1).order_by("date_pub")[:6]
+            focusWorks = Work.objects.filter(user_id=user.id, in_focus=1).order_by("date_pub")[:6]
             firstname = user.first_name
             name = user.last_name
             biography = Biography.objects.get(user_id=user.id)
@@ -56,7 +56,7 @@ def backOffice(request, username):
                 firstname = user.first_name
                 name = user.last_name
                 lastWorks = Work.objects.filter(user_id=user.id).order_by("date_pub")[:6]
-                focusWorks = Work.objects.filter(in_focus=1).order_by("date_pub")[:6]
+                focusWorks = Work.objects.filter(in_focus=1, user_id=user.id).order_by("date_pub")[:6]
                 biography = Biography.objects.get(user_id=user.id)
                 lastExhibitions = Exhibition.objects.filter(user_id=user.id).order_by("date_pub")[:3]
                 prefWebsiteSlider = PrefWebsiteSlider.objects.get(user_id=user.id)
