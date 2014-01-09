@@ -8,3 +8,10 @@ class WordsRate(models.Model):
     
     def __unicode__(self):
         return "%s : %s" % (self.mot, self.rate)
+    
+class Coeff(models.Model):
+    name = models.CharField(max_length=200) 
+    coeff = models.FloatField()
+    
+    def __unicode__(self):
+        return "%s : %s" % (self.name, self.coeff)

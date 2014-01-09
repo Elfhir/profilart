@@ -4,5 +4,5 @@ admin.autodiscover()
 
 urlpatterns = patterns('searchengine.views',
    url(r'^$', 'home'),
-   url(r'^/compute-table-index$', 'computeTableIndex'),
+   url(r'^/compute-table-index$', 'computeAllTableIndex'),
 )
