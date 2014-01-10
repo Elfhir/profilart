@@ -5,6 +5,7 @@ from work.models import *
 from searchengine.models import *
 from django.db.models.signals import *
 from django.dispatch import receiver
+from itertools import chain
 
 @receiver(post_save, sender=Work)
 def updateSaveAction(sender, **kwargs):
@@ -13,9 +14,29 @@ def updateSaveAction(sender, **kwargs):
     WordsRate.objects.filter(work=workObject).delete()
     computeOneTableIndex(workObject)
 
+
 def home(request):
     searchObject = request.POST
     searchWord = searchObject.get('the_search')
+    searchWordSplited = searchWord.lower().split()
+    print searchWordSplited
+    
+    resultWord = {}
+    for i in range( len(searchWordSplited) ):
+        resultWord[i] = list(WordsRate.objects.filter(mot=searchWordSplited[i]).order_by('-rate'))
+    print resultWord
+    
+    work = []
+    workTmp = []
+    for i in range( len(resultWord) ):
+        for j in range( len(resultWord[i]) ):
+            workTmp.append(resultWord[i][j].work)
+    print workTmp
+    for i in range( len(workTmp)):
+        if ( ( workTmp.count(workTmp[i]) == len(resultWord) ) and ( work.count(workTmp[i]) == 0 ) ):
+            work.append(workTmp[i])
+    print work
+    
     return render(request, 'searchengine/home.html', locals())
 
 def computeAllTableIndex(request):
