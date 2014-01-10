@@ -704,3 +704,77 @@ select{
     position: absolute;
     margin-top: -11px;
 }
+
+/****************************
+ * SEARCH ENGINE
+ ***************************/
+.searchengine h2 .search-word{
+	color: #000;
+	font-style: italic;
+	font-size: 22px;
+}
+
+.searchengine h3{
+	font: normal normal normal 16px 'PT Sans', 'sans-serif';
+	text-transform: uppercase;
+	margin-left: 15px;
+}
+
+.searchengine .cartel ul{
+	background: #eee;
+	border-top: 1px dotted #ccc;
+	border-bottom: 1px dotted #ccc;
+	padding: 15px 10px;
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+
+.searchengine .cartel li{
+	width: 300px;
+	margin-right: 20px;
+	display: inline-block;
+	background: #fff;
+	box-shadow: 0 0 5px #333;
+}
+
+.searchengine .cartel li a{
+	color: #333;
+	text-decoration: none;
+}
+
+.searchengine .cartel li a:hover{
+	text-decoration: underline;	
+}
+
+.searchengine .cartel li .img-container{
+	position: relative;
+	width: 300px;
+	height: 200px;
+	overflow: hidden;
+}
+
+.searchengine .cartel li .img-container img{
+	width: 100%;
+}
+
+.searchengine .cartel li .encart{
+	margin-top: 0;
+	height: 40px;
+	margin-left: 10px;
+}
+
+.searchengine .cartel li .encart h4{
+	font: normal normal normal 16px 'PT Sans', 'serif';
+}
+
+.searchengine .cartel li .encart .auteur{
+	font: italic normal normal 14px/12px 'EB Garamond', 'serif';
+	color: #666;
+}
+
+
+
+
+
+
+

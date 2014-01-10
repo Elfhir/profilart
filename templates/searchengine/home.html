@@ -4,5 +4,23 @@
 {% load i18n %}
 
 {% block content %}
-    <p>Search engine with search {{searchWord}}</p>
+    <h2>Cartel(s) proposé(s) pour la recherche : <span class="search-word">{{searchWord}}</span></h2>
+    <div class="cartel">
+        <h3>Proposition 1</h3>
+            <ul>
+                {% for w in work %}
+                <li class="work-container">
+                    <div class="img-container">
+                        <a href="/{{ w.user.username }}/work/{{ w.id}}/">
+                            <img src="/static/{{w.image}}">
+                        </a>
+                    </div>
+                    <div class="encart">
+                        <h4><a href="/{{ w.user.username }}/work/{{ w.id}}/">{{w.name}}</a></h4>
+                        <div class="auteur">by <a href="/{{ w.user.username }}">{{w.user}}</a></div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+    </div>
 {% endblock content %}
