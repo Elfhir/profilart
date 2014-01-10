@@ -8,6 +8,25 @@ from django.db.models.signals import *
 from django.dispatch import receiver
 from itertools import chain
 
+#caracteres a remplacer
+charToRemplace = {  'a': [u'à', u'ã', u'á', u'â'],
+                    'e': [u'é', u'è', u'ê', u'ë'],
+                    'i': [u'î', u'ï'],
+                    'u': [u'ù', u'ü', u'û'],
+                    'o': [u'ô', u'ö'],
+                    'c': [u'ç'],
+                    '': [',', '.', '/', ':', ';', '?', '!', '(', ')', '"', "'"]
+                    }
+
+#mots à ignorer
+wordToIgnore = ['les', 'elle', 'ils', 'elles', 'lui', 'moi', 'toi', 'nous', 'vous', 'soi', 'leur', 'eux',
+                'celui', 'celle', 'ceux', 'ceci', 'cela', 'celles',
+                'mien', 'tien', 'sien', 'mienne', 'tienne', 'sienne', 'miens', 'tiens', 'siens', 'miennes', 'tiennes', 'siennes', 'notre', 'votre', 'notres', 'votres', 'leurs',
+                'qui', 'que', 'quoi', 'dont', 'ou', 'lequel', 'auxquel', 'duquel', 'laquelle', 'lesquels', 'auxquels', 'desquels', 'lesquelles', 'auxquelles', 'desquelles',
+                'tout', 'une', 'uns', 'unes', 'aucun', 'aucune', 'aucuns' 'aucunes', 'tel', 'telle', 'tels', 'telles', 'toute',
+                'suivant', 'apres', 'dela', 'hormis', 'par', 'sur', 'depuis', 'hors', 'parmi', 'avant', 'derriere', 'jusque', 'pendant', 'vers', 'avec', 'des', 'pour', 'chez', 'devant', 'pres', 'voici', 'voila', 'comme', 'malgre', 'moins', 'entre', 'sauf', 'contre','dans', 'sous', 'selon']
+
+
 @receiver(post_save, sender=Work)
 def updateSaveAction(sender, **kwargs):
     print 'update save'
@@ -20,6 +39,14 @@ def home(request):
     searchObject = request.GET
     searchWord = searchObject.get('the_search')
     searchWordSplited = searchWord.lower().split()
+    #On ne recherche que les mots d'une certaine taille et non ignorés
+    searchWordSplited = [word for word in searchWordSplited if ( len(word) > 2 and word not in wordToIgnore )]
+            
+    #On remplace les signes indésirables (accents...)
+    for i in range( len(searchWordSplited) ):
+            for char, old_chars  in charToRemplace.items():
+                for old_char in old_chars:
+                    searchWordSplited[i] = searchWordSplited[i].replace(old_char, char)
     print searchWordSplited
     
     resultWord = {}
@@ -57,25 +84,7 @@ def computeOneTableIndex(work):
     print 'ComputeOneTableIndex'
     words = {}
     wordsParsed = []
-    
-    #caracteres a remplacer
-    charToRemplace = {  'a': [u'à', u'ã', u'á', u'â'],
-                        'e': [u'é', u'è', u'ê', u'ë'],
-                        'i': [u'î', u'ï'],
-                        'u': [u'ù', u'ü', u'û'],
-                        'o': [u'ô', u'ö'],
-                        'c': [u'ç'],
-                        '': [',', '.', '/', ':', ';', '?', '!', '(', ')', '"', "'"]
-                        }
-    
-    #mots à ignorer
-    wordToIgnore = ['les', 'elle', 'ils', 'elles', 'lui', 'moi', 'toi', 'nous', 'vous', 'soi', 'leur', 'eux',
-                    'celui', 'celle', 'ceux', 'ceci', 'cela', 'celles',
-                    'mien', 'tien', 'sien', 'mienne', 'tienne', 'sienne', 'miens', 'tiens', 'siens', 'miennes', 'tiennes', 'siennes', 'notre', 'votre', 'notres', 'votres', 'leurs',
-                    'qui', 'que', 'quoi', 'dont', 'ou', 'lequel', 'auxquel', 'duquel', 'laquelle', 'lesquels', 'auxquels', 'desquels', 'lesquelles', 'auxquelles', 'desquelles',
-                    'tout', 'une', 'uns', 'unes', 'aucun', 'aucune', 'aucuns' 'aucunes', 'tel', 'telle', 'tels', 'telles', 'toute',
-                    'suivant', 'apres', 'dela', 'hormis', 'par', 'sur', 'depuis', 'hors', 'parmi', 'avant', 'derriere', 'jusque', 'pendant', 'vers', 'avec', 'des', 'pour', 'chez', 'devant', 'pres', 'voici', 'voila', 'comme', 'malgre', 'moins', 'entre', 'sauf', 'contre','dans', 'sous', 'selon']
-    
+
     words['titre'] = work.name.split()
     words['keywords'] = work.keywords.split()
     words['description'] = work.text.split()

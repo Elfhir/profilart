@@ -720,7 +720,7 @@ select{
 	margin-left: 15px;
 }
 
-.searchengine .cartel ul{
+.searchengine .corpus ul{
 	background: #eee;
 	border-top: 1px dotted #ccc;
 	border-bottom: 1px dotted #ccc;
@@ -729,7 +729,7 @@ select{
 	margin-bottom: 20px;
 }
 
-.searchengine .cartel li{
+.searchengine .corpus li{
 	width: 300px;
 	margin-right: 20px;
 	display: inline-block;
@@ -737,37 +737,37 @@ select{
 	box-shadow: 0 0 5px #333;
 }
 
-.searchengine .cartel li a{
+.searchengine .corpus li a{
 	color: #333;
 	text-decoration: none;
 }
 
-.searchengine .cartel li a:hover{
+.searchengine .corpus li a:hover{
 	text-decoration: underline;	
 }
 
-.searchengine .cartel li .img-container{
+.searchengine .corpus li .img-container{
 	position: relative;
 	width: 300px;
 	height: 200px;
 	overflow: hidden;
 }
 
-.searchengine .cartel li .img-container img{
+.searchengine .corpus li .img-container img{
 	width: 100%;
 }
 
-.searchengine .cartel li .encart{
+.searchengine .corpus li .encart{
 	margin-top: 0;
 	height: 40px;
 	margin-left: 10px;
 }
 
-.searchengine .cartel li .encart h4{
+.searchengine .corpus li .encart h4{
 	font: normal normal normal 16px 'PT Sans', 'serif';
 }
 
-.searchengine .cartel li .encart .auteur{
+.searchengine .corpus li .encart .auteur{
 	font: italic normal normal 14px/12px 'EB Garamond', 'serif';
 	color: #666;
 }
