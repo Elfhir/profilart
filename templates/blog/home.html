@@ -36,8 +36,8 @@
             <p id="moteur_recherche_txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non augue iaculis, scelerisque libero vel, cursus quam. Curabitur sit amet viverra arcu. Quisque dapibus egestas nunc ac mollis. Quisque aliquet condimentum ligula, posuere adipiscing nunc feugiat ut.</p>
             <div id="widget_recherche">
                 <p>{% trans "blog_home_effectuerRecherche" %}</p>
-                <form>
-                    <input type="search"></input>
+                <form action="/search" method="get" class="form-search-header">
+                    <input type="search" placeholder="Search ..." name="the_search">
                 </form>
             </div>
         </div>
