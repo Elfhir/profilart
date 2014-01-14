@@ -5,7 +5,7 @@
         {% if "/build" in request.path %}
         {% else %}
             <div class="manager-template-full-mode">
-                <p><a href="/{{ user.username }}/build">Switch to edit mode</a></p>
+                <p><a href="/{{ username }}/build">Switch to edit mode</a></p>
             </div>
         {% endif %}
     {% endif %}
