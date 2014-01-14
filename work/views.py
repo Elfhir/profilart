@@ -231,7 +231,7 @@ def displayTopic(request, username, nameTopic):
     if nameTopic == "video": idTopic = "3"
     if nameTopic == "sculptures": idTopic = "4"
     if nameTopic == "installations": idTopic = "5"
-    if nameTopic == "Others": idTopic = "6"
+    if nameTopic == "others": idTopic = "6"
     workTopic = WorkTopicType.objects.filter(idType=idTopic, idWork_id__user=user.id)
     topics = WorkTopic.objects.filter(user_id=user.id)
     works = Work.objects.filter(user_id=user.id)
