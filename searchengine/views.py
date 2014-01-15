@@ -38,6 +38,10 @@ def updateSaveAction(sender, **kwargs):
 def home(request):
     searchObject = request.GET
     searchWord = searchObject.get('the_search')
+    searchModalite = searchObject.get('modalite-recherche')
+    # Recherche par défault
+    if searchModalite is None:
+        searchModalite = 'Corpus'
     searchWordSplited = searchWord.lower().split()
     #On ne recherche que les mots d'une certaine taille et non ignorés
     searchWordSplited = [word for word in searchWordSplited if ( len(word) > 2 and word not in wordToIgnore )]

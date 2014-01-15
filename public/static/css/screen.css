@@ -708,10 +708,30 @@ select{
 /****************************
  * SEARCH ENGINE
  ***************************/
-.searchengine h2 .search-word{
-	color: #000;
-	font-style: italic;
+.searchengine h2 {
 	font-size: 22px;
+	width: 480px;
+	display: inline-block;
+}
+
+.searchengine h2 input[type=search]{
+	display: inline-block;
+	margin-left: 15px;
+	font-size: 18px;
+}
+
+.searchengine #modalite-recherche{
+	margin-bottom: 20px;
+}
+
+.searchengine #modalite-recherche #titre{
+	font: normal normal normal 18px 'PT Sans', 'sans-serif';
+	margin-right: 10px;
+}
+
+.searchengine #modalite-recherche input[type=radio]{
+	margin-left: 20px;
+	margin-right: 5px;
 }
 
 .searchengine h3{
@@ -729,15 +749,18 @@ select{
 	margin-bottom: 20px;
 }
 
-.searchengine .corpus li{
+.searchengine .corpus li,
+.searchengine .recherche-simple li{
 	width: 300px;
 	margin-right: 20px;
+	margin-bottom: 20px;
 	display: inline-block;
 	background: #fff;
 	box-shadow: 0 0 5px #333;
 }
 
-.searchengine .corpus li a{
+.searchengine .corpus li a,
+.searchengine .recherche-simple li a{
 	color: #333;
 	text-decoration: none;
 }
@@ -746,28 +769,39 @@ select{
 	text-decoration: underline;	
 }
 
-.searchengine .corpus li .img-container{
+.searchengine .corpus li .img-container,
+.searchengine .recherche-simple li .img-container{
 	position: relative;
 	width: 300px;
 	height: 200px;
 	overflow: hidden;
 }
 
-.searchengine .corpus li .img-container img{
+.searchengine .corpus li .img-container img.width-ratio-True,
+.searchengine .recherche-simple li .img-container img.width-ratio-True{
 	width: 100%;
 }
 
-.searchengine .corpus li .encart{
-	margin-top: 0;
-	height: 40px;
-	margin-left: 10px;
+.searchengine .corpus li .img-container img.width-ratio-False,
+.searchengine .recherche-simple li .img-container img.width-ratio-False{
+	height: 100%;
 }
 
-.searchengine .corpus li .encart h4{
+.searchengine .corpus li .encart,
+.searchengine .recherche-simple li .encart{
+	margin-top: 0;
+	height: 40px;
+	padding-left: 10px;
+	border-top: 1px solid #999;
+}
+
+.searchengine .corpus li .encart h4,
+.searchengine .recherche-simple li .encart h4{
 	font: normal normal normal 16px 'PT Sans', 'serif';
 }
 
-.searchengine .corpus li .encart .auteur{
+.searchengine .corpus li .encart .auteur,
+.searchengine .recherche-simple li .encart .auteur{
 	font: italic normal normal 14px/12px 'EB Garamond', 'serif';
 	color: #666;
 }

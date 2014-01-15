@@ -2,17 +2,55 @@
 {% block bodyClass %}searchengine home{% endblock %}
 
 {% load i18n %}
+{% load searchengine_filters %}
 
 {% block content %}
-    <h2>Corpus proposé(s) pour la recherche : <span class="search-word">{{searchWord}}</span></h2>
-    <div class="corpus">
-        <h3>Proposition 1</h3>
+        <form action="/search" method="get" id="result-page-form-search">
+            <h2>Expression recherchée : 
+                <input type="search" value="{{searchWord}}" name="the_search">
+            </h2>
+            
+            <input type="submit" value="Recherche">
+            
+            {{searchModalite}}
+            
+            <div id="modalite-recherche">
+                <span id="titre">Modalité de la recherche :</span> 
+                    <input type="radio" name="modalite-recherche" value="Corpus" {% if searchModalite == "Corpus" %}checked{% endif %}>Par Corpus
+                    <input type="radio" name="modalite-recherche" value="Simple" {% if searchModalite == "Simple" %}checked{% endif %}> Simple
+            </div>
+        </form>
+    
+    {% if searchModalite == "Corpus" %}
+        <div class="corpus">
+            <h3>Corpus 1</h3>
+                <ul>
+                    {% for w in work %}
+                    <li class="work-container">
+                        <div class="img-container">
+                            <a href="/{{ w.user.username }}/work/{{ w.id}}/">
+                                <img src="/static/{{w.image}}" class="width-ratio-{{w.image.width|ratioWidth:w.image.height}}">
+                            </a>
+                        </div>
+                        <div class="encart">
+                            <h4><a href="/{{ w.user.username }}/work/{{ w.id}}/">{{w.name}}</a></h4>
+                            <div class="auteur">by <a href="/{{ w.user.username }}">{{w.user}}</a></div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+        </div>
+    {% endif %}
+    
+    {% if searchModalite == "Simple" %}
+        <div class="recherche-simple">
             <ul>
                 {% for w in work %}
+                
                 <li class="work-container">
                     <div class="img-container">
                         <a href="/{{ w.user.username }}/work/{{ w.id}}/">
-                            <img src="/static/{{w.image}}">
+                            <img src="/static/{{w.image}}" class="width-ratio-{{w.image.width|ratioWidth:w.image.height}}">
                         </a>
                     </div>
                     <div class="encart">
@@ -22,5 +60,6 @@
                 </li>
                 {% endfor %}
             </ul>
-    </div>
+        </div>
+    {% endif %}
 {% endblock content %}
