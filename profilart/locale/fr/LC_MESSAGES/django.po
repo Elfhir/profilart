@@ -35,7 +35,7 @@ msgid "blog_home_creerSite"
 msgstr "Créez votre site sur mesure"
 
 msgid "blog_home_creerSiteTxt"
-msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non augue iaculis, scelerisque libero vel, cursus quam. Curabitur sit amet viverra arcu. Quisque dapibus egestas nunc ac mollis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non augue iaculis, scelerisque libero vel, cursus quam. Curabitur sit amet viverra arcu. Quisque dapibus egestas nunc ac mollis."
+msgstr "Créer un espace web facilement et rapidement à l’aide de notre outil Profil Art. Restez connecté avec le réseau de l’Art. Choisissez un template de départ et modifiez les pages à votre image. Nous vous offrons gratuitement le dernier cri du web. Consultez et modifiez en toute simplicité votre site n’importe où et quand vous voulez sur ordinateur, smartphone et tablette."
 
 msgid "blog_home_choisirTemplate"
 msgstr "Choisissez votre template de départ :"
@@ -45,6 +45,9 @@ msgstr "Voir tous les templates"
 
 msgid "blog_home_moteurInnovant"
 msgstr "Un moteur de recherche innovant"
+
+msgid "blog_home_searchTxt"
+msgstr "En panne d’inspiration ? Une exposition à réaliser ? Nous innovons en proposant un moteur de recherche par corpus multi-média. Nous croyons à la multi-disciplinarité des artistes et notre moteur de recherche réunit des oeuvres comme vidéo, peinture, photographie, sculpture, installation etc. "
 
 msgid "blog_home_effectuerRecherche"
 msgstr "Effectuer une recherche sémantique :"

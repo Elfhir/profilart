@@ -35,7 +35,7 @@ msgid "blog_home_creerSite"
 msgstr "Create your customized website"
 
 msgid "blog_home_creerSiteTxt"
-msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non augue iaculis, scelerisque libero vel, cursus quam. Curabitur sit amet viverra arcu. Quisque dapibus egestas nunc ac mollis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non augue iaculis, scelerisque libero vel, cursus quam. Curabitur sit amet viverra arcu. Quisque dapibus egestas nunc ac mollis."
+msgstr ""
 
 
 msgid "blog_home_choisirTemplate"
@@ -46,6 +46,10 @@ msgstr "See all templates"
 
 msgid "blog_home_moteurInnovant"
 msgstr "An innovative search engine"
+
+msgid "blog_home_searchTxt"
+msgstr ""
+
 
 msgid "blog_home_effectuerRecherche"
 msgstr "Perform a semantic search:"
