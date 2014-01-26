@@ -67,7 +67,14 @@ footer .wrapper-content{
     float:left;
 }
 .clear{
-	clear: both;
+    clear: both;
+}
+.work-view a{
+    color: #21747a;
+    text-decoration: none;
+}
+.work-view a:hover{
+    text-decoration: underline;
 }
 /****************************
  * Form
@@ -136,7 +143,6 @@ select{
 }
 .form-information{
     color: red;
-    font-style: italiccolor: red;
     font-style: italic;
     font-size: 0.8em;
     margin-bottom: 5px;
@@ -191,6 +197,13 @@ select{
     padding: 15px;
     width: 77%;
     margin: 0 auto;
+    margin-bottom: 30px;
+}
+.work-view .work-view-picture{
+    margin: 10px 0;
+}
+.work-view .topic-text{
+    margin-bottom: 10px;
 }
 .work-view-picture img{
     width: 100%;
@@ -415,6 +428,21 @@ select{
 	border-radius: 3px;
 }
 
+.white-btn{
+	display: inline-block;
+	background: white;
+	width: 170px;
+	height: 40px;
+	margin-top: 30px;
+	font: normal normal normal 16px/40px 'PT Sans', 'sans-serif';
+	color: #666;
+	text-decoration: none;
+	text-align: center;
+	border: 1px solid #aaa;
+}
+.wrapper-btn-right{
+    float: right;
+}
 .blog.home #interview_une{
     margin-top: -20px;
     z-index: -1;

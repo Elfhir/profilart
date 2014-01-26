@@ -1,11 +1,11 @@
 <!doctype html>
 {% include "buildengine/templates/template1/frontoffice/header.html" %}
 <body style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }}; color: {{ prefWebsite.font_color }}">
-    {% if user.is_authenticated and user.username in request.path %}
+    {% if request.user.is_authenticated and request.user.username in request.path %}
         {% if "/build" in request.path %}
         {% else %}
             <div class="manager-template-full-mode">
-                <p><a href="/{{ username }}/build">Switch to edit mode</a></p>
+                <p><a href="/{{ user.username }}/build">Switch to edit mode</a></p>
             </div>
         {% endif %}
     {% endif %}
@@ -24,14 +24,22 @@
         <div class="clear"></div>
         <section>
             <div class="wrapper-content-cartel">
-                <p class="wrapper-title-topic"><em><strong>{{ workTopic.name }}</strong> - {{ work.date_created|date:"Y" }} /
+                <p class="wrapper-title-topic"><em><strong>{{ workTopic.name }}</strong>  {{ work.date_created|date:"Y" }} /
                 <span class="title-topic">{{ work.name }}</span></em></p>
                 <p class="localisation-work"><em>{{ work.current_local }}</em></p>
                 <p class="cartel-image"><img src="/static/{{ work.image }}"/></p>
                 <p class="topic-text text-line-description"><em>{{ work.text }}</em></p>
                 <section class="info-complement">
-                    <p><u>Size</u> : {{ work.width }} x {{ work.height }}</p>
-                    <p><u>Material</u> : {{ work.material }}</p>
+                    {% if work.width != null and work.height != null %}
+                        <p><u>Size</u> : {{ work.width }} x {{ work.height }}</p>
+                    {% else %}
+                        <p><u>Size</u> : Not specified</p>
+                    {% endif %}
+                    {% if work.material|length > 0 %}
+                        <p><u>Material</u> : {{ work.material }}</p>
+                    {% else %}
+                        <p><u>Material</u> : Not specified</p>
+                    {% endif %}
                 </section>
             </div>
         </section>

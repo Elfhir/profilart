@@ -2,16 +2,50 @@
 
 {% block content %}
     <article class="work-view">
+        <p class="wrapper-title-topic">
+            <em>
+                <a href="/{{ user.username }}/carteltopic/{{ workTopic.id }}"><strong>{{ workTopic.name }}</strong></a>
+                {% if work.date_created != null %}
+                    - {{ work.date_created|date:"Y" }} 
+                {% endif %}
+                / <span class="title-topic">{{ work.name }}</span>
+            </em>
+        </p>
+        <p class="sub-artist-work">Oeuvre de <a href="/{{ user.username }}">{{ user.username }}</a>
+            {% if work.current_local|length > 0 %}
+                / <em>{{ work.current_local }}</em>
+            {% endif %}
+        </p>
         <div class="work-view-picture">
             <img src="/static/{{ work.image}}"/>
         </div>
-        Name : <br/>
-        <p class="work-view-name">
-            {{ work.name }}
-        </p>
-        Description : <br/>
-        <p class="work-view-description">
-            {{ work.text }}
-        </p>
+        <p class="topic-text text-line-description"><em>{{ work.text }}</em></p>
+        <section class="info-complement">
+            {% if work.width != null and work.height != null %}
+                <p><u>Size</u> : {{ work.width }} x {{ work.height }}</p>
+            {% else %}
+                <p><u>Size</u> : Not specified</p>
+            {% endif %}
+            {% if work.material|length > 0 %}
+                <p><u>Material</u> : {{ work.material }}</p>
+            {% else %}
+                <p><u>Material</u> : Not specified</p>
+            {% endif %}
+        </section>
+        <div class="wrapper-btn-right">
+            <a class="addfollow white-btn" href="" username="{{ user.username }}" iduser="{{ user.id }}"
+                   requestiduser="{{ request.user.id }}">Follow this artist</a>
+            <a href="/{{ user.username }}" class="white-btn">Website</a>
+        </div>
+        <div class="clear"></div>
     </article>
+    <div class="modal" id="modalfollowsuccess" style="display:none;">
+        Vous suivez maintenant cet artiste.
+    </div>
+    <div class="modal" id="modalfollowerror" style="display:none;">
+        Vous suivez deja cet artiste.
+    </div>
+    <div class="modal" id="modalfollowanonymous" style="display:none;">
+        Connectez-vous pour suivre vos artistes favoris.
+    </div>
 {% endblock content %}

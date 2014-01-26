@@ -1,17 +1,17 @@
 {% load i18n %}
-{% if user.is_authenticated %}
+{% if request.user.is_authenticated %}
     {% for group in user.groups.all %}
 	{% if group.name == 'Artist' %}
 	<ul>
 	    <li><a href="{% url 'authentification.views.logOut' %}">{% trans "LogOut" %}</a></li>
-	    <li><a href="/{{ user.username }}/build">{% trans "EditWebsite" %}</a></li>
+	    <li><a href="/{{ request.user.username }}/build">{% trans "EditWebsite" %}</a></li>
 	    <li><a href="{% url 'blog.views.archives' %}">{% trans "AccessArchives" %}</a></li>
 	</ul>
 	{% endif %}
     	{% if group.name == 'Curator' %}
 	<ul>
 	    <li><a href="{% url 'authentification.views.logOut' %}">{% trans "LogOut" %}</a></li>
-	    <li><a href="/{{ user.username }}/build">Editer ma page</a></li>
+	    <li><a href="/{{ request.user.user.username }}/build">Editer ma page</a></li>
 	    <li><a href="{% url 'blog.views.archives' %}">{% trans "AccessArchives" %}</a></li>
 	</ul>
 	{% endif %}

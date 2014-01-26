@@ -20,9 +20,11 @@ import os
 #    if kwargs['created'] == True:
 #        print "OK TRUE"
 
-def home(request, username, idWork):
+def home(request, idWork, username=None):
     work = Work.objects.get(id=idWork)
-    return render(request, 'buildengine/work.html', {'work' : work})
+    workTopic = WorkTopic.objects.get(id=work.work_topic_id)
+    user = User.objects.get(id=work.user_id)
+    return render(request, 'buildengine/work.html', {'work' : work, 'workTopic' : workTopic, 'user' : user, 'username' : username})
 
 def addWork(request, idTopic, username):
     if userBackOfficePermission(request, username):
@@ -253,7 +255,7 @@ def displayCartelTopic(request, username, idTopic):
     name = user.last_name
     return render(request, 'buildengine/templates/template1/frontoffice/carteltopic.html', {'username' : username, 'prefWebsite' : prefWebsite,
                                                            'firstname' : firstname, 'name' : name, 'topic': workTopic, 'works' : works,
-                                                           'workType' : set(workTopicType)})
+                                                           'workType' : set(workTopicType), 'user': user})
 
 def displayCartelWork(request, username, idWork):
     user = User.objects.get(username=username)
@@ -265,6 +267,6 @@ def displayCartelWork(request, username, idWork):
     name = user.last_name
     return render(request, 'buildengine/templates/template1/frontoffice/cartel.html', {'username' : username, 'prefWebsite' : prefWebsite,
                                                            'firstname' : firstname, 'name' : name, 'work' : work, 'workTopic' : workTopic,
-                                                           'workType' : set(workTopicType)})
+                                                           'workType' : set(workTopicType), 'user': user})
 
 
