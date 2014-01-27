@@ -21,4 +21,5 @@ urlpatterns = patterns('',
     url(r'^/build/managework/$', 'work.views.manageWork'),
     url(r'^/build/deletework/(?P<idWork>\w+)/$', 'work.views.deleteWork'),
     url(r'^/build/editaccount', 'authentification.views.editAccount'),
+    url(r'^/build/editanonymity', 'authentification.views.editAnonymity'),
 )

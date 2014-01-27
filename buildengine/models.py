@@ -21,6 +21,7 @@ class Biography(models.Model):
 class PrefWebsite(models.Model):
     user = models.ForeignKey(User)
     id_template = models.PositiveIntegerField(default=1)
+    anonymity = models.PositiveIntegerField(default=0)
     color = models.CharField(max_length=10)
     font_family = models.CharField(max_length=50)
     font_color = models.CharField(max_length=10)

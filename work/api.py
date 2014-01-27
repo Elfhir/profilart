@@ -13,7 +13,7 @@ from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 class UserResource(ModelResource):
     class Meta:
         queryset = User.objects.all()
-        resource_name = 'auth/user'
+        resource_name = 'user'
         excludes = ['email', 'password', 'is_superuser', 'date_joined', 'is_staff', 'is_active', 'last_login', 'resource_uri']
 
 class WorkResource(ModelResource):
@@ -21,7 +21,7 @@ class WorkResource(ModelResource):
     class Meta:
         limit = 3
         max_limit = 3
-        queryset = Work.objects.all()
+        queryset = Work.objects.filter(user_id__groups__name="Artist")
         list_allowed_methods = ['get', 'post']
         detail_allowed_methods = ['get', 'post']
         resource_name = 'work'

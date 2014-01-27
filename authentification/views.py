@@ -76,7 +76,10 @@ def registerUser(request):
 
 def editAccount(request, username):
     if userBackOfficePermission(request, username):
+        user = User.objects.get(username=username)
+        prefWebsite = PrefWebsite.objects.get(user_id=user.id)
         editAccountForm = EditAccountForm();
+        editAnonymityForm = EditAnonymityForm(initial={'anonymity' : prefWebsite.anonymity});
         if request.method == 'POST':
             form = EditAccountForm(request.POST)
             if form.is_valid():
@@ -84,11 +87,27 @@ def editAccount(request, username):
                 requestConfirmPassword = request.POST['confirmPassword']
                 requestEmail = request.POST['email']
                 formState = "Error password"
-                if requestPassword == requestConfirmPassword:
-                    user = User.objects.get(username=username)
+                if requestPassword == requestConfirmPassword: 
                     user.set_password(form.cleaned_data['password'])
                     user.email = requestEmail
                     user.save()
+                    return HttpResponseRedirect("/"+username+"/build")
+            return render(request, 'form/editaccount.html', {'form' : form, 'form_anonymity' : editAnonymityForm, 'formState' : formState})
+        return render(request, 'form/editaccount.html', {'form' : editAccountForm, 'form_anonymity' : editAnonymityForm})
+    return HttpResponseRedirect("/")
+
+def editAnonymity(request, username):
+    if userBackOfficePermission(request, username):
+        editAccountForm = EditAccountForm();
+        editAnonymityForm = EditAnonymityForm();
+        if request.method == 'POST':
+            form = EditAnonymityForm(request.POST)
+            if form.is_valid():
+                    requestAnonymity = request.POST['anonymity']
+                    user = User.objects.get(username=username)
+                    prefWebsite = PrefWebsite.objects.get(user_id=user.id)
+                    prefWebsite.anonymity = requestAnonymity
+                    prefWebsite.save()
                     return HttpResponseRedirect("/"+username+"/build")
             return render(request, 'form/editaccount.html', {'form' : form, 'formState' : formState})
         return render(request, 'form/editaccount.html', {'form' : editAccountForm})
