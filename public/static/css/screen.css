@@ -37,6 +37,7 @@ footer .wrapper-content{
 }
 .wrapper-content .main-content{
     margin: 20px auto 0 auto;
+    min-height: 700px;
 }
 .wrapper-manage-work{
     margin-bottom: 20px;
@@ -69,11 +70,11 @@ footer .wrapper-content{
 .clear{
     clear: both;
 }
-.work-view a{
+a{
     color: #21747a;
     text-decoration: none;
 }
-.work-view a:hover{
+a:hover{
     text-decoration: underline;
 }
 /****************************
@@ -403,6 +404,36 @@ select{
     opacity: 1;
     transition-duration: 0.6s;
     transition-property: all;
+}
+/****************************
+ * Notification
+ ***************************/
+.wrapper-manage-following{
+    width: 50%;
+    float: left;
+    padding-right: 25px;
+}
+.wrapper-manage-following div{
+    margin-bottom: 30px;
+}
+.wrapper-notification{
+    width: 45%;
+    float: right;
+}
+.wrapper-notification div{
+    margin-bottom: 30px;
+}
+.wrapper-notification small{
+    font-size: 0.9em;
+    font-style: italic;
+    color: gray;
+}
+.wrapper-notification p{
+    padding: 8px;
+    background-color: #DDD;
+}
+.wrapper-notification p:nth-child(2n){
+    background-color: #EEE;
 }
 /****************************
  * BLOG APP

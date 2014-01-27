@@ -5,8 +5,9 @@ from authentification.form import *
 from buildengine.models import *
 from statistics.models import *
 from work.models import *
+from exhibition.models import *
 from buildengine.views import userBackOfficePermission
-import os
+import os        
 
 def display(request, username):
     if userBackOfficePermission(request, username):
@@ -14,6 +15,7 @@ def display(request, username):
         userFollowers = []
         userFollowing = []
         userLastWorks = []
+        userLastExhibitions = []
         following = FriendSocial.objects.filter(user1_id = user.id)
         followers = FriendSocial.objects.filter(user2_id = user.id)
         for f in followers:
@@ -23,12 +25,20 @@ def display(request, username):
             query = User.objects.get(id = f.user2_id)
             userFollowing.append(query)
         for f in userFollowing:
-            query = Work.objects.order_by('date_pub').filter(user_id = f.id)[:5]
-            userLastWorks.append(query)
+            query = Work.objects.filter(user_id = f.id)[:10]
+            for w in query:
+                userLastWorks.append(w)
+        for f in userFollowing:
+            query = Exhibition.objects.filter(user_id = f.id)[:10]
+            for e in query:
+                userLastExhibitions.append(e)
         firstname = user.first_name
         name = user.last_name
+        userLastWorks = sorted(userLastWorks, key=lambda obj: obj.date_pub, reverse=True)
+        userLastExhibitions = sorted(userLastExhibitions, key=lambda obj: obj.date_pub, reverse=True)
         return render(request, 'buildengine/statistics.html', {'user': user, 'firstname' : firstname, 'name' : name,
-                                                               'userFollowers': userFollowers, 'userFollowing': userFollowing})
+                                                               'userFollowers': userFollowers, 'userFollowing': userFollowing,
+                                                               'userLastWorks' : userLastWorks, 'userLastExhibitions' : userLastExhibitions})
     return HttpResponseRedirect("/")
 
 def addFollow(request, username):
