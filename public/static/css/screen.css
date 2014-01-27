@@ -187,7 +187,42 @@ select{
 }
 .form-editwebsite .wrapper-font{
     width: 68%;
+}
+.form-editwebsite-allform .wrapper-font-color{
     float: left;
+    margin-right: 40px;
+}
+.form-editwebsite-allform .wrapper-font{
+    width: auto;
+}
+.form-editwebsite-allform #id_font_color, .form-editwebsite-allform #id_color{
+    display: none;
+}
+.form-editwebsite-allform #colorpicker, .form-editwebsite-allform #colorpicker2{
+    -webkit-transform: scale(0.6);
+    margin-top: -40px;
+    margin-left: -44px;
+}
+.slide-home{
+    margin-top: -168px;
+    position: relative;
+    z-index: 0;
+    background-color: #FFF;
+    border-bottom: 1px solid #CCC;
+    padding-top: 15px;
+    box-shadow: 0px 1px 4px #DDD;
+}
+.menu-backoffice, .header-website{
+    position: relative;
+    z-index: 1;
+}
+.btn-slider-home{
+    position: relative;
+    top: 56px;
+    left: 70px;
+}
+.btn-slider-home img:hover{
+    cursor: pointer;
 }
 /****************************
  * Works
@@ -244,7 +279,6 @@ select{
  * Header
  ***************************/
 .header-website{
-    z-index: 1000;
     color: white;
     background-color: #a5a5a4;
     height: 40px;

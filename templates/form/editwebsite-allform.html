@@ -1,0 +1,41 @@
+<div class="slide-home">
+    <div class="wrapper-content">
+	<form action="/{{ request.user.username }}/build/editwebsite/" method="post" class="form-editwebsite form-editwebsite-allform">
+	    <div class="wrapper-font-color">
+		<label for="id_color">Color:</label>
+		<input id="id_color" name="color" type="text" value="{{ colorDefault }}" style="background-color: rgb(154, 101, 101); color: rgb(255, 255, 255);">
+		<div id="colorpicker">
+		    <div class="farbtastic">
+			<div class="color" style="background-color: rgb(255, 0, 0);"></div>
+			<div class="wheel"></div>
+			<div class="overlay"></div>
+			<div class="h-marker marker" style="left: 97px; top: 13px;"></div>
+			<div class="sl-marker marker" style="left: 126px; top: 97px;"></div>
+		    </div>
+		</div>
+	    </div>
+	    <div class="wrapper-font-color">
+		<label for="id_font_color">Font color:</label>
+		<input id="id_font_color" name="font_color" type="text" value="{{ fontColorDefault }}">
+		<div id="colorpicker2">
+		    <div class="farbtastic">
+			<div class="color" style="background-color: rgb(255, 0, 0);"></div>
+			<div class="wheel"></div><div class="overlay"></div>
+			<div class="h-marker marker" style="left: 97px; top: 13px;"></div>
+			<div class="sl-marker marker" style="left: 147px; top: 147px;"></div>
+		    </div>
+		</div>
+	    </div>
+	    <p class="wrapper-font">
+	    <p style="display:none" class="select-fontstyle">{{ fontStyleDefault }}</p>
+	    <label for="id_font">Font:</label>
+	    <select id="id_font" name="font">
+		<option value="Arial">Arial</option>
+		<option value="Frutiger">Frutiger</option>
+	    </select>   
+	    <p><input type="submit" value="Submit"></p>
+	    <p class="btn-slider-home"><img src="/static/img/icons/slide-home.png"/></p>
+	    <div class="clear"></div>
+	</form>
+    </div>
+</div>

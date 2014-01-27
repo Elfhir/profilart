@@ -48,9 +48,12 @@ def backOffice(request, username):
         user = User.objects.get(username=username)
         if user.groups.filter(name='Artist'):
             #If the user and the url are the same
-            if sessionUserString == usernameString :
+            if sessionUserString == usernameString :    
                 user = User.objects.get(username=username)
                 prefWebsite = PrefWebsite.objects.get(user_id=request.user.id)
+                colorDefault = prefWebsite.color
+                fontColorDefault = prefWebsite.font_color
+                fontStyleDefault = prefWebsite.font_family
                 workType = WorkType.objects.all()
                 works = Work.objects.all()
                 firstname = user.first_name
@@ -68,7 +71,8 @@ def backOffice(request, username):
                                                                   'prefWebsite' : prefWebsite, 'firstname' : firstname, 'name' : name,
                                                                   'pathTemplate' : pathTemplate, 'lastWorks' : lastWorks,
                                                                   'biography': biography, 'exhibitions': lastExhibitions,
-                                                                  'prefWebsiteSlider': prefWebsiteSlider, 'formSlider': formSlider, 'focusWorks': focusWorks})
+                                                                  'prefWebsiteSlider': prefWebsiteSlider, 'formSlider': formSlider, 'focusWorks': focusWorks,
+                                                                  'colorDefault': colorDefault, 'fontColorDefault': fontColorDefault, 'fontStyleDefault': fontStyleDefault})
         if user.groups.filter(name='Curator'):
             bio = Biography.objects.get(user_id=user.id)
             formBio = BioForm(initial={'text' : bio.text})
