@@ -29,6 +29,7 @@ class PrefWebsite(models.Model):
     isvisible_homebio = models.BooleanField()
     isvisible_homeexhibition = models.BooleanField()
     color = models.CharField(max_length=10)
+    image = models.ImageField(upload_to="user_media/background/")
     
     def __unicode__(self):
         return "%s" % (self.user)

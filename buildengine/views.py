@@ -90,7 +90,7 @@ def editWebsite(request, username):
     fontStyleDefault = prefWebsite.font_family
     editWebsiteForm = EditWebsiteForm(initial={'color' : colorDefault, 'font' : fontStyleDefault, 'font_color' : fontColorDefault});
     if request.method == 'POST':
-        form = EditWebsiteForm(request.POST)
+        form = EditWebsiteForm(request.POST, request.FILES)
         if form.is_valid():
             requestColor = request.POST['color']
             requestFont = request.POST['font']
@@ -99,10 +99,21 @@ def editWebsite(request, username):
             prefWebsite.color = requestColor
             prefWebsite.font_family = requestFont
             prefWebsite.font_color = requestFontColor
+            if not "background" in request.POST:
+                requestBackground = request.FILES['background']
+                prefWebsite.image = requestBackground
             prefWebsite.save()
             return HttpResponseRedirect("/"+username+"/build")
     return render(request, 'form/editwebsite.html', {'form': editWebsiteForm})
 
+def deleteBackground(request, username):
+    if userBackOfficePermission(request, username):
+        user = User.objects.get(username=username)
+        prefWebsite = PrefWebsite.objects.get(user_id=request.user.id)
+        prefWebsite.image = None
+        prefWebsite.save()
+        return HttpResponseRedirect("/"+username+"/build")
+    return HttpResponseRedirect("/")
 def editBio(request, username):
     if userBackOfficePermission(request, username):
         user = User.objects.get(username=username)

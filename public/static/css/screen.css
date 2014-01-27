@@ -194,6 +194,8 @@ select{
 }
 .form-editwebsite-allform .wrapper-font{
     width: auto;
+    float: left;
+    margin-right: 35px;
 }
 .form-editwebsite-allform #id_font_color, .form-editwebsite-allform #id_color{
     display: none;
@@ -218,7 +220,7 @@ select{
 }
 .btn-slider-home{
     position: relative;
-    top: 56px;
+    top: 34px;
     left: 70px;
 }
 .btn-slider-home img:hover{
@@ -421,6 +423,7 @@ select{
     background-color: white;
     width: 200px;
     opacity: 0.6;
+    position: absolute;
 }
 .manager-template-full-mode p{
     text-align: center;

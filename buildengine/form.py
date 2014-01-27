@@ -36,6 +36,7 @@ class EditWebsiteForm(forms.Form):
     color = forms.CharField()
     font_color =  forms.CharField()
     font =  forms.ChoiceField(choices=FONTS, widget=forms.Select())
+    background = forms.FileField(required=False)
     
 class SliderForm(forms.Form):
     mode = forms.ChoiceField(choices=MODE, widget=forms.Select())

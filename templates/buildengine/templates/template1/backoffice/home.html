@@ -1,3 +1,5 @@
+{% load color_extras %}
+
 <!doctype html>
 <head>
     <meta charset="UTF-8">
@@ -70,7 +72,7 @@
                 trackValues: true,
                 callback: function(e) {
                         newBackgroundColor = e.newValue.slice(0,35);
-                        $("body, .general-template").attr("style", newBackgroundColor);
+                        $("body, .change-background").attr("style", newBackgroundColor);
                 }
             });
             $("#id_font_color").attrchange({
@@ -107,8 +109,14 @@
             </div>
         {% endif %}
     {% endif %}
-    <div class="template1 general-template" style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }};
-    color: {{ prefWebsite.font_color }}">
+    {% if prefWebsite.image == "" %}
+        <div class="template1 general-template change-background" style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }};
+        color: {{ prefWebsite.font_color }}; background-image : url('/static/{{ prefWebsite.image }}'); background-attachment:fixed;">
+    {% else %}
+            <div class="template1 general-template" style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }};
+        color: {{ prefWebsite.font_color }}; background-image : url('/static/{{ prefWebsite.image }}'); background-attachment:fixed;">
+            <div class="wrapper-content background-image-website change-background" style="background-color:{% get_rgba_from_hex prefWebsite.color 0.93 %};">
+    {% endif %}
         <article role="header" >
             <div class="wrapper-content">
                 <div class="wrapper-title">
@@ -239,5 +247,6 @@
                 <p>Powered by Profil Art - Create my Website - Suivre cet artiste</p>
             </div>
         </section>
+    </div>
     </div>
 </body>

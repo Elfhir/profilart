@@ -1,6 +1,9 @@
+{% load color_extras %}
+
 <!doctype html>
 {% include "buildengine/templates/template1/frontoffice/header.html" %}
-<body style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }}; color: {{ prefWebsite.font_color }}">
+<body style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }}; color: {{ prefWebsite.font_color }};
+background-image : url('/static/{{ prefWebsite.image }}'); background-attachment:fixed;">
     {% if request.user.is_authenticated and request.user.username in request.path %}
         {% if "/build" in request.path %}
         {% else %}
@@ -10,6 +13,9 @@
         {% endif %}
     {% endif %}
     <div class="template1">
+        {% if prefWebsite.image != "" %}
+            <div class="wrapper-content background-image-website" style="background-color:{% get_rgba_from_hex prefWebsite.color 0.93 %};">
+        {% endif %}
         <article role="header" >
             <div class="wrapper-content">
                 <div class="wrapper-title">
