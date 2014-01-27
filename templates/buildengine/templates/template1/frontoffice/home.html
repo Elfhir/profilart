@@ -88,7 +88,7 @@
             {% if prefWebsite.isvisible_homeexhibition == True %}
                 <article class="wrapper-home-exhibition">
                     <div {% if prefWebsite.isvisible_homebio == True %}class="wrapper-home-content-alignright" {% endif %}>
-                        <h2>Last exhibitions</h2>
+                        <h2 style="color:{{ prefWebsite.font_color }}">Last exhibitions</h2>
                         {% for exhibition in exhibitions %}
                             <div class="object-exhibition">
                                 <p class="title-exhibition"><strong>{{ exhibition.nameGallery }}</strong></p>
