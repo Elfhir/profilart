@@ -6,6 +6,7 @@ class Exhibition(models.Model):
     mapLongitude =  models.FloatField (max_length=20)
     mapLatitude =  models.FloatField (max_length=20)
     adress =   models.CharField(max_length=100)
+    city =   models.CharField(max_length=100)
     zipcode = models.PositiveIntegerField()
     country =  models.CharField(max_length=20)
     user = models.ForeignKey(User)

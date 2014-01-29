@@ -37,28 +37,31 @@ def editExhibition(request, username, idExhibition):
         exhibition = Exhibition.objects.get(id=idExhibition)
         exhibitions = Exhibition.objects.filter(user_id=user.id)
         form = ExhibitionForm(initial={'nameGallery':exhibition.nameGallery, 'mapLongitude':exhibition.mapLongitude, 'mapLatitude':exhibition.mapLatitude,
-                                       'adress':exhibition.adress, 'zipcode':exhibition.zipcode, 'country':exhibition.country, 'text':exhibition.text,
+                                       'adress':exhibition.adress, 'city':exhibition.city, 'zipcode':exhibition.zipcode, 'country':exhibition.country, 'text':exhibition.text,
                                        'date_begin':str(exhibition.date_begin)[0:10], 'date_end':str(exhibition.date_end)[0:10]})
         if request.method == 'POST':
             form = ExhibitionForm(request.POST)
             if form.is_valid():
                 exhibition.mapLongitude = request.POST["mapLongitude"]
                 exhibition.mapLatitude = request.POST["mapLatitude"]
-                exhibition.adress = request.POST["adress"]
-                print request.POST
+                exhibition.adress = request.POST["adress"].encode('utf-8')
+                exhibition.city = request.POST["city"].encode('utf-8')
+                exhibition.zipcode = request.POST["zipcode"]
+                exhibition.country = request.POST["country"].encode('utf-8')
                 if request.POST["mapLongitude"] == "" or request.POST["mapLongitude"] == "0.0":
                     exhibition.mapLongitude = 0
                 if request.POST["mapLatitude"] == "" or request.POST["mapLatitude"] == "0.0":
                     exhibition.mapLatitude = 0
-                URL = 'http://maps.googleapis.com/maps/api/geocode/json?address='+exhibition.adress+'&sensor=false'
+                URLAddress = str(exhibition.adress).replace(" ", "_")+"_"+str(exhibition.city).replace(" ", "_")+"_"+str(exhibition.country).replace(" ", "_")
+                URL = 'http://maps.googleapis.com/maps/api/geocode/json?address='+URLAddress+'&sensor=false'
                 response = urllib2.urlopen(URL)
                 data = json.load(response)
+                print URL
+                print data
                 exhibition.mapLatitude = data["results"][0]["geometry"]["location"]["lat"]
                 exhibition.mapLongitude = data["results"][0]["geometry"]["location"]["lng"]
                 exhibition.nameGallery = request.POST["nameGallery"]
-                exhibition.zipcode = request.POST["zipcode"]
-                exhibition.country = request.POST["country"]
-                exhibition.text = request.POST["text"]
+                exhibition.text = request.POST["text"].encode('utf-8')
                 exhibition.date_begin = request.POST["date_begin"]
                 exhibition.date_end = request.POST["date_end"]
                 exhibition.save()

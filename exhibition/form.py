@@ -11,6 +11,7 @@ class ExhibitionForm(forms.Form):
        mapLongitude =  forms.FloatField(required=False, widget=forms.HiddenInput())
        mapLatitude =  forms.FloatField(required=False, widget=forms.HiddenInput())
        adress =  forms.CharField()
+       city =  forms.CharField()
        zipcode = forms.IntegerField()
        country = forms.CharField()
        text = forms.CharField(widget=forms.Textarea)
@@ -18,7 +19,8 @@ class ExhibitionForm(forms.Form):
        date_end = forms.DateField(widget=forms.TextInput(attrs={'id':'datepicker2'}))
        
        def save(self, request):
-              URL = 'http://maps.googleapis.com/maps/api/geocode/json?address='+request.POST['adress']+'&sensor=false'
+              URLAddress = str(request.POST['adress']).replace(" ", "_")+"_"+str(request.POST['city']).replace(" ", "_")+"_"+str(request.POST['country']).replace(" ", "_")
+              URL = 'http://maps.googleapis.com/maps/api/geocode/json?address='+URLAddress+'&sensor=false'
               response = urllib2.urlopen(URL)
               data = json.load(response)
               mapLatitude = data["results"][0]["geometry"]["location"]["lat"]
@@ -28,6 +30,7 @@ class ExhibitionForm(forms.Form):
                             mapLongitude=mapLongitude,
                             mapLatitude=mapLatitude,
                             adress=request.POST['adress'],
+                            city = request.POST['city'],
                             content_type=ContentType.objects.get(model="exhibition"),
                             text=request.POST['text'],
                             zipcode=request.POST['zipcode'],

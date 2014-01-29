@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from tastypie.resources import ModelResource
 from exhibition.models import Exhibition
 from work.models import Work
