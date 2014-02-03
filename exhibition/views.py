@@ -1,13 +1,16 @@
 from django.shortcuts import render_to_response, HttpResponseRedirect, render
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.models import Group, User
+from django.contrib.sessions.models import Session
 from authentification.form import *
 from buildengine.models import *
 from exhibition.form import *
 from work.models import *
+from django.http import HttpResponse
 from buildengine.views import userBackOfficePermission
 import json
 import urllib2
+from django.utils.importlib import import_module
 
 def manageExhibitions(request, username):
     if userBackOfficePermission(request, username):
@@ -16,6 +19,36 @@ def manageExhibitions(request, username):
         return render(request, 'buildengine/manageexhibition.html', {'firstname' : user.first_name, 'name' : user.last_name,
                                                                      'exhibitions' : exhibitions})
     return HttpResponseRedirect("/")
+
+def addExRate(request, session, username, IDExhibition, rate):
+    if(request.session.exists(session)):
+        s = Session.objects.get(session_key=session)
+        uid =  s.get_decoded().get('_auth_user_id')
+        user = User.objects.get(id=uid)
+        if user is not None:
+            if user.is_active:
+                exhibition = Exhibition.objects.get(id=IDExhibition)
+                exhibition.rate = rate
+                exhibition.save()
+                return HttpResponse("true", content_type="text/plain")
+    return HttpResponse("false", content_type="text/plain")
+
+def addExComment(request, session, username, IDExhibition, comment, rate):
+    if(request.session.exists(session)):
+        s = Session.objects.get(session_key=session)
+        uid =  s.get_decoded().get('_auth_user_id')
+        user = User.objects.get(id=uid)
+        contentType = ContentType.objects.get(model="exhibitioncomment")
+        if user.username == username:
+            if user is not None:
+                if user.is_active:
+                    exhibition = Exhibition.objects.get(id=IDExhibition)
+                    rate = ExhibitionRate.objects.create(user = user, rate = rate, exhibition = exhibition)
+                    rate.save()
+                    exhibitionComment = ExhibitionComment.objects.create(user = user, exhibition = exhibition, content_type = contentType, text=comment)
+                    exhibitionComment.save()
+                    return HttpResponse("true", content_type="text/plain")
+    return HttpResponse("false", content_type="text/plain")
 
 def addExhibition(request, username):
     if userBackOfficePermission(request, username):

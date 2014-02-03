@@ -22,9 +22,8 @@ DATABASES = {
         'NAME': 'corentinmarc_profilart',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '80777',
-        'PASSWORD': 'hSie7yey',
-        'HOST': 'mysql.alwaysdata.com',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-										 # /Applications/MAMP/tmp/mysql/mysql.sock
+	'PASSWORD': 'hSie7yey',
+	'HOST': 'mysql.alwaysdata.com', 
         'PORT': '',                      # Set to empty string for default.
     }
 }

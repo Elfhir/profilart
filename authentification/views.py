@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.models import Group, User
 from authentification.form import *
 from buildengine.models import *
+from django.http import HttpResponse
 from buildengine.views import userBackOfficePermission
 import os
                     
@@ -11,6 +12,21 @@ def authentification(request):
     registerForm = RegisterForm();
     return render_to_response('form/authentification.html', {'logInForm' : logInForm, 'registerForm' : registerForm})
 
+def authEx(request, username, mdp):
+    user = authenticate(username=username, password=mdp)
+    #If the user exists
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            return HttpResponse(str(request.session.session_key), content_type="text/plain")
+    return HttpResponse("false", content_type="text/plain")
+
+def authExSession(request, session):
+    if(request.session.exists(session)):
+        return HttpResponse("true", content_type="text/plain")
+    else:
+        return HttpResponse("false", content_type="text/plain")
+    
 def logOut(request):
     logout(request)
     return HttpResponseRedirect("/")

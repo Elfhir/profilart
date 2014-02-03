@@ -31,12 +31,12 @@ class ExhibitionRate(models.Model):
     def __unicode__(self):
        return self.rate
 
-#class ExhibitionComment(models.Model):
-#    user = models.ForeignKey(User)
-#    exhibition = models.ForeignKey(Exhibition)
-#    content_type = models.ForeignKey(ContentType)
-#   text = models.CharField(max_length=2000)
-#    date_pub = models.DateTimeField(auto_now=True)
+class ExhibitionComment(models.Model):
+    user = models.ForeignKey(User)
+    exhibition = models.ForeignKey(Exhibition)
+    content_type = models.ForeignKey(ContentType)
+    text = models.CharField(max_length=2000)
+    date_pub = models.DateTimeField(auto_now=True)
     
-#    def __unicode__(self):
-#       return self.user
+    def __unicode__(self):
+       return self.user
