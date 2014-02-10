@@ -114,6 +114,7 @@ def deleteBackground(request, username):
         prefWebsite.save()
         return HttpResponseRedirect("/"+username+"/build")
     return HttpResponseRedirect("/")
+
 def editBio(request, username):
     if userBackOfficePermission(request, username):
         user = User.objects.get(username=username)
@@ -149,7 +150,7 @@ def displayBio(request, username):
     firstname = user.first_name
     name = user.last_name
     workTopicType = WorkTopicType.objects.filter(idWork_id__user_id=user.id).order_by("idType").values_list("idType")
-    return render(request, 'buildengine/templates/template1/frontoffice/bio.html', {'username' : username, 'prefWebsite' : prefWebsite,
+    return render(request, 'buildengine/templates/template'+str(prefWebsite.id_template)+'/frontoffice/bio.html', {'username' : username, 'prefWebsite' : prefWebsite,
                                                            'firstname' : firstname, 'name' : name, 'bio' : bio, 'workType' : set(workTopicType)})
 
 def switchVisible(request, username):

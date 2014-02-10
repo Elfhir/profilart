@@ -240,7 +240,7 @@ def displayTopic(request, username, nameTopic):
     workTopicType = WorkTopicType.objects.filter(idWork_id__user_id=user.id).order_by("idType").values_list("idType")
     firstname = user.first_name
     name = user.last_name
-    return render(request, 'buildengine/templates/template1/frontoffice/topic.html', {'username' : username, 'prefWebsite' : prefWebsite,
+    return render(request, 'buildengine/templates/template'+str(prefWebsite.id_template)+'/frontoffice/topic.html', {'username' : username, 'prefWebsite' : prefWebsite,
                                                                'firstname' : firstname, 'name' : name, 'workType' : set(workTopicType),
                                                                'nameTopic' : nameTopic, 'workTopic' : workTopic, 'works' : works,
                                                                'topics': topics})
@@ -253,7 +253,7 @@ def displayCartelTopic(request, username, idTopic):
     workTopicType = WorkTopicType.objects.filter(idWork_id__user_id=user.id).order_by("idType").values_list("idType")
     firstname = user.first_name
     name = user.last_name
-    return render(request, 'buildengine/templates/template1/frontoffice/carteltopic.html', {'username' : username, 'prefWebsite' : prefWebsite,
+    return render(request, 'buildengine/templates/template'+str(prefWebsite.id_template)+'/frontoffice/carteltopic.html', {'username' : username, 'prefWebsite' : prefWebsite,
                                                            'firstname' : firstname, 'name' : name, 'topic': workTopic, 'works' : works,
                                                            'workType' : set(workTopicType), 'user': user})
 
@@ -265,7 +265,7 @@ def displayCartelWork(request, username, idWork):
     workTopicType = WorkTopicType.objects.filter(idWork_id__user_id=user.id).order_by("idType").values_list("idType")
     firstname = user.first_name
     name = user.last_name
-    return render(request, 'buildengine/templates/template1/frontoffice/cartel.html', {'username' : username, 'prefWebsite' : prefWebsite,
+    return render(request, 'buildengine/templates/template'+str(prefWebsite.id_template)+'/frontoffice/cartel.html', {'username' : username, 'prefWebsite' : prefWebsite,
                                                            'firstname' : firstname, 'name' : name, 'work' : work, 'workTopic' : workTopic,
                                                            'workType' : set(workTopicType), 'user': user})
 

@@ -1,0 +1,47 @@
+<!doctype html>
+{% include "buildengine/templates/template2/frontoffice/header.html" %}
+<body style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }}; color: {{ prefWebsite.font_color }}">
+    {% if user.is_authenticated and user.username in request.path %}
+        {% if "/build" in request.path %}
+        {% else %}
+            <div class="manager-template-full-mode">
+                <p><a href="/{{ user.username }}/build">Switch to edit mode</a></p>
+            </div>
+        {% endif %}
+    {% endif %}
+    <div class="template2">
+        <article role="header" class="background" >
+            <div class="wrapper-content">
+                <div class="wrapper-title">
+                    <h1 class="modifier-h1" style="color: {{ prefWebsite.font_color }}">
+                        <a href="/{{ user.username }}/">{{ firstname }} {{ name }}</a>
+                    </h1>                </div>
+                <div class="wrapper-headermenu">
+                    {% include "buildengine/templates/template2/frontoffice/headermenu.html" %}
+                </div>
+            </div>
+        </article>
+        <div class="clear"></div>
+        <section>
+            <div class="wrapper-content">
+                <p class="wrapper-title-topic">
+                    <a href="/{{ username }}/carteltopic/{{ topic.id }}/">
+                        <span class="title-topic"><strong>{{ topic.name }}</strong></span>
+                    </a> - <em>{{ topic.date_pub.year }}</em>
+                </p>
+                <p class="topic-text text-line-description"><em>{{ topic.text }}</em></p>
+                <section class="image-work-topic cartel-topic">
+                    {% for work in works %}
+                        {% if work.work_topic_id == topic.id %}
+                        <div class="wrapper-bigthumb-overlay">
+                            <a href="/{{ username }}/cartel/{{ work.id }}/"><img class="topic-work-image" src="/static/{{ work.image }}"/></a>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </section>
+                <div class="clear"></div>
+            </div>
+        </section>
+        {% include "buildengine/templates/template2/frontoffice/footer.html" %}
+    </div>
+</body>

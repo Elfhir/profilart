@@ -1,0 +1,41 @@
+<!doctype html>
+{% include "buildengine/templates/template2/frontoffice/header.html" %}
+<body style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }}; color: {{ prefWebsite.font_color }}">
+    {% if user.is_authenticated and user.username in request.path %}
+        {% if "/build" in request.path %}
+        {% else %}
+            <div class="manager-template-full-mode">
+                <p><a href="/{{ user.username }}/build">Switch to edit mode</a></p>
+            </div>
+        {% endif %}
+    {% endif %}
+    <div class="template2">
+        <article role="header" class="background header-top" >
+            <div class="wrapper-content">
+                <div class="wrapper-title">
+                    <h1 class="modifier-h1" style="color: {{ prefWebsite.font_color }}">
+                        <a href="/{{ user.username }}/">{{ firstname }} {{ name }}</a>
+                    </h1>
+                </div>
+                <div class="wrapper-headermenu">
+                    {% include "buildengine/templates/template2/frontoffice/headermenu.html" %}
+                </div>
+            </div>
+        </article>
+        <div class="clear"></div>
+        <section>
+            <div class="wrapper-content-cartel">
+                <p class="wrapper-title-topic"><em><strong>{{ workTopic.name }}</strong> - {{ work.date_created|date:"Y" }} /
+                <span class="title-topic">{{ work.name }}</span></em></p>
+                <p class="localisation-work"><em>{{ work.current_local }}</em></p>
+                <p class="cartel-image"><img src="/static/{{ work.image }}"/></p>
+                <p class="topic-text text-line-description"><em>{{ work.text }}</em></p>
+                <section class="info-complement">
+                    <p><u>Size</u> : {{ work.width }} x {{ work.height }}</p>
+                    <p><u>Material</u> : {{ work.material }}</p>
+                </section>
+            </div>
+        </section>
+        {% include "buildengine/templates/template2/frontoffice/footer.html" %}
+    </div>
+</body>

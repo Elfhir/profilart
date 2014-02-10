@@ -1,0 +1,49 @@
+<!doctype html>
+<head>
+    <meta charset="UTF-8">
+    <title>Profil Art</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/screen.css">
+    <link rel="stylesheet" href="/static/template/template2/screen.css">
+    <link rel="stylesheet" href="/static/script/bxslider/jquery.bxslider.css">
+    <style type="text/css">
+        .template2 a{
+            color : {{ prefWebsite.font_color }};
+        }
+    </style>
+    <script type="text/javascript" src="/static/script/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="/static/script/bxslider/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="/static/template/template2/script.js"></script>
+</head>
+<body style="background-color:{{ prefWebsite.color }};">
+    {% if user.is_authenticated and user.username in request.path %}
+        {% if "/build" in request.path %}
+        {% else %}
+            <div class="manager-template-full-mode">
+                <p><a href="/{{ user.username }}/build">Switch to edit mode</a></p>
+            </div>
+        {% endif %}
+    {% endif %}
+    <div class="template2" style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }}">
+        <article role="header" >
+            <div class="wrapper-content">
+                <div class="wrapper-title">
+                    <h1 class="modifier-h1" style="color: {{ prefWebsite.font_color }}">{{ firstname }} {{ name }}</h1>
+                </div>
+                <div class="wrapper-headermenu">
+                    {% include "buildengine/templates/template2/backoffice/headermenu.html" %}
+                </div>
+                <div class="clear"></div>
+            </div>
+        </article> 
+        <section class="up-wrapper">
+            <div class="wrapper-content">
+                <form action="/{{ user.username }}/build/editbio/" class="form-bio" method="post">
+                    {{ form.as_p }}
+                    <div class="clear"></div>
+                    <input type="submit" value="Update my biography" />
+                </form>
+            </div>
+        </section>
+    </div>
+</body>

@@ -1,0 +1,20 @@
+<style type="text/css">
+    .template2 .headermenu li a{
+        color : {{ prefWebsite.font_color }};
+    }
+</style>
+
+<ul class="headermenu">
+    <li><a href="/{{ username }}/biography">Biography</a></li>
+    {% for work in workType %}
+        {% for item in work %}
+            {% if item == "1" %}<li><a href="/{{ username }}/topic/paintings">Paintings</a></li>{% endif %}
+            {% if item == "2" %}<li><a href="/{{ username }}/topic/photographies">Photographies</a></li>{% endif %}
+            {% if item == "3" %}<li><a href="/{{ username }}/topic/video">Video</a></li>{% endif %}
+            {% if item == "4" %}<li><a href="/{{ username }}/topic/sculptures">Sculptures</a></li>{% endif %}
+            {% if item == "5" %}<li><a href="/{{ username }}/topic/installations">Installations</a></li>{% endif %}
+            {% if item == "6" %}<li><a href="/{{ username }}/topic/others">Others</a></li>{% endif %}
+        {% endfor %}
+    {% endfor %}
+    <li><a href="/{{ username }}/exhibitions">Exhibitions</a></li>
+</ul>

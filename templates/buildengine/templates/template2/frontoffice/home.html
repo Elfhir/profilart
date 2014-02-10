@@ -1,0 +1,76 @@
+<!doctype html>
+{% include "buildengine/templates/template2/frontoffice/header.html" %}
+<body style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }}; color: {{ prefWebsite.font_color }}">
+    {% if user.is_authenticated and user.id == request.user.id %}
+        {% if "/build" in request.path %}
+        {% else %}
+            <div class="manager-template-full-mode">
+                <p><a href="/{{ user.username }}/build">Switch to edit mode</a></p>
+            </div>
+        {% endif %}
+    {% endif %}
+    <div class="template2">
+        <article role="header" class="background header-top" >
+            <div class="wrapper-content">
+                <div class="wrapper-title">
+                    <h1 class="modifier-h1" style="color: {{ prefWebsite.font_color }}">
+                        <a href="/{{ user.username }}/">{{ firstname }} {{ name }}</a>
+                    </h1>
+                </div>
+                <div class="wrapper-headermenu">
+                    {% include "buildengine/templates/template2/frontoffice/headermenu.html" %}
+                </div>
+            </div>
+        </article>
+        <div class="clear"></div>
+        {% if prefWebsite.isvisible_homeslider == True %}
+            <section class="last-works">
+                <div class="wrapper-content">
+                    {% if prefWebsiteSlider.kind == "last" %}
+                            {% for work in lastWorks %}
+                                <div class="mosaic-block circle">
+                                    <a href="/{{ username }}/cartel/{{ work.id }}/" class="mosaic-overlay">&nbsp;</a>
+                                    <div class="mosaic-backdrop"><img height="{{ work.image.height }}" src="/static/{{ work.image }}"/></div>
+                                </div>
+                            {% endfor %}
+                    {% endif %}
+                    {% if prefWebsiteSlider.kind == "focus" %}
+                        {% for work in focusWorks %}
+                                <div class="mosaic-block circle">
+                                    <a href="http://buildinternet.com/project/mosaic" class="mosaic-overlay">&nbsp;</a>
+                                    <div class="mosaic-backdrop"><img height="{{ work.image.height }}" src="/static/{{ work.image }}"/></div>
+                                </div>
+                        {% endfor %}
+                    {% endif %}
+		</div>
+                <div class="clear"></div>
+            </section>
+        {% endif %}
+        <div class="sub-home">
+            <div class="wrapper-content">
+            {% if prefWebsite.isvisible_homebio == True %}
+                <article class="wrapper-home-biography">
+                    <div {% if prefWebsite.isvisible_homeexhibition == True %} class="wrapper-home-content-alignleft" {% endif %}>
+                        <p><em>{{ biography|truncatewords:100 }} <a href="/{{ username }}/biography/">Read more ></a></em></p>
+                    </div>
+                </article>
+            {% endif %}
+            {% if prefWebsite.isvisible_homeexhibition == True %}
+                <article class="wrapper-home-exhibition">
+                    <div {% if prefWebsite.isvisible_homebio == True %}class="wrapper-home-content-alignright" {% endif %}>
+                        <h2>Last exhibitions</h2>
+                        {% for exhibition in exhibitions %}
+                            <div class="object-exhibition">
+                                <p class="title-exhibition"><strong>{{ exhibition.nameGallery }}</strong></p>
+                                <p class="address-exhibition"><em>{{ exhibition.adress }}</em></p>
+                                <p class="id-exhibition"><em>Ref : N°{{ exhibition.id }}</em></p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </article>
+            {% endif %}
+            <div class="clear"></div>
+        </div>
+    </div>
+    {% include "buildengine/templates/template2/frontoffice/footer.html" %}
+</body>

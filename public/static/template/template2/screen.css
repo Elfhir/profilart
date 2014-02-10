@@ -1,0 +1,286 @@
+/********************
+ * Profil Art CSS - Template 2
+ *******************/
+body{
+	background-color: #b4b2b4;
+    font-family: "myriad pro", arial, sans-serif;
+    font-size: 1em;
+}
+.template2 .wrapper-content .wrapper-title{
+    margin: 26px 82px 0 0;
+    float: left;
+}
+.background {
+	background-color: black;
+	height: 95px;
+}
+.template2 .header-top{
+	margin-bottom: 10px;
+}
+header, footer{
+    height: 40px;
+}
+.template2 .headermenu{
+	margin-top: 8px;
+}
+footer .wrapper-content{
+    padding-top: 11px;
+    font-size: 0.9em;
+    color: #fff;
+}
+.wrapper-content{
+    width: 1024px;
+    margin: 0 auto;
+}
+.modifier-h1 a{
+    color: white !important;
+    font-size: 1.6em;
+    font-weight: normal;
+    opacity: 0.8;
+	text-transform: uppercase;
+}
+.modifier-h1 a{
+	text-decoration: none;
+}
+.modifier-h1 a:hover{
+	text-decoration: underline;
+}
+.modifier-h2{
+    color: black;
+    margin-bottom: 7px;
+}
+.modifier-biography{
+    color: black;
+    font-style: italic;
+    font-size: 0.9em;
+    margin-bottom: 50px;
+}
+.modifier-biography p{
+    margin-bottom: 10px;
+}
+.modifier-quick-view-works .list-paint-works{
+    margin-bottom: 30px;
+}
+.modifier-edit-marker{
+    padding: 10px;
+    border: 1px solid #AAA;
+}
+.template2 .modifier-edit-marker .bx-wrapper {
+	margin-top: 0;
+	margin-bottom: 50px;
+}
+.wrapper-bxslider{
+	margin-top: 45px;
+}
+.modifier-edit-marker:hover{
+    border-color: green;
+    transition-property: all;
+    transition-duration: 0.5s;
+}
+.modifier-edit-wrapper a.modifier-edit-link{
+    text-decoration: underline;
+    font-style: normal;
+    font-size: 16px;
+    color: #808080;
+}
+.modifier-edit-wrapper ul{
+    background-color: #f0f0f0;
+    padding: 6px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    width: 11%;
+    opacity: 0.6;
+    transition-property: all;
+    transition-duration: 0.1s;
+}
+.modifier-edit-wrapper ul:hover{
+    opacity: 1;
+    transition-property: all;
+    transition-duration: 0.5s;
+}
+.modifier-edit-wrapper {
+    margin-bottom: 20px;
+}
+.modifier-edit-wrapper a.modifier-edit-link:hover{
+    color: white;
+}
+.template2 .wrapper-headermenu{
+	padding-top: 32px;
+}
+.template2 .wrapper-headermenu ul.headermenu li a {
+	float: left;
+	width:90px;
+	height:50px;
+	margin:0 5px;
+	text-align:center;
+	color: white !important;
+	text-transform: uppercase;
+}
+.template2 .wrapper-headermenu ul.headermenu li a{
+	opacity: 0.5;
+	margin-left: 20px;
+	font-size: 15px;
+	text-decoration: none;
+}
+.template2 .topic-text{
+	font-size: 0.9em;
+	opacity: 0.6;
+	width: 31%;
+	float: left;
+}
+.template2 .topic-work-image{
+	width: 324px;
+	float: left;
+}
+.template2 .topic-line{
+	margin-bottom: 20px;
+	width: 315px;
+}
+.template2 .sub-title{
+	margin-top: 50px;
+	margin-bottom: 30px;
+	font-size: 1.3em;
+}
+.template2 .title-topic{
+	text-transform: lowercase;
+}
+.template2 .wrapper-thumb-overlay{
+    float:left;
+    width: 316px;
+    height: 192px;
+    overflow: hidden;
+    margin-right: 28px;
+    margin-bottom: 10px;
+}
+.template2 .wrapper-headermenu ul.headermenu li a:hover{
+	text-decoration: underline;
+}
+.template2 .last-works .wrapper-last-work{
+	float: left;
+	margin-top: 60px;
+}
+.template2 .last-works .wrapper-last-work img{
+	width: 330px;
+	margin-right: 16px;
+	box-shadow: 0px 0px 20px #AAA;
+}
+.template2 .last-works .bxslider img{
+	width: 100%;
+	position: relative;
+	min-height: 613px;
+}
+.template2 .last-works .bxslider li{
+	margin-top: 0;
+}
+.template2 .last-works .wrapper-last-work:last-child img{
+	margin-right: 0px;
+}
+.template2 .bx-wrapper{
+	margin-top: 45px;
+}
+.template2 .bx-wrapper .bx-viewport {
+	border: none;
+	box-shadow: 0px 0px 30px #AAA;
+	height: 484px !important;
+}
+.template2 .wrapper-title-topic{
+	margin-top: 50px;
+}
+.template2 .text-line-description{
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	line-height: 20px;
+}
+.template2 .image-work-topic{
+	margin-top: 50px;
+}
+.template2 .cartel-topic .topic-work-image{
+	width: 240px;
+}
+.template2 .wrapper-content-cartel .wrapper-title-topic{
+	margin-bottom: 3px;
+}
+.template2 .wrapper-content-cartel .localisation-work{
+	margin-bottom: 15px;
+	opacity: 0.6;
+}
+.template2 .wrapper-content-cartel{
+	width: 830px;
+	margin: 0 auto;
+}
+.template2 .wrapper-content-cartel .text-line-description{
+	font-size: 0.8em;
+}
+.template2 .cartel-image img{
+	margin-bottom: 15px;
+	box-shadow: 0px 0px 21px #BBB;
+}
+.template2 .info-complement{
+	margin-top: 8px;
+}
+.template2 .info-complement p{
+	margin-top: 5px;
+	font-size: 0.8em;
+}
+.template2 .up-wrapper{
+	margin-top: 25px;
+}
+.template2 .wrapper-bio{
+	margin-top: 40px;
+	opacity: 0.6;
+	font-size: 0.9em;
+	line-height: 20px;
+}
+.template2 .wrapper-home-biography{
+	font-size: 0.9em;
+	line-height: 20px;
+}
+.template2 .wrapper-home-biography p{
+	opacity: 0.6;
+}
+.template2 .wrapper-exhibition{
+	margin-top: 40px;
+	line-height: 20px;
+}
+.template2 .address-exhibition{
+	opacity: 0.6;
+}
+.template2 .id-exhibition{
+	opacity: 0.6;
+	font-size: 0.7em;
+}
+.template2 .wrapper-home-content-alignleft{
+    float: left;
+    width: 45%;
+}
+.template2 .wrapper-home-content-alignright{
+    float: right;
+    width: 45%;
+}
+.template2 .bx-wrapper .bx-controls-direction a {
+    z-index: 998 !important;
+}
+.template2 .sub-home{
+	margin-top: 55px;
+	margin-bottom: 30px;
+}
+.template2 .wrapper-home-exhibition .object-exhibition{
+	margin-bottom: 12px;
+}
+.template2 .wrapper-last-work-thumb{
+	width: 120px;
+	margin-right: 10px;
+}
+.template2 .bx-pager{
+	margin-top: -33px;
+	text-align: center;
+}
+.template2 .bx-pager a{
+	text-decoration: none;
+}
+.template2 .wrapper-footer{
+	margin-top: 70px;
+	margin-bottom: 20px;
+	font-size: 0.8em;
+}x 0 0 20px; font-size:1.3em; font-weight: normal; }

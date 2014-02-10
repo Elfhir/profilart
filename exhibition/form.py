@@ -19,23 +19,27 @@ class ExhibitionForm(forms.Form):
        date_end = forms.DateField(widget=forms.TextInput(attrs={'id':'datepicker2'}))
        
        def save(self, request):
-              URLAddress = str(request.POST['adress']).replace(" ", "_")+"_"+str(request.POST['city']).replace(" ", "_")+"_"+str(request.POST['country']).replace(" ", "_")
-              URL = 'http://maps.googleapis.com/maps/api/geocode/json?address='+URLAddress+'&sensor=false'
-              response = urllib2.urlopen(URL)
-              data = json.load(response)
-              mapLatitude = data["results"][0]["geometry"]["location"]["lat"]
-              mapLongitude = data["results"][0]["geometry"]["location"]["lng"]
-              Exhibition(
-                            nameGallery=request.POST['nameGallery'],
-                            mapLongitude=mapLongitude,
-                            mapLatitude=mapLatitude,
-                            adress=request.POST['adress'],
-                            city = request.POST['city'],
-                            content_type=ContentType.objects.get(model="exhibition"),
-                            text=request.POST['text'],
-                            zipcode=request.POST['zipcode'],
-                            country=request.POST['country'],
-                            date_begin=request.POST['date_begin'] ,
-                            date_end=request.POST['date_end'],
-                            user=request.user
-                     ).save()
+			URLAddress = str(request.POST['adress']).replace(" ", "_")+"_"+str(request.POST['city']).replace(" ", "_")+"_"+str(request.POST['country']).replace(" ", "_")
+			URL = 'http://maps.googleapis.com/maps/api/geocode/json?address='+URLAddress+'&sensor=false'
+			response = urllib2.urlopen(URL)
+			data = json.load(response)
+			if data["results"][0] == "" :
+				mapLatitude = -1
+				mapLongitude = -1
+			else :
+				mapLatitude = data["results"][0]["geometry"]["location"]["lat"]
+				mapLongitude = data["results"][0]["geometry"]["location"]["lng"]
+			Exhibition(
+						nameGallery=request.POST['nameGallery'],
+						mapLongitude=mapLongitude,
+						mapLatitude=mapLatitude,
+						adress=request.POST['adress'],
+						city = request.POST['city'],
+						content_type=ContentType.objects.get(model="exhibition"),
+						text=request.POST['text'],
+						zipcode=request.POST['zipcode'],
+						country=request.POST['country'],
+						date_begin=request.POST['date_begin'] ,
+						date_end=request.POST['date_end'],
+						user=request.user
+				 ).save()

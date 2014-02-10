@@ -1,0 +1,65 @@
+<!doctype html>
+{% include "buildengine/templates/template2/frontoffice/header.html" %}
+<body style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }}; color: {{ prefWebsite.font_color }}">
+    {% if user.is_authenticated and user.username in request.path %}
+        {% if "/build" in request.path %}
+        {% else %}
+            <div class="manager-template-full-mode">
+                <p><a href="/{{ user.username }}/build">Switch to edit mode</a></p>
+            </div>
+        {% endif %}
+    {% endif %}
+    <div class="template2">
+        <article role="header" class="background" >
+            <div class="wrapper-content">
+                <div class="wrapper-title">
+                    <h1 class="modifier-h1" style="color: {{ prefWebsite.font_color }}">
+                        <a href="/{{ user.username }}/">{{ firstname }} {{ name }}</a>
+                    </h1>                </div>
+                <div class="wrapper-headermenu">
+                    {% include "buildengine/templates/template2/frontoffice/headermenu.html" %}
+                </div>
+            </div>
+        </article>
+        <div class="clear"></div>
+        <section class="sub-title">
+            <div class="wrapper-content">
+                {{ nameTopic }}
+            </div>
+        </section>
+        <section class="topic-series">
+            <div class="wrapper-content">
+                {% for type in workTopic %}
+                    {% for topic in topics %}
+                        {% if topic.id == type.idWork_id %}
+                            <div class="topic-line">
+                            {% for work in works %}
+                                    {% if work.work_topic_id == topic.id %}
+                                        {% if forloop.first %} 
+                                            <div class="wrapper-thumb-overlay">
+                                                <a href="/{{ username }}/carteltopic/{{ topic.id }}/">
+                                                    <img class="topic-work-image" src="/static/{{ work.image }}"/>
+                                                </a>
+                                                <div class="clear"></div>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                                <div class="clear">
+                                <p>
+                                    <a href="/{{ username }}/carteltopic/{{ topic.id }}/">
+                                        <span class="title-topic"><strong>{{ topic.name }}</strong></span>
+                                    </a> - <em>{{ topic.date_pub.year }}</em>
+                                </p>
+                                <p class="topic-text"><em>{{ topic.text }}</em></p>
+
+                                <div class="clear"></div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </section>
+        {% include "buildengine/templates/template2/frontoffice/footer.html" %}
+    </div>
+</body>
