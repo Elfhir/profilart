@@ -3,6 +3,8 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     url(r'^/$', 'buildengine.views.home'),
     url(r'^/build/$', 'buildengine.views.backOffice'),
+    url(r'^/build/themes/$', 'buildengine.views.displayThemesPage'),
+    url(r'^/build/editTheme/(?P<idTheme>\w+)/$', 'buildengine.views.editTheme'),
     url(r'^/build/editwebsite/$', 'buildengine.views.editWebsite'),
     url(r'^/build/manageexhibitions/$', 'exhibition.views.manageExhibitions'),
     url(r'^/build/addexhibition/$', 'exhibition.views.addExhibition'),

@@ -1,6 +1,9 @@
+{% load color_extras %}
+
 <!doctype html>
 {% include "buildengine/templates/template2/frontoffice/header.html" %}
-<body style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }}; color: {{ prefWebsite.font_color }}">
+<body style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }}; color: {{ prefWebsite.font_color }};
+background-image : url('/static/{{ prefWebsite.image }}'); background-attachment:fixed;">
     {% if user.is_authenticated and user.username in request.path %}
         {% if "/build" in request.path %}
         {% else %}
@@ -14,13 +17,16 @@
             <div class="wrapper-content">
                 <div class="wrapper-title">
                     <h1 class="modifier-h1" style="color: {{ prefWebsite.font_color }}">
-                        <a href="/{{ user.username }}/">{{ firstname }} {{ name }}</a>
+                        <a href="/{{ user.username }}/" style="color: {{ prefWebsite.color }}">{{ firstname }} {{ name }}</a>
                     </h1>                </div>
                 <div class="wrapper-headermenu">
                     {% include "buildengine/templates/template2/frontoffice/headermenu.html" %}
                 </div>
             </div>
         </article>
+        {% if prefWebsite.image != "" %}
+            <div class="wrapper-content background-image-website" style="background-color:{% get_rgba_from_hex prefWebsite.color 0.93 %};">
+        {% endif %}
         <div class="clear"></div>
         <section class="sub-title">
             <div class="wrapper-content">

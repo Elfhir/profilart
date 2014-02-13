@@ -5,6 +5,6 @@ $(document).ready(function() {
     $(".fontpicker-example").insertAfter("#id_font");
     $("select#id_font").change(function() {
         var valFont = $("select#id_font option:selected").val();
-        $(".general-template").attr("style", "font-family:"+valFont);
+        $(".general-template, .general-template-color").attr("style", "font-family:"+valFont);
     });
 });

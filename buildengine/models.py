@@ -45,3 +45,11 @@ class PrefWebsiteSlider(models.Model):
     
     def __unicode__(self):
         return "%s" % (self.mode)
+    
+class PrefWebsiteThemes(models.Model):
+    name = models.CharField(max_length=50)
+    image = models.ImageField(upload_to="template/")
+    id_template = models.PositiveIntegerField()
+    
+    def __unicode__(self):
+        return "%s" % (self.name)

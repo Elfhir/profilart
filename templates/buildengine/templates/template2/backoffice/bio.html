@@ -1,3 +1,5 @@
+{% load color_extras %}
+
 <!doctype html>
 <head>
     <meta charset="UTF-8">
@@ -5,17 +7,77 @@
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/screen.css">
     <link rel="stylesheet" href="/static/template/template2/screen.css">
-    <link rel="stylesheet" href="/static/script/bxslider/jquery.bxslider.css">
+    <link rel='stylesheet' type='text/css' href="/static/script/modal/jquery.modal.css">
+    <link rel="stylesheet" href="/static/script/mosaic/mosaic.css">
     <style type="text/css">
         .template2 a{
             color : {{ prefWebsite.font_color }};
         }
     </style>
     <script type="text/javascript" src="/static/script/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" src="/static/script/bxslider/jquery.bxslider.min.js"></script>
-    <script type="text/javascript" src="/static/template/template2/script.js"></script>
+    <script type="text/javascript" src="/static/script/mosaic/mosaic.1.0.1.min.js"></script>
+    <script type="text/javascript" src="/static/script/modal/jquery.modal.min.js"></script>
+    <script type="text/javascript" src="/static/script/highlight/highlight.pack.js"></script>
+    <script type="text/javascript" src="/static/template/template1/script.js"></script>
+    <script type="text/javascript" src="/static/template/backoffice_ajax.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.circle').mosaic({
+                opacity	: 0.8
+            });
+        });
+    </script>
+    
+    
+    <link rel="stylesheet" href="/static/script/farbtastic/farbtastic.css">
+    <link rel="stylesheet" href="/static/script/jquery.ui.fontSelector/jquery.ui.fontSelector.css">
+        
+        
+        <script type="text/javascript" src="/static/script/attrchange.js"></script>
+        <script type="text/javascript" src="/static/script/farbtastic/farbtastic.js"></script>
+    <script type="text/javascript" src="/static/script/jquery.ui.fontSelector/jquery.ui.fontSelector.js"></script>
+    <script type="text/javascript" src="/static/script/fontPicker/fontPicker.js"></script>
+    <script type="text/javascript">
+	$(document).ready(function() {
+	    $('#id_font').parent("p").addClass("wrapper-font");
+	    $('#id_font_color').parent("p").addClass("wrapper-font-color");
+	    
+	    $('#colorpicker').farbtastic('#id_color').insertAfter($("#id_color"));
+	    $('#colorpicker2').farbtastic('#id_font_color').insertAfter($("#id_font_color"));
+            
+            $("#id_color").attrchange({
+                trackValues: true,
+                callback: function(e) {
+                        newBackgroundColor = e.newValue.slice(0,35);
+                        newColor = e.newValue.slice(18,35);
+                        $("body, .change-background").attr("style", newBackgroundColor);
+                        $(".general-template-color h1, .general-template-color a").attr("style", "color:"+newColor);
+                }
+            });
+            $("#id_font_color").attrchange({
+                trackValues: true,
+                callback: function(e) {
+                        newColor = e.newValue.slice(18,35);
+                        $(".general-template p, .general-template h1, .general-template h2, .general-template .headermenu li a").attr("style", "color:"+newColor);
+                }
+            });
+
+            $(".btn-slider-home img").click(function() {
+                if ($(".slide-home").css("margin-top") == "-168px") {
+                    $(".slide-home").animate({marginTop: "-10px"}, 1000);
+                }else{
+                    $(".slide-home").animate({marginTop: "-168px"}, 1000);
+                };  
+            });
+                        
+            $('#id_font option[value="'+$(".select-fontstyle").html()+'"]').attr("selected", "selected");
+	});
+    </script>
 </head>
 <body style="background-color:{{ prefWebsite.color }};">
+    <div class="clear"></div>
+    {% include "form/editwebsite-allform.html" %}
+    
     {% if user.is_authenticated and user.username in request.path %}
         {% if "/build" in request.path %}
         {% else %}
@@ -24,18 +86,27 @@
             </div>
         {% endif %}
     {% endif %}
-    <div class="template2" style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }}">
-        <article role="header" >
-            <div class="wrapper-content">
-                <div class="wrapper-title">
-                    <h1 class="modifier-h1" style="color: {{ prefWebsite.font_color }}">{{ firstname }} {{ name }}</h1>
-                </div>
-                <div class="wrapper-headermenu">
-                    {% include "buildengine/templates/template2/backoffice/headermenu.html" %}
-                </div>
-                <div class="clear"></div>
+            <article role="header" class="template2 background header-top general-template-color" style="font-family: {{ prefWebsite.font_family }}; color: {{ prefWebsite.color }}">
+        <div class="wrapper-content">
+            <div class="wrapper-title">
+                <h1 class="modifier-h1" style="color: {{ prefWebsite.color }}">{{ firstname }} {{ name }}</h1>
             </div>
-        </article> 
+            <div class="wrapper-headermenu">
+                {% include "buildengine/templates/template2/backoffice/headermenu.html" %}
+            </div>
+        </div>
+    </article>
+
+
+        
+    {% if prefWebsite.image == "" %}
+        <div class="template2 general-template change-background" style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }};
+        color: {{ prefWebsite.font_color }}; background-image : url('/static/{{ prefWebsite.image }}'); background-attachment:fixed;">
+    {% else %}
+            <div class="template2 general-template" style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }};
+        color: {{ prefWebsite.font_color }}; background-image : url('/static/{{ prefWebsite.image }}'); background-attachment:fixed;">
+            <div class="wrapper-content background-image-website change-background" style="background-color:{% get_rgba_from_hex prefWebsite.color 0.93 %};">
+    {% endif %}
         <section class="up-wrapper">
             <div class="wrapper-content">
                 <form action="/{{ user.username }}/build/editbio/" class="form-bio" method="post">

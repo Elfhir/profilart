@@ -2,7 +2,7 @@ from buildengine.models import *
 from buildengine.form import *
 from profilart.settings import USER_IMAGE_AVERAGE_PATH
 from work.models import *
-from django.shortcuts import render_to_response, HttpResponseRedirect, render
+from django.shortcuts import render_to_response, HttpResponseRedirect, render, HttpResponse
 from django.template import RequestContext
 from django.http import Http404
 from django.contrib.auth.models import User, Group
@@ -39,6 +39,28 @@ def home(request, username):
                                                                      'exhibitions' : exhibitions})
     return HttpResponseRedirect("/")
 
+def displayThemesPage(request, username):
+    if userBackOfficePermission(request, username):
+        user = User.objects.get(username=username)
+        prefWebsite = PrefWebsite.objects.get(user_id=user.id)
+        themes = PrefWebsiteThemes.objects.all();
+        return render(request, 'buildengine/themes.html', {'username' : user.username,'themes' : themes, 'prefWebsite' : prefWebsite})
+    return HttpResponseRedirect("/")
+
+def editTheme(request, username, idTheme):
+    if request.is_ajax():
+        if not request.user.is_authenticated():
+            modal = 3
+            return HttpResponse(modal)
+        id = request.POST['id']
+        requestiduser = request.POST['requestiduser']
+        user = User.objects.get(username=username)
+        prefWebsite = PrefWebsite.objects.get(user_id=user.id)
+        prefWebsite.id_template = idTheme
+        prefWebsite.save()
+        modal = 2
+    return HttpResponse(modal)
+    
 def backOffice(request, username):
     sessionUserString = request.user.username.encode('utf8')
     usernameString = username.encode('utf8')
@@ -63,9 +85,13 @@ def backOffice(request, username):
                 biography = Biography.objects.get(user_id=user.id)
                 lastExhibitions = Exhibition.objects.filter(user_id=user.id).order_by("date_pub")[:3]
                 prefWebsiteSlider = PrefWebsiteSlider.objects.get(user_id=user.id)
-                formSlider = SliderForm(initial={'mode': prefWebsiteSlider.mode, 'speed': prefWebsiteSlider.speed,
+                if prefWebsite.id_template == 1:
+                    formSlider = SliderForm(initial={'mode': prefWebsiteSlider.mode, 'speed': prefWebsiteSlider.speed,
                                                  'thumb': prefWebsiteSlider.thumb, 'auto': prefWebsiteSlider.auto,
                                                  'ticker': prefWebsiteSlider.ticker, 'kind_works': prefWebsiteSlider.kind})
+                if prefWebsite.id_template == 2:
+                    formSlider = MosaicForm(initial={'speed': prefWebsiteSlider.speed, 'kind_works': prefWebsiteSlider.kind})
+                
                 pathTemplate = "buildengine/templates/template"+str(prefWebsite.id_template)+"/backoffice/home.html"
                 return render(request, 'buildengine/build.html', {'username' : username, 'blockWork' : works, 'workType' : workType,
                                                                   'prefWebsite' : prefWebsite, 'firstname' : firstname, 'name' : name,
@@ -179,7 +205,12 @@ def switchVisible(request, username):
 def editSlider(request, username):
     if userBackOfficePermission(request, username):
         user = User.objects.get(username=username)
-        form = SliderForm(request.POST)
+        prefWebsite = PrefWebsite.objects.get(user=user)
+        print "ID"+str(prefWebsite.id_template)
+        if prefWebsite.id_template == 1:
+            form = SliderForm(request.POST)
+        if prefWebsite.id_template == 2:
+            form = MosaicForm(request.POST)
         if form.is_valid():
             form.save(request)
         return HttpResponseRedirect("/"+user.username+"/build/")

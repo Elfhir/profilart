@@ -14,9 +14,6 @@ body{
 	background-color: black;
 	height: 95px;
 }
-.template2 .header-top{
-	margin-bottom: 10px;
-}
 header, footer{
     height: 40px;
 }
@@ -32,12 +29,11 @@ footer .wrapper-content{
     width: 1024px;
     margin: 0 auto;
 }
-.modifier-h1 a{
-    color: white !important;
-    font-size: 1.6em;
-    font-weight: normal;
+.modifier-h1{
+	font-size: 2.2em;
+	    font-weight: normal;
     opacity: 0.8;
-	text-transform: uppercase;
+    text-transform: uppercase;
 }
 .modifier-h1 a{
 	text-decoration: none;
@@ -69,8 +65,12 @@ footer .wrapper-content{
 	margin-top: 0;
 	margin-bottom: 50px;
 }
-.wrapper-bxslider{
-	margin-top: 45px;
+.background-image-website{
+	padding: 20px;
+	min-height: 520px;
+}
+.template2 .wrapper-mosaic{
+	padding-top: 30px;
 }
 .modifier-edit-marker:hover{
     border-color: green;
@@ -109,11 +109,9 @@ footer .wrapper-content{
 }
 .template2 .wrapper-headermenu ul.headermenu li a {
 	float: left;
-	width:90px;
 	height:50px;
 	margin:0 5px;
 	text-align:center;
-	color: white !important;
 	text-transform: uppercase;
 }
 .template2 .wrapper-headermenu ul.headermenu li a{

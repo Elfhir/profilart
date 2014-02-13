@@ -1,0 +1,29 @@
+{% extends "layout/base.html" %}
+{% load username_extras %}
+
+{% block headScript %}
+    <script type="text/javascript" src="/static/script/ajax/themes.js"></script>
+{% endblock headScript %}
+
+{% block content %}
+    <h2>Changing my template</h2>
+    <section class="wrapper-themes">
+        {% for theme in themes %}
+            {% if theme.id_template != prefWebsite.id_template %} 
+                <div class="wrapper-unique-theme" id-template="{{ theme.id_template }}" requestiduser="{{ request.user.id }}" name="{{ username }}">
+                    <div class="overlay-image">
+                        <img src="/static/{{ theme.image }}"></img>
+                    </div>
+                    <p class="name-template">{{ theme.name }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+    <div class="modal" id="modalsuccess" style="display:none;">
+        Votre thème a été changé.
+    </div>
+    <div class="modal" id="modalerror" style="display:none;">
+        Votre thème n'a pas pu être changé.
+    </div>
+    <div class="clear"></div>
+{% endblock content %}

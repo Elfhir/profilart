@@ -29,6 +29,12 @@ KIND_WORKS = [
     ('last', 'Last Works'),
     ('focus', 'Works in focus')
 ]
+
+SIZE_WORKS = [
+    ('average', 'Averare'),
+    ('big', 'Big')
+]
+
 class BioForm(forms.Form):
     text = forms.CharField(widget=forms.Textarea)
 
@@ -64,4 +70,13 @@ class SliderForm(forms.Form):
         #    slider.ticker = True
         #else:
         #    slider.ticker = False
+        slider.save()
+        
+class MosaicForm(forms.Form):
+    kind_works = forms.ChoiceField(choices=KIND_WORKS, widget=forms.RadioSelect())
+    
+    def save(self, request):
+        slider = PrefWebsiteSlider.objects.get(user_id=request.user.id)
+        print request.POST
+        slider.kind = request.POST['kind_works']
         slider.save()

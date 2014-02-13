@@ -100,15 +100,7 @@
 <body style="background-color:{{ prefWebsite.color }};">
     <div class="clear"></div>
     {% include "form/editwebsite-allform.html" %}
-    
-    {% if user.is_authenticated and user.username in request.path %}
-        {% if "/build" in request.path %}
-        {% else %}
-            <div class="manager-template-full-mode">
-                <p><a href="/{{ user.username }}/build">Switch to edit mode</a></p>
-            </div>
-        {% endif %}
-    {% endif %}
+
     {% if prefWebsite.image == "" %}
         <div class="template1 general-template change-background" style="background-color:{{ prefWebsite.color }}; font-family: {{ prefWebsite.font_family }};
         color: {{ prefWebsite.font_color }}; background-image : url('/static/{{ prefWebsite.image }}'); background-attachment:fixed;">

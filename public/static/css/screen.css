@@ -800,6 +800,31 @@ select{
     position: absolute;
     margin-top: -11px;
 }
+/****************************
+ * THEMES
+ ***************************/
+.wrapper-unique-theme{
+    width: 46%;
+    padding: 10px;
+    border: 1px solid #b8b8b8;
+    background-color: white;
+    float: left;
+    margin-right: 18px;
+}
+.wrapper-unique-theme img{
+    width: 100%;
+}
+.wrapper-unique-theme .overlay-image{
+    height: 271px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.wrapper-unique-theme:hover{
+    cursor: pointer;
+    border-color: green;
+    transition-property: all;
+    transition-duration: 0.5s;
+}
 
 /****************************
  * SEARCH ENGINE
