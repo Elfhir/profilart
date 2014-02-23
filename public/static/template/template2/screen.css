@@ -107,18 +107,28 @@ footer .wrapper-content{
 .template2 .wrapper-headermenu{
 	padding-top: 32px;
 }
-.template2 .wrapper-headermenu ul.headermenu li a {
-	float: left;
-	height:50px;
-	margin:0 5px;
+.template2 .wrapper-headermenu ul.headermenu li a{
+	opacity: 0.7;
+	font-size: 16px;
+	border: 1px solid #AAA;
+	padding: 6px;
+	height: 17px;
+	border-bottom: 3px solid #AAA;
+	margin: 0;
+	margin-top: -8px;
+	float: right;
 	text-align:center;
 	text-transform: uppercase;
+	transition: all 0.5s;
+	border-right: 0;
 }
-.template2 .wrapper-headermenu ul.headermenu li a{
-	opacity: 0.5;
-	margin-left: 20px;
-	font-size: 15px;
+.template2 .wrapper-headermenu ul.headermenu li a.last-headermenu{
+	border-right: 1px solid #AAA;
+}
+.template2 .wrapper-headermenu ul.headermenu li a:hover{
 	text-decoration: none;
+	border-bottom-color: white;
+	transition: all 1s;
 }
 .template2 .topic-text{
 	font-size: 0.9em;
@@ -149,9 +159,6 @@ footer .wrapper-content{
     overflow: hidden;
     margin-right: 28px;
     margin-bottom: 10px;
-}
-.template2 .wrapper-headermenu ul.headermenu li a:hover{
-	text-decoration: underline;
 }
 .template2 .last-works .wrapper-last-work{
 	float: left;
@@ -283,7 +290,7 @@ footer .wrapper-content{
 	font-size: 0.8em;
 }
 
-@media screen and (min-width: 320px) and (max-width: 800px) {
+@media screen and (max-width: 800px) {
 	.template2 .wrapper-content {
 		width: 100%;
 	}
@@ -341,7 +348,7 @@ footer .wrapper-content{
 	}
 }
 
-@media screen and (min-width: 320px) and (max-width: 568px) {
+@media screen and (max-width: 568px) {
 	.template2 .mosaic-block{
 		display: none;
 	}

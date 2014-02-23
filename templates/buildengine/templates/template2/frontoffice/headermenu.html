@@ -2,10 +2,13 @@
     .template2 .headermenu li a{
         color : {{ prefWebsite.color }};
     }
+    .template2 .wrapper-headermenu ul.headermenu li a:hover{
+            border-bottom-color: {{ prefWebsite.color }};
+    }
 </style>
 
 <ul class="headermenu">
-    <li><a href="/{{ username }}/biography">Biography</a></li>
+    <li><a class="last-headermenu" href="/{{ username }}/biography">Biography</a></li>
     {% for work in workType %}
         {% for item in work %}
             {% if item == "1" %}<li><a href="/{{ username }}/topic/paintings">Paintings</a></li>{% endif %}

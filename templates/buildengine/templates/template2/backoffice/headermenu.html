@@ -2,9 +2,12 @@
     .template2 .headermenu li a{
         color : {{ prefWebsite.color }};
     }
+    .template2 .wrapper-headermenu ul.headermenu li a:hover{
+            border-bottom-color: {{ prefWebsite.color }};
+    }
 </style>
 
 <ul class="headermenu">
-    <li><a href="/{{ username }}/build/editbio">[ Edit biography ]</a></li>
+    <li><a class="last-headermenu" href="/{{ username }}/build/editbio">[ Edit biography ]</a></li>
     <li><a href="/{{ username }}/build/manageexhibitions">[ Edit exhibitions ]</a></li>
 </ul>
