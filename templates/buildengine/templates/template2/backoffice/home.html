@@ -62,12 +62,9 @@
                 }
             });
 
+            $("form.form-editwebsite-allform .layer").hide();
             $(".btn-slider-home img").click(function() {
-                if ($(".slide-home").css("margin-top") == "-168px") {
-                    $(".slide-home").animate({marginTop: "-10px"}, 1000);
-                }else{
-                    $(".slide-home").animate({marginTop: "-168px"}, 1000);
-                };  
+                $("form.form-editwebsite-allform .layer").fadeToggle();
             });
                         
             $('#id_font option[value="'+$(".select-fontstyle").html()+'"]').attr("selected", "selected");
