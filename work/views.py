@@ -242,7 +242,7 @@ def displayTopic(request, username, nameTopic):
     name = user.last_name
     return render(request, 'buildengine/templates/template'+str(prefWebsite.id_template)+'/frontoffice/topic.html', {'username' : username, 'prefWebsite' : prefWebsite,
                                                                'firstname' : firstname, 'name' : name, 'workType' : set(workTopicType),
-                                                               'nameTopic' : nameTopic, 'workTopic' : workTopic, 'works' : works,
+                                                               'nameTopic' : nameTopic, 'workTopic' : workTopic, 'works' : works[:3],
                                                                'topics': topics})
 
 def displayCartelTopic(request, username, idTopic):

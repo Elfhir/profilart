@@ -786,11 +786,10 @@ select{
     margin-right: 28px;
 }
 .wrapper-bigthumb-overlay{
-    float:left;
-    width: 239px;
-    height: 194px;
+    float: left;
+    width: 234px;
     overflow: hidden;
-    margin-right: 28px;
+    padding: 10px;
 }
 .modifier-alignright{
     float: right;

@@ -266,8 +266,14 @@ footer .wrapper-content{
 	display: none;
 }
 @media screen and (max-width: 800px) {
+	.template1 .topic-text{
+		float: inherit;
+	}
+	.template1 .background-image-website {
+		padding: 0;
+	}
 	.template1 .wrapper-content {
-		width: 100%;
+		width: 96%;
 	}
 	.template1 .bx-wrapper, .template1 .bx-pager{
 		display: none;
@@ -326,6 +332,12 @@ footer .wrapper-content{
 	}
 	.template1 .wrapper-content-cartel {
 		width: 100%;
+	}
+	.template1 .topic-line .wrapper-thumb-overlay{
+		display: none;
+	}
+	.template1 .topic-line .wrapper-thumb-overlay:first-of-type{
+		display: block;
 	}
 }
 
