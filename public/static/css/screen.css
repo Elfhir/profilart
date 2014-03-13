@@ -790,6 +790,7 @@ select{
     width: 234px;
     overflow: hidden;
     padding: 10px;
+    height: 115px;
 }
 .modifier-alignright{
     float: right;

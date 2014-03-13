@@ -172,6 +172,10 @@ footer .wrapper-content{
 .template1 .cartel-topic .topic-work-image{
 	width: 240px;
 }
+.template1 .wrapper-bigthumb-overlay{
+	padding-left: 0px;
+	margin-right: 10px;
+}
 .template1 .wrapper-content-cartel .wrapper-title-topic{
 	margin-bottom: 3px;
 }
@@ -339,13 +343,30 @@ footer .wrapper-content{
 	.template1 .topic-line .wrapper-thumb-overlay:first-of-type{
 		display: block;
 	}
+	.template1 .topic-line .topic-text{
+		margin-top: 0px;
+		padding-left: 0px;
+		padding-top: 0px;
+		width: 100%;
+	}
+	.template1 .topic-line {
+		margin-bottom: 20px;
+		width: 45%;
+		float: left;
+		margin-right: 25px;
+	}
+	.template1 .wrapper-exhibition {
+		margin-left: 10px;
+	}
 }
-
 @media screen and (max-width: 568px) {
 	.template1 .mosaic-block{
 		display: none;
 	}
 	.template1 .mosaic-backdrop img{
 		width: initial;
+	}
+	.template1 .topic-line {
+		width: 100%;
 	}
 }

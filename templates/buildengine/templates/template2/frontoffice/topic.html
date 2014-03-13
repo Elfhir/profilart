@@ -40,26 +40,22 @@ background-image : url('/static/{{ prefWebsite.image }}'); background-attachment
                     {% for topic in topics %}
                         {% if topic.id == type.idWork_id %}
                             <div class="topic-line">
-                            {% for work in works %}
-                                    {% if work.work_topic_id == topic.id %}
-                                        {% if forloop.first %} 
-                                            <div class="wrapper-thumb-overlay">
-                                                <a href="/{{ username }}/carteltopic/{{ topic.id }}/">
-                                                    <img class="topic-work-image" src="/static/{{ work.image }}"/>
-                                                </a>
-                                                <div class="clear"></div>
-                                            </div>
-                                        {% endif %}
-                                    {% endif %}
-                                {% endfor %}
-                                <div class="clear">
                                 <p>
                                     <a href="/{{ username }}/carteltopic/{{ topic.id }}/">
                                         <span class="title-topic"><strong>{{ topic.name }}</strong></span>
                                     </a> - <em>{{ topic.date_pub.year }}</em>
                                 </p>
                                 <p class="topic-text"><em>{{ topic.text }}</em></p>
-
+                                {% for work in works %}
+                                    {% if work.work_topic_id == topic.id %}
+                                        <div class="wrapper-thumb-overlay">
+                                            <a href="/{{ username }}/cartel/{{ work.id }}/">
+                                                <img class="topic-work-image" src="/static/{{ work.image }}"/>
+                                            </a>
+                                            <div class="clear"></div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
                                 <div class="clear"></div>
                             </div>
                         {% endif %}
@@ -67,6 +63,7 @@ background-image : url('/static/{{ prefWebsite.image }}'); background-attachment
                 {% endfor %}
             </div>
         </section>
+        <div class="clear"></div>
         {% include "buildengine/templates/template2/frontoffice/footer.html" %}
     </div>
 </body>
