@@ -1,9 +1,11 @@
 {% extends "layout/base.html" %}
 {% load username_extras %}
+{% load i18n %}
+
 {% block content %}
     <article class="wrapper-manage-following">
         <div>
-            <h2>Following</h2>
+            <h2>{% trans "following" %}</h2>
             <p>
                 {% for user in userFollowing %}
                     <a href="/{{ user.username }}/">{{ user.username }}</a> {% if not forloop.last %} / {% endif %}
@@ -11,7 +13,7 @@
             </p>
         </div>
         <div>
-            <h2>Followers</h2>
+            <h2>{% trans "followers" %}</h2>
             <p>
                 {% for user in userFollowers %}
                     <a href="/{{ user.username }}/">{{ user.username }}</a> {% if not forloop.last %} / {% endif %}
@@ -21,7 +23,7 @@
     </article>
     <article class="wrapper-notification">
         <div>
-            <h2>Last Activity : Work</h2>
+            <h2>{% trans "lastActivityWork" %}</h2>
             {% for work in userLastWorks %}
                     <p>{{ work.name }} <small>by
                     <a href="/{% get_username_from_userid work.user_id %}/cartel/{{ work.id }}">
@@ -31,7 +33,7 @@
             {% endfor %}
         </div>
         <div>
-            <h2>Last Activity : Exhibition</h2>
+            <h2>{% trans "lastActivityEx" %}</h2>
             {% for exhibition in userLastExhibitions %}
                 <p>{{ exhibition }} <small>by <a href="/{% get_username_from_userid exhibition.user_id %}/exhibitions">{% get_username_from_userid exhibition.user_id %}</a></small></p>
             {% endfor %}

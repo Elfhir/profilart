@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import ModelForm
+from django.utils.translation import ugettext_lazy, ugettext
 
 GROUPS=[('1','Artist'),
         ('2','Curator'),
@@ -18,12 +19,12 @@ class RegisterForm(forms.Form):
     username = forms.CharField(max_length=30)
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput())
-    confirmPassword = forms.CharField(widget=forms.PasswordInput())
+    confirmPassword = forms.CharField(widget=forms.PasswordInput(), label='Confirm the password')
     group = forms.ChoiceField(choices=GROUPS, widget=forms.RadioSelect())
     
 class EditAccountForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
-    confirmPassword = forms.CharField(widget=forms.PasswordInput())
+    confirmPassword = forms.CharField(widget=forms.PasswordInput(), label='Confirm the password')
     email = forms.EmailField()
     
 class EditAnonymityForm(forms.Form):

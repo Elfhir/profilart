@@ -1,8 +1,10 @@
 {% extends "layout/base.html" %}
 
+{% load i18n %}
+ 
 {% block content %}
         <article class="registerContent">
-	    <h2>Edit account</h2>
+	    <h2>{% trans "edit_account" %}</h2>
 	    <p class="form-information">{{ formState }}</p>
 	    <p class="form-information">* all inputs are required</p>
 	    <form action="/{{ user.username }}/build/editaccount/" method="post">
@@ -11,7 +13,7 @@
 	    </form>
 	</article>
 	<article class="logInContent">
-	    <h2>Anonymity</h2>
+	    <h2>{% trans "anonymity" %}</h2>
 	    <form action="/{{ user.username }}/build/editanonymity/" method="post">
 		{{ form_anonymity.as_p }}
 		<input type="submit" value="Submit" />

@@ -1,7 +1,8 @@
 {% extends "layout/base.html" %}
+{% load i18n %}
 
 {% block content %}
-        <h2>Adding exhibition</h2>
+        <h2>{% trans "addingEx" %}</h2>
 	<p class="form-information">* all inputs are required</p>
 	<form action="/{{ user.username }}/build/addexhibition/" method="post" class="form-exhibition">
             {{ form.as_p }}

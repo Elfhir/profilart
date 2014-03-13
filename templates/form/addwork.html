@@ -1,7 +1,8 @@
 {% extends "layout/base.html" %}
+{% load i18n %}
 
 {% block content %}
-        <h2>Adding work item</h2>
+        <h2>{% trans "addWork" %}</h2>
 	<p class="form-information">* all inputs are required</p>
 	<form action="/{{ user.username }}/build/addwork/{{ idTopic }}/" enctype="multipart/form-data" method="post" class="form-work">
             {{ form.as_p }}

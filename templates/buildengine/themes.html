@@ -1,12 +1,13 @@
 {% extends "layout/base.html" %}
 {% load username_extras %}
+{% load i18n %}
 
 {% block headScript %}
     <script type="text/javascript" src="/static/script/ajax/themes.js"></script>
 {% endblock headScript %}
 
 {% block content %}
-    <h2>Changing my template</h2>
+    <h2>{% trans "changeTemplate" %}</h2>
     <section class="wrapper-themes">
         {% for theme in themes %}
             {% if theme.id_template != prefWebsite.id_template %} 
@@ -20,10 +21,10 @@
         {% endfor %}
     </section>
     <div class="modal" id="modalsuccess" style="display:none;">
-        Votre thème a été changé.
+        {% trans "changeTemplateOK" %}
     </div>
     <div class="modal" id="modalerror" style="display:none;">
-        Votre thème n'a pas pu être changé.
+        {% trans "changeTemplateNO" %}
     </div>
     <div class="clear"></div>
 {% endblock content %}

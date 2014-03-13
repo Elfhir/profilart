@@ -35,7 +35,7 @@ msgid "blog_home_creerSite"
 msgstr "Create your customized website"
 
 msgid "blog_home_creerSiteTxt"
-msgstr ""
+msgstr "Create a web site easily and quickly using our Profile Art tool. Stay connected with the network of the Art. Choose a template and start editing pages to your image. We offer you the latest free web. View and edit your site with ease anywhere and anytime on your computer, smartphone and tablet."
 
 
 msgid "blog_home_choisirTemplate"
@@ -48,7 +48,7 @@ msgid "blog_home_moteurInnovant"
 msgstr "An innovative search engine"
 
 msgid "blog_home_searchTxt"
-msgstr ""
+msgstr "Out of inspiration? Exposure to achieve? We innovate by proposing a search engine corpus multimedia. We believe in multi-disciplinary artists and our search engine brings together works as video, painting, photography, sculpture, installation, etc.."
 
 
 msgid "blog_home_effectuerRecherche"
@@ -62,3 +62,57 @@ msgstr "See all partners"
 
 msgid "blog_home_peopleSay"
 msgstr "What people are saying"
+
+msgid "edit_account"
+msgstr "Edit your account"
+
+msgid "anonymity"
+msgstr "Anonymity"
+
+msgid "editPages"
+msgstr "Edit my page"
+
+msgid "seeWebsite"
+msgstr "My website"
+
+msgid "exhibitions"
+msgstr "Exhibitions"
+
+msgid "account"
+msgstr "Account"
+
+msgid "themes"
+msgstr "Themes"
+
+msgid "changeTemplate"
+msgstr "Changing my template"
+
+msgid "changeTemplateOK"
+msgstr "The theme has been changed."
+
+msgid "changeTemplateNO"
+msgstr "Your theme could not be changed."
+
+msgid "manageEx"
+msgstr "Managing the exhibitions"
+
+msgid "addingEx"
+msgstr "Adding an exhibition"
+
+msgid "editEx"
+msgstr "Editing the exhibition"
+
+msgid "addWork"
+msgstr "Adding an artwork"
+
+msgid "following"
+msgstr "Following"
+
+msgid "followers"
+msgstr "Followers"
+
+msgid "lastActivityWork"
+msgstr "Last Activity : Artworks"
+
+msgid "lastActivityEx"
+msgstr "Last Activity : Exhibitions"

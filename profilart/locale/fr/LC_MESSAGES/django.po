@@ -61,4 +61,56 @@ msgstr "Voir tous nos partenaires"
 msgid "blog_home_peopleSay"
 msgstr "Ce qu'on dit de profilart"
 
+msgid "edit_account"
+msgstr "Paramétrer son compte"
 
+msgid "anonymity"
+msgstr "Anonymat"
+
+msgid "editPages"
+msgstr "Editer ma page"
+
+msgid "seeWebsite"
+msgstr "Voir mon site"
+
+msgid "exhibitions"
+msgstr "Expositions"
+
+msgid "account"
+msgstr "Mon compte"
+
+msgid "themes"
+msgstr "Thèmes"
+
+msgid "changeTemplate"
+msgstr "Changer le thème"
+
+msgid "changeTemplateOK"
+msgstr "Le thème a bien été changé."
+
+msgid "changeTemplateNO"
+msgstr "Votre thème n'a pas pu être changé."
+
+msgid "manageEx"
+msgstr "Gérer ses expositions"
+
+msgid "addingEx"
+msgstr "Ajouter une exposition"
+
+msgid "editEx"
+msgstr "Modifier les informations"
+
+msgid "addWork"
+msgstr "Ajouter une oeuvre"
+
+msgid "following"
+msgstr "Abonnés"
+
+msgid "followers"
+msgstr "Suiveurs"
+
+msgid "lastActivityWork"
+msgstr "Dernières activités : Oeuvres"
+
+msgid "lastActivityEx"
+msgstr "Dernières activités : Expositions"

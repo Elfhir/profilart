@@ -11,7 +11,7 @@
     	{% if group.name == 'Curator' %}
 	<ul>
 	    <li><a href="{% url 'authentification.views.logOut' %}">{% trans "LogOut" %}</a></li>
-	    <li><a href="/{{ request.user.username }}/build">Editer ma page</a></li>
+	    <li><a href="/{{ request.user.username }}/build">{% trans "editPages" %}</a></li>
 	    <li><a href="{% url 'blog.views.archives' %}">{% trans "AccessArchives" %}</a></li>
 	</ul>
 	{% endif %}

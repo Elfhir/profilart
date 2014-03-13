@@ -1,8 +1,9 @@
 {% extends "layout/base.html" %}
+{% load i18n %}
 
 {% block content %}
     <article class="wrapper-manage-exhibition">
-        <h2>Manage exhibitions</h2>
+        <h2>{% trans "manageEx" %}</h2>
         <div class="exhibition wrapper-exhibition">
             {% for exhibition in exhibitions %}
                 <div class="object-exhibition">
