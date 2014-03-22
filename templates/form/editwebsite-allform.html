@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div class="slide-home">
     <div class="wrapper-content">
 	<form action="/{{ request.user.username }}/build/editwebsite/" enctype="multipart/form-data" method="post" class="form-editwebsite form-editwebsite-allform">
@@ -38,12 +40,12 @@
 		<div class="wrapper-background">
 		    <label id="background">Background image :</label>
 		    <p><input type="file" name="background" style="width: 391px"></p>
-		    <a href="/{{ user.username }}/build/deletebackground/">Delete background image</a>
+		    <a class="delete-back-color" href="/{{ user.username }}/build/deletebackground/">Delete background image</a>
 		</div>
 		<div class="clear"></div>
-		<p><input type="submit" value="Submit"></p>
+		<p><input class="submit-color" type="submit" value="Submit"></p>
 	    </div>
-	    <p class="btn-slider-home"><img src="/static/img/icons/slide-home.png"/></p>
+	    <p class="btn-slider-home"><img title="{% trans "helpColor" %}" src="/static/img/icons/slide-home.png"/></p>
 	    <div class="clear"></div>
 	</form>
     </div>

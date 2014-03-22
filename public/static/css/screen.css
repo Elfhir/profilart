@@ -111,6 +111,9 @@ textarea{
     width: 100%;
     min-width: 100%;
     max-width: 100%;
+    padding: 8px;
+    line-height: 23px;
+    min-height: 350px;
 }
 input[type="file"]{
     width: 50%;
@@ -147,6 +150,17 @@ select{
     font-style: italic;
     font-size: 0.8em;
     margin-bottom: 5px;
+}
+.delete-back-color{
+    float: right;
+    position: relative;
+    left: -233px;
+}
+.submit-color{
+    float: right;
+    position: relative;
+    top: -112px;
+    left: -4px;
 }
 .modify-picture-work{
     width: 50%;
@@ -221,7 +235,7 @@ select{
 .btn-slider-home{
     text-align: center;
     margin-top: -10px;
-    padding-top: 5px;
+    padding-top: 15px;
     padding-bottom: 6px;
 }
 .btn-slider-home img:hover{
@@ -398,7 +412,6 @@ select{
 }
 .menu-backoffice{
     padding-top: 5px;
-    margin-bottom: 10px;
     padding-bottom: 14px;
 }
 .menu-backoffice{
@@ -800,6 +813,17 @@ select{
     margin-left: 109px;
     position: absolute;
     margin-top: -11px;
+}
+.qtip-content{
+    font-size: 14px;
+    margin: 6px;
+    line-height: 17px;
+}
+.name-features{
+    background-color: white;
+    padding: 5px;
+    border: 1px solid #AAA;
+    font-size: 13px;
 }
 /****************************
  * THEMES

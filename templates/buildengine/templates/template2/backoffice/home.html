@@ -1,4 +1,5 @@
 {% load color_extras %}
+{% load i18n %}
 
 <!doctype html>
 <head>
@@ -9,12 +10,15 @@
     <link rel="stylesheet" href="/static/template/template2/screen.css">
     <link rel='stylesheet' type='text/css' href="/static/script/modal/jquery.modal.css">
     <link rel="stylesheet" href="/static/script/mosaic/mosaic.css">
+    <link rel="stylesheet" href="/static/script/qtip/jquery.qtip.css">
+    
     <style type="text/css">
         .template2 a{
             color : {{ prefWebsite.font_color }};
         }
     </style>
     <script type="text/javascript" src="/static/script/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="/static/script/qtip/jquery.qtip.min.js"></script>
     <script type="text/javascript" src="/static/script/mosaic/mosaic.1.0.1.min.js"></script>
     <script type="text/javascript" src="/static/script/modal/jquery.modal.min.js"></script>
     <script type="text/javascript" src="/static/script/highlight/highlight.pack.js"></script>
@@ -28,13 +32,12 @@
         });
     </script>
     
-    
     <link rel="stylesheet" href="/static/script/farbtastic/farbtastic.css">
     <link rel="stylesheet" href="/static/script/jquery.ui.fontSelector/jquery.ui.fontSelector.css">
         
         
-        <script type="text/javascript" src="/static/script/attrchange.js"></script>
-        <script type="text/javascript" src="/static/script/farbtastic/farbtastic.js"></script>
+    <script type="text/javascript" src="/static/script/attrchange.js"></script>
+    <script type="text/javascript" src="/static/script/farbtastic/farbtastic.js"></script>
     <script type="text/javascript" src="/static/script/jquery.ui.fontSelector/jquery.ui.fontSelector.js"></script>
     <script type="text/javascript" src="/static/script/fontPicker/fontPicker.js"></script>
     <script type="text/javascript">
@@ -68,6 +71,16 @@
             });
                         
             $('#id_font option[value="'+$(".select-fontstyle").html()+'"]').attr("selected", "selected");
+            
+            $('[title]').qtip({
+                style: {
+                    classes: "qtip-light"
+                },
+                position: {
+                    my: 'bottom center',
+                    at: 'top center',
+                }
+            });
 	});
     </script>
 </head>
@@ -104,13 +117,20 @@
                         <div class="modifier-edit-marker wrapper-bxslider switch-homeslider switch-parent">
                             <ul class="list-modifier-edit">
                                 <li>
+                                    <p class="name-features">{% trans "titleCar" %}</p>
+                                </li>
+                                <li>
                                     <div class="modifier-edit-link">
-                                        <img class="switch-visibility" src="/static/img/icons/eye.png" title="Visible / invisible"
-                                        isVisible="{{ prefWebsite.isvisible_homeslider }}" user="{{ username }}" element="homeslider" />
+                                        <img class="switch-visibility" src="/static/img/icons/eye.png"
+                                            title="{% trans "helpEye" %}"
+                                        isVisible="{{ prefWebsite.isvisible_homeslider }}" user="{{ username }}" element="homeslider"/>
                                     </div>
                                 </li>
                                 <li>
-                                    <a href="#modal-slider" class="open-modal" rel="modal:open"><img src="/static/img/icons/cog.png"></a>
+                                    <a href="#modal-slider" class="open-modal" rel="modal:open" ><img src="/static/img/icons/cog.png" title="{% trans "helpParam" %}"></a>
+                                </li>
+                                <li>
+                                    <a href="/{{ username }}/build/managework/"><img title="{% trans "helpAddWork" %}" src="/static/img/icons/add.png"></a>
                                 </li>
                             </ul>
                             <div class="clear"></div>
@@ -156,13 +176,19 @@
                     <div class="wrapper-home-content-alignleft modifier-edit-marker switch-homebio switch-parent">
                         <ul class="list-modifier-edit">
                             <li>
+                                <div class="name-features" style="padding: 2px 5px;">{% trans "titleBiography" %}</div>
+                            </li>
+                            <li>
                                 <div class="modifier-edit-link">
-                                    <img class="switch-visibility" src="/static/img/icons/eye.png" title="Visible / invisible"
+                                    <img class="switch-visibility" src="/static/img/icons/eye.png" title="{% trans "helpEye" %}"
                                     isVisible="{{ prefWebsite.isvisible_homebio }}" user="{{ username }}" element="homebio" />
                                 </div>
                             </li>
+                            <li>
+                                <a href="/{{ username }}/build/editbio/"><img title="{% trans "helpPencilBio" %}" src="/static/img/icons/pencil.png"></a>
+                            </li>
                         </ul>
-                        <p><em>{{ biography|truncatewords:100 }} <a href="/{{ username }}/build/editbio/">Read more ></a></em></p>
+                        <p><em>{{ biography|truncatewords:100 }} <a href="/{{ username }}/build/editbio/">{% trans "modify" %} ></a></em></p>
                     </div>
                 </div>
             </article>
@@ -171,13 +197,16 @@
                     <div class="wrapper-home-content-alignright modifier-edit-marker switch-homeexhibition switch-parent">
                         <ul class="list-modifier-edit">
                             <li>
+                                <p class="name-features">{% trans "titleExhibitions" %}</p>
+                            </li>
+                            <li>
                                 <div class="modifier-edit-link">
-                                    <img class="switch-visibility" src="/static/img/icons/eye.png" title="Visible / invisible"
+                                    <img class="switch-visibility" src="/static/img/icons/eye.png" title="{% trans "helpEye" %}"
                                     isVisible="{{ prefWebsite.isvisible_homeexhibition }}" user="{{ username }}" element="homeexhibition" />
                                 </div>
                             </li>
                             <li>
-                                <a href="/{{ username }}/build/addexhibition/"><img src="/static/img/icons/add.png"></a>
+                                <a href="/{{ username }}/build/addexhibition/"><img title="{% trans "helpAddEx" %}" src="/static/img/icons/add.png"></a>
                             </li>
                         </ul>
                         <h2 style="color:{{ prefWebsite.font_color }}">Last exhibitions</h2>
@@ -197,7 +226,7 @@
         </div>
         <section class="wrapper-footer" role="footer">
             <div class="wrapper-content">
-                <p>Powered by Profil Art - Create my Website - Suivre cet artiste</p>
+                <p>Powered by Profil Art - Create my Website - Follow this artist</p>
             </div>
         </section>
         </div>

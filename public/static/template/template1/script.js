@@ -11,5 +11,5 @@ $(document).ready(function() {
         }
     })
     
-    $(".topic-line").find(".wrapper-thumb-overlay:gt(2)").hide();
+    $(".topic-line").find(".wrapper-thumb-overlay:gt(2)").remove();
 });
