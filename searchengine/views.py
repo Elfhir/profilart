@@ -7,6 +7,7 @@ from searchengine.models import *
 from django.db.models.signals import *
 from django.dispatch import receiver
 from itertools import chain
+import operator, random, copy
 
 #caracteres a remplacer
 charToRemplace = {  'a': [u'à', u'ã', u'á', u'â'],
@@ -41,7 +42,7 @@ def home(request):
     searchModalite = searchObject.get('modalite-recherche')
     # Recherche par défault
     if searchModalite is None:
-        searchModalite = 'Corpus'
+        searchModalite = 'Simple'
     searchWordSplited = searchWord.lower().split()
     #On ne recherche que les mots d'une certaine taille et non ignorés
     searchWordSplited = [word for word in searchWordSplited if ( len(word) > 2 and word not in wordToIgnore )]
@@ -51,26 +52,48 @@ def home(request):
             for char, old_chars  in charToRemplace.items():
                 for old_char in old_chars:
                     searchWordSplited[i] = searchWordSplited[i].replace(old_char, char)
-    print searchWordSplited
+    #print searchWordSplited
     
     resultWord = {}
     for i in range( len(searchWordSplited) ):
         resultWord[i] = list(WordsRate.objects.filter(mot=searchWordSplited[i]).order_by('-rate'))
-    print resultWord
+    #print resultWord
     
     # On ne recupere que les oeuvres regroupant tous les mots cles
     work = []
     workTmp = []
+    
+    # la taille de resultWord correspond au nombre de mots recherchés dans la chaine nettoyée
     for i in range( len(resultWord) ):
         for j in range( len(resultWord[i]) ):
             workTmp.append(resultWord[i][j].work)
-    print workTmp
+    #workTmp contient toutes les oeuvres contenant au moins un des mots recherché
+    #print workTmp
+    
     for i in range( len(workTmp)):
+        # Si l'oeuvre recherchée i est contenu le même nombre de fois dans workTmp que le nombre de mots recherché alors celle-ci présente tous les mots clés
+        # Donc si elle n'est pas deja ajouté à work on l'ajoute (2eme condition)
         if ( ( workTmp.count(workTmp[i]) == len(resultWord) ) and ( work.count(workTmp[i]) == 0 ) ):
             work.append(workTmp[i])
-    print work
+    #work ne contient que les oeuvres contant tous les mots-clé recherchés
+    #print work
+    
+    if (searchModalite == 'Corpus'):
+        nbCorpus = 3
+        nbWorkByCorpus = 3
+        corpuses = {}
+        for i in range(nbCorpus):
+            corpus = copy.deepcopy(work)
+            random.shuffle(corpus)
+            corpus = corpus[0:nbWorkByCorpus]
+            print corpus
+            corpuses[i] = corpus
+        print corpuses
+            
+    
     
     return render(request, 'searchengine/home.html', locals())
+
 
 def computeAllTableIndex(request):
     works = Work.objects.all()
@@ -83,6 +106,20 @@ def computeAllTableIndex(request):
             
     return render(request, 'searchengine/computeTableIndex.html', locals())
 
+
+def getMoreResult(request):
+    wordsRates = WordsRate.objects.order_by('mot')
+    wordsNumb = {}
+    for wr in wordsRates:
+        if( wr.mot in wordsNumb):
+            wordsNumb[wr.mot]+=1
+        else:
+            wordsNumb[wr.mot] = 1
+    sorted_wordsNumb = sorted(wordsNumb.iteritems(), key=operator.itemgetter(1))
+    sorted_wordsNumb.reverse()
+    
+    return render(request, 'searchengine/getMoreResult.html', locals())
+    
 
 def computeOneTableIndex(work):
     print 'ComputeOneTableIndex'
@@ -113,3 +150,4 @@ def computeOneTableIndex(work):
                 wordRate.rate += Coeff.objects.get(name=key).coeff
                 wordRate.save()
                 print wordRate
+                

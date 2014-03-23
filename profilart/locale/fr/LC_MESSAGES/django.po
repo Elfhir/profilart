@@ -114,3 +114,18 @@ msgstr "Dernières activités : Oeuvres"
 
 msgid "lastActivityEx"
 msgstr "Dernières activités : Expositions"
+
+msgid "stringSearched"
+msgstr "Expression recherchée"
+
+msgid "search"
+msgstr "Search"
+
+msgid "searchMode"
+msgstr "Mode de recherche"
+
+msgid "by"
+msgstr "par"
+
+msgid "regenerateCorpus"
+msgstr "Regénérer les corpus"

@@ -1,0 +1,13 @@
+{% extends "layout/base.html" %}
+{% block bodyClass %}searchengine more result{% endblock %}
+
+{% load i18n %}
+
+{% block content %}
+    <h2>Top Words Result:</h2>
+   <ul>
+       {% for w in sorted_wordsNumb %}
+           <li>{{w.0}} : {{w.1}}</li>
+       {% endfor %}
+   </ul>
+{% endblock content %}

@@ -6,39 +6,45 @@
 
 {% block content %}
         <form action="/search" method="get" id="result-page-form-search">
-            <h2>Expression recherchée : 
+            <h2>{% trans "stringSearched" %} : 
                 <input type="search" value="{{searchWord}}" name="the_search">
             </h2>
             
-            <input type="submit" value="Recherche">
-            
-            {{searchModalite}}
+            <input type="submit" value="{% trans 'search' %}">
             
             <div id="modalite-recherche">
-                <span id="titre">Modalité de la recherche :</span> 
-                    <input type="radio" name="modalite-recherche" value="Corpus" {% if searchModalite == "Corpus" %}checked{% endif %}>Par Corpus
+                <span id="titre">{% trans 'searchMode' %} :</span> 
                     <input type="radio" name="modalite-recherche" value="Simple" {% if searchModalite == "Simple" %}checked{% endif %}> Simple
+                    <input type="radio" name="modalite-recherche" value="Corpus" {% if searchModalite == "Corpus" %}checked{% endif %}> {% trans 'by'|capfirst %} Corpus
             </div>
         </form>
     
     {% if searchModalite == "Corpus" %}
         <div class="corpus">
-            <h3>Corpus 1</h3>
-                <ul>
-                    {% for w in work %}
-                    <li class="work-container">
-                        <div class="img-container">
-                            <a href="/{{ w.user.username }}/work/{{ w.id}}/">
-                                <img src="/static/{{w.image}}" class="width-ratio-{{w.image.width|ratioWidth:w.image.height}}">
-                            </a>
-                        </div>
-                        <div class="encart">
-                            <h4><a href="/{{ w.user.username }}/work/{{ w.id}}/">{{w.name}}</a></h4>
-                            <div class="auteur">by <a href="/{{ w.user.username }}">{{w.user}}</a></div>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
+            {% if work|length > nbCorpus %}
+                 <div id='regenerer-corpus'>{% trans 'regenerateCorpus' %}</div>
+                 {% for i, corpus in corpuses.items %}
+                    <h3>Corpus {{i|add:1}}</h3>
+                        <ul>
+                            {% for w in corpus %}
+                                <li class="work-container">
+                                    <div class="img-container">
+                                        <a href="/{{ w.user.username }}/work/{{ w.id}}/">
+                                            <img src="/static/{{w.image}}" class="width-ratio-{{w.image.width|ratioWidth:w.image.height}}">
+                                        </a>
+                                    </div>
+                                    <div class="encart">
+                                        <h4><a href="/{{ w.user.username }}/work/{{ w.id}}/">{{w.name}}</a></h4>
+                                        <div class="auteur">by <a href="/{{ w.user.username }}">{{w.user}}</a></div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                   {% endfor %}
+             {% else %}
+                <h3>Pas assez de résultats pour cette recherche pour générer des corpus</h3>
+             {% endif %}
+             
         </div>
     {% endif %}
     
@@ -62,4 +68,17 @@
             </ul>
         </div>
     {% endif %}
+    
+    <script>
+        $(document).ready(function(){
+            $('#result-page-form-search #modalite-recherche input[type=radio]').change(function() {
+                $(location).attr('href',"{% url 'searchengine.views.home' %}?the_search="+$('#result-page-form-search input[name="the_search"]').val()+"&modalite-recherche="+$('input[type=radio]:checked').val());
+            });
+            
+            $('#regenerer-corpus').click(function(){
+                $(location).attr('href',"{% url 'searchengine.views.home' %}?the_search="+$('#result-page-form-search input[name="the_search"]').val()+"&modalite-recherche="+$('input[type=radio]:checked').val());
+            })
+        });
+    </script>
+    
 {% endblock content %}

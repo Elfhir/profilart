@@ -856,10 +856,27 @@ select{
 	margin-right: 5px;
 }
 
+.searchengine #regenerer-corpus{
+	display: inline-block;
+	padding: 5px 10px;
+	cursor: pointer;
+	font-size: 14px;
+	position: absolute;
+	top: -15px;
+	right: 0;
+	margin-bottom: 10px;
+	border: 1px solid #aeaeae;
+	background-color: #ffffff;
+}
+
 .searchengine h3{
 	font: normal normal normal 16px 'PT Sans', 'sans-serif';
 	text-transform: uppercase;
 	margin-left: 15px;
+}
+
+.searchengine .corpus{
+	position: relative;
 }
 
 .searchengine .corpus ul{

@@ -116,3 +116,18 @@ msgstr "Last Activity : Artworks"
 
 msgid "lastActivityEx"
 msgstr "Last Activity : Exhibitions"
+
+msgid "stringSearched"
+msgstr "String searched"
+
+msgid "search"
+msgstr "Search"
+
+msgid "searchMode"
+msgstr "Search Mode"
+
+msgid "by"
+msgstr "by"
+
+msgid "regenerateCorpus"
+msgstr "Regenerate corpuses"
