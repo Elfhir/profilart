@@ -115,11 +115,44 @@ msgstr "Dernières activités : Oeuvres"
 msgid "lastActivityEx"
 msgstr "Dernières activités : Expositions"
 
+msgid "titleMosaic"
+msgstr "Mosaïque des oeuvres"
+
+msgid "titleCar"
+msgstr "Carousel des oeuvres"
+
+msgid "titleExhibitions"
+msgstr "Extrait expositions"
+
+msgid "titleBiography"
+msgstr "Extrait biographie"
+
+msgid "helpEye"
+msgstr "Voir ou ne pas voir cette fonctionnalité sur mon site."
+
+msgid "helpPencilBio"
+msgstr "Modifier la biographie."
+
+msgid "helpParam"
+msgstr "Modifier les paramètres."
+
+msgid "helpAddWork"
+msgstr "Ajouter une oeuvre."
+
+msgid "helpAddEx"
+msgstr "Ajouter une exposition."
+
+msgid "helpColor"
+msgstr "Modifier les couleurs du thème."
+
+msgid "modify"
+msgstr "Modifier"
+
 msgid "stringSearched"
 msgstr "Expression recherchée"
 
 msgid "search"
-msgstr "Search"
+msgstr "Rechercher"
 
 msgid "searchMode"
 msgstr "Mode de recherche"

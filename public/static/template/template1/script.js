@@ -10,4 +10,6 @@ $(document).ready(function() {
             $(this).closest(".switch-parent").css("opacity", "0.5");
         }
     })
+    
+    $(".topic-line").find(".wrapper-thumb-overlay:gt(2)").remove();
 });

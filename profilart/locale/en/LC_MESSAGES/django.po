@@ -117,6 +117,39 @@ msgstr "Last Activity : Artworks"
 msgid "lastActivityEx"
 msgstr "Last Activity : Exhibitions"
 
+msgid "titleMosaic"
+msgstr "Mosaic artworks"
+
+msgid "titleCar"
+msgstr "Slideshow"
+
+msgid "titleExhibitions"
+msgstr "Extract exhibitions"
+
+msgid "titleBiography"
+msgstr "Extract biography"
+
+msgid "helpEye"
+msgstr "I want to display this feature on my website."
+
+msgid "helpPencilBio"
+msgstr "I want to edit my biography."
+
+msgid "helpParam"
+msgstr "Settings."
+
+msgid "helpAddWork"
+msgstr "Adding an artwork."
+
+msgid "helpAddEx"
+msgstr "Adding an Exhibition."
+
+msgid "helpColor"
+msgstr "I want to change my theme color."
+
+msgid "modify"
+msgstr "Modify"
+
 msgid "stringSearched"
 msgstr "String searched"
 

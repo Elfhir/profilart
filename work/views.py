@@ -236,13 +236,13 @@ def displayTopic(request, username, nameTopic):
     if nameTopic == "others": idTopic = "6"
     workTopic = WorkTopicType.objects.filter(idType=idTopic, idWork_id__user=user.id)
     topics = WorkTopic.objects.filter(user_id=user.id)
-    works = Work.objects.filter(user_id=user.id)
+    works = Work.objects.filter(user_id=user.id).order_by('work_topic')
     workTopicType = WorkTopicType.objects.filter(idWork_id__user_id=user.id).order_by("idType").values_list("idType")
     firstname = user.first_name
     name = user.last_name
     return render(request, 'buildengine/templates/template'+str(prefWebsite.id_template)+'/frontoffice/topic.html', {'username' : username, 'prefWebsite' : prefWebsite,
                                                                'firstname' : firstname, 'name' : name, 'workType' : set(workTopicType),
-                                                               'nameTopic' : nameTopic, 'workTopic' : workTopic, 'works' : works[:3],
+                                                               'nameTopic' : nameTopic, 'workTopic' : workTopic, 'works' : works,
                                                                'topics': topics})
 
 def displayCartelTopic(request, username, idTopic):
